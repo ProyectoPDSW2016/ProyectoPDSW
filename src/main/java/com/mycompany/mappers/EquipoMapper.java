@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.services;
+package com.mycompany.mappers;
 
 /**
  *
- * @author 2093130
+ * @author APR_Portatil
  */
-public class ServiciosElectroEciPersistencia extends ServiciosElectroEci{
+public interface EquipoMapper {
     
 }

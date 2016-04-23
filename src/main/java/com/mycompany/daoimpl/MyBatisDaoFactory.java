@@ -9,6 +9,7 @@ import com.mycompany.persistencia.DaoEquipo;
 import com.mycompany.persistencia.DaoFactory;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 import javax.persistence.PersistenceException;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -23,45 +24,73 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  * doc: http://www.mybatis.org/mybatis-3/es/
  */
 public class MyBatisDaoFactory extends DaoFactory {
-    SqlSessionFactory sqlSessionFactory;
-    SqlSession sqls;
+    private static volatile SqlSessionFactory sqlSessionFactory;
+    private Properties  appProp = null;
     
-    public MyBatisDaoFactory() {
-         sqlSessionFactory = null;
+      private SqlSession currentsessionsql;
+    /*
+      Constructor de la clase MyBatisDaoFacroty, 
+      syncronized se encarga de ejecutar el codigo que tiene encerrado 
+      para que solo pueda acceder un objeto a la vez a ejecutar la session.
+     */
+    public MyBatisDaoFactory(Properties p) {
+        this.appProp = p;
+     
         if (sqlSessionFactory == null) {
-            InputStream inputStream;
-            try {
-                inputStream = Resources.getResourceAsStream("mybatis_electroECI.xml");
-                sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-            } catch (IOException e) {
-                throw new RuntimeException(e.getCause());
-            }
+          synchronized(MyBatisDaoFactory.class){
+              
+          
+           if (sqlSessionFactory==null){
+                    sqlSessionFactory=getSqlSessionFactory(this.appProp); 
+                }
         }
     }
+        }
+    /**
+     * Construye un SQLSessionFactory usando el archivo de configuración de
+     * MyBatis, el nombre está en el archivo de configuración de la aplicación.
+     * @param appProp
+     * @return SQLSessionFactory
+     */
+    private SqlSessionFactory getSqlSessionFactory(Properties appProp) {
+        SqlSessionFactory sqlSessionFactory2 = null;
+        if (sqlSessionFactory2 == null) {
+            InputStream inputStream;
+            try {
+                inputStream = Resources.getResourceAsStream(appProp.getProperty("mybatis_electroECI"));
+                sqlSessionFactory2 = new SqlSessionFactoryBuilder().build(inputStream);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return sqlSessionFactory2;
+    }  
 
     @Override
     public void beginSession() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       currentsessionsql = sqlSessionFactory.openSession();
     }
 
     @Override
     public DaoEquipo getDaoEquipo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MyBatisDaoEquipo(currentsessionsql);
+        
     }
 
     @Override
     public void commitTransaction() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentsessionsql.commit();
     }
 
     @Override
     public void rollbackTransaction() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        currentsessionsql.rollback();
     }
 
     @Override
-    public void endSession() throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void endSession() throws PersistenceException
+    {
+       currentsessionsql.close();
     }
     
 }

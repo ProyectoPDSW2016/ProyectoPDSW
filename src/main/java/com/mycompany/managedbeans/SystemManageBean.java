@@ -10,8 +10,8 @@ import com.mycompany.electroeci.Equipo;
 import com.mycompany.electroeci.Estudiante;
 import com.mycompany.electroeci.Usuario;
 import com.mycompany.services.ExcepcionServiciosSistema;
-import com.mycompany.services.ServiciosElectroEci;
-import com.mycompany.services.ServiciosElectroEciPersistencia;
+import com.mycompany.services.ServicioPersisElectroECI;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Date;
@@ -27,14 +27,14 @@ import javax.enterprise.context.SessionScoped;
 @ManagedBean (name="AdministraConsultaBean")
 @SessionScoped
 public class SystemManageBean implements Serializable{
+    ServicioPersisElectroECI  sec;
     private String nombre;
     private int identificacion;
     private Date fecha;
     private int codigoEquip;
-    private static ServiciosElectroEci sp;
-     
+
     public SystemManageBean() throws ExcepcionServiciosSistema,IOException{
-        //sp=new ServiciosElectroEci.getInstance();
+       sec = ServicioPersisElectroECI.getInstance("appConfig.properties");
     }
 
     public String getNombre() {
