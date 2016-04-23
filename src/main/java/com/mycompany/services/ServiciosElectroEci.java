@@ -24,10 +24,16 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 public abstract class ServiciosElectroEci {
     private static ServiciosElectroEci instance;
-    
-    public static ServiciosElectroEci getInstance()throws RuntimeException, IOException{
-            instance=new ServiciosElectroEciPersistencia();
-            return instance;
+
+    /**
+     * objetivo:Constructor de ServicioEci.
+     * @return instancia de ServiciosElectroEciPersistencia.
+     * @throws RuntimeException
+     * @throws IOException 
+     */
+    public static ServiciosElectroEci getInstance() throws RuntimeException, IOException{
+        instance = new ServiciosElectroEciPersistencia();
+        return instance;
     }
     
     protected ServiciosElectroEci(){
