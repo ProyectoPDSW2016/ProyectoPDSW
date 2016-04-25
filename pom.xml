@@ -148,28 +148,17 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
+            
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>auto-clean</id>
+                        <phase>initialize</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>clean</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -192,8 +181,10 @@
                     <autocommit>false</autocommit>
                     <skip>${maven.test.skip}</skip>
                 </configuration>
-                
+                <!-- execution sql. -->
+              
             </plugin>
+            
         </plugins>
     </build>
     <repositories>
