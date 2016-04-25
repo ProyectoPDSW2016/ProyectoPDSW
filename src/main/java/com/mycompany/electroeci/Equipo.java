@@ -14,20 +14,42 @@ public class Equipo {
     private int placa;
     private String nombre;
     private String imagen;
+
+   
+    private int serial;
     private String marca;
     private int vidaUtil;
     private int precio;
     private String observaciones;
+    private char estado;
 
-    public Equipo(int placa, String nombre, String imagen, String marca, int vidaUtil, int precio, String observaciones) {
+    public Equipo(int placa, String nombre,int serial, String imagen, String marca, int vidaUtil, int precio, String observaciones) {
         this.placa = placa;
         this.nombre = nombre;
         this.imagen = imagen;
         this.marca = marca;
         this.vidaUtil = vidaUtil;
         this.precio = precio;
+        this.serial = serial;
         this.observaciones = observaciones;
     }
+
+    public int getSerial() {
+        return serial;
+    }
+
+    public void setSerial(int serial) {
+        this.serial = serial;
+    }
+
+    public char getEstado() {
+        return estado;
+    }
+
+    public void setEstado(char estado) {
+        this.estado = estado;
+    }
+    
     
     public int getPlaca(){
         return placa;
@@ -36,6 +58,7 @@ public class Equipo {
     public void setPlaca(int placa){
         this.placa = placa;
     }
+   
     
     public String getNombre(){
         return nombre;

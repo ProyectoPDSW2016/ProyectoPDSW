@@ -8,6 +8,7 @@ package com.mycompany.daoimpl;
 import com.mycompany.electroeci.Equipo;
 import com.mycompany.mappers.EquipoMapper;
 import com.mycompany.persistencia.DaoEquipo;
+import java.util.List;
 import javax.persistence.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,24 +22,27 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class MyBatisDaoEquipo implements DaoEquipo{
 
-    private EquipoMapper eq = null;
+    private EquipoMapper equmapper = null;
     public MyBatisDaoEquipo(SqlSession session) {
-        eq = session.getMapper(EquipoMapper.class);
+        equmapper = session.getMapper(EquipoMapper.class);
+    }
+
+    
+    @Override
+    public Equipo loadeqByid(int equipo_id) throws PersistenceException {
+       Equipo resp = equmapper.loadeqByid(equipo_id);
+       return resp;
     }
 
     @Override
-    public Equipo load(int equipo_id) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insertEquipo(Equipo eq) throws PersistenceException {
+        equmapper.insertEquipo(eq, 0, 0);
     }
 
     @Override
-    public void save(Equipo eq) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(Equipo eq) throws PersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Equipo> SelectAll() throws PersistenceException {
+        List<Equipo> resp = equmapper.selectAll();
+        return resp;
     }
     
 }

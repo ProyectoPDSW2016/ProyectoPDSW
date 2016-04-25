@@ -6,17 +6,19 @@
 package com.mycompany.persistencia;
 
 import com.mycompany.electroeci.Equipo;
+import java.util.List;
 import javax.persistence.PersistenceException;
 
 /**
  *
  * @author Manuel Felipe Sanchez R
- * 
+ *
  */
 public interface DaoEquipo {
-    public Equipo load(int equipo_id)throws PersistenceException;
-    public void save(Equipo eq)throws PersistenceException;
-    public void update(Equipo eq)throws PersistenceException;
+    
+    public Equipo loadeqByid(int equipo_id)throws PersistenceException;
+    public void insertEquipo(Equipo eq)throws PersistenceException;
+    public List<Equipo> SelectAll()throws PersistenceException;
     
     
 }

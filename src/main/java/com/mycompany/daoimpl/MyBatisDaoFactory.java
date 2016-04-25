@@ -57,7 +57,7 @@ public class MyBatisDaoFactory extends DaoFactory {
         if (sqlSessionFactory2 == null) {
             InputStream inputStream;
             try {
-                inputStream = Resources.getResourceAsStream(appProp.getProperty("mybatis_electroECI"));
+                inputStream = Resources.getResourceAsStream(appProp.getProperty("mybatis_electroECIconf"));
                 sqlSessionFactory2 = new SqlSessionFactoryBuilder().build(inputStream);
             } catch (IOException e) {
                 throw new RuntimeException(e);

@@ -118,16 +118,61 @@
 
                 </executions>
             </plugin>
-               <!-- Tomcat embedded plugin. -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <port>8080</port>
-                    <path>/</path>
-                </configuration>
+       
+            
+            <!-- clean project (also local H2 database)-->
+           <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
+                <executions>
+                    <execution>
+                        <id>auto-clean</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+            
+            <!-- create local H2 database -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId> 
+                        <version>1.4.184</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>org.h2.Driver</driver>                    
+                    <url>jdbc:h2:file:./target/db/testdb;MODE=MYSQL</url>
+                    <username>anonymous</username>
+                    <password></password>
+                    <autocommit>false</autocommit>
+                    <skip>${maven.test.skip}</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-db</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <srcFiles>                                
+                                <srcFile>electroeci_bd.sql</srcFile>                                
+                            </srcFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -162,28 +207,24 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <!-- Tomcat embedded plugin. -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>sql-maven-plugin</artifactId>
-                <version>1.5</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.h2database</groupId>
-                        <artifactId>h2</artifactId> 
-                        <version>1.4.184</version>
-                    </dependency>
-                </dependencies>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
-                    <driver>org.h2.Driver</driver>                    
-                    <url>jdbc:h2:file:./target/db/testdb;MODE=MYSQL</url>
-                    <username></username>
-                    <password></password>
-                    <autocommit>false</autocommit>
-                    <skip>${maven.test.skip}</skip>
+                    <port>8080</port>
+                    <path>/</path>
                 </configuration>
+<<<<<<< cc05f4d3ba8084e6c4674f1ab777e31f5383b38e
                 <!-- execution sql. -->
               
             </plugin>
+=======
+            </plugin>
+
+>>>>>>> ElectroECI_ma V 1.0.3.3 add:Consultas, Implementacion DAO mybatis , Estado : pruebas
             
         </plugins>
     </build>
