@@ -164,7 +164,7 @@
                         </goals>
                         <configuration>
                             <srcFiles>                                
-                                <srcFile>electroeci_bd.sql</srcFile>                                
+                                <srcFile>tables.sql</srcFile>                                
                             </srcFiles>
                         </configuration>
                     </execution>
@@ -217,15 +217,7 @@
                     <port>8080</port>
                     <path>/</path>
                 </configuration>
-<<<<<<< cc05f4d3ba8084e6c4674f1ab777e31f5383b38e
-                <!-- execution sql. -->
-              
             </plugin>
-=======
-            </plugin>
-
->>>>>>> ElectroECI_ma V 1.0.3.3 add:Consultas, Implementacion DAO mybatis , Estado : pruebas
-            
         </plugins>
     </build>
     <repositories>

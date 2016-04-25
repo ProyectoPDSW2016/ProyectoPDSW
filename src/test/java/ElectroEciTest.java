@@ -62,21 +62,21 @@ public class ElectroEciTest {
 
     }  
         
-    
+    /*
      @Test
      public void consultarTiempoEquipoRecienRegistrado() {
          /*
          clase de equivalencia equipo recien registrado sin haber sido prestado 
-         */
+         
          assertTrue(true);
          
          
      }
      @Test
      public void consultarTiempoEquipoConUnPrestamo() {
-         /*
+         
          clase de equivalencia equipo con un solo prestamo 
-         */
+         
          assertTrue(true);
          
      }
@@ -85,7 +85,7 @@ public class ElectroEciTest {
          /*
          clase de equivalencia de un equipo con mas de un prestamo sin que la vida de uso 
          sea mayor que la vida util
-         */
+         
          assertTrue(true);
          
      }
@@ -95,8 +95,9 @@ public class ElectroEciTest {
          /*
          clase de equivalencia equipo con cuya vida de uso es mayor que 
          la vida util
-         */
+         
          assertTrue(true);
          
      }
+    */
 }
