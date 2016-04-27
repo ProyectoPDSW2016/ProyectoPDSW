@@ -1,3 +1,6 @@
+-- Created by Vertabelo (http://vertabelo.com)
+-- Last modification date: 2016-04-25 02:14:17.525
+
 -- tables
 -- Table: Equipo
 CREATE TABLE IF NOT EXISTS `Equipo`(
@@ -5,8 +8,11 @@ CREATE TABLE IF NOT EXISTS `Equipo`(
     `Seria` int NULL,
     `Tipo_Equipo_Modelo` int  NULL,
     `Precio` int NOT NULL,
+   
     `Observaciones` varchar(500) NOT NULL,
-     `Estado` char(2) NULL,    
+     `Estado` char(2) NULL,
+
+    
     `prestamo_solicitud_id` int  NULL,
     CONSTRAINT Equipo_pk PRIMARY KEY (Placa)
 )ENGINE = InnoDB;
@@ -73,7 +79,4 @@ CREATE TABLE IF NOT EXISTS `prestamo_solicitud`(
 
 
 -- End of file.
-
-
-
 

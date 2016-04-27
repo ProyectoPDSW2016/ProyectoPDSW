@@ -7,10 +7,9 @@
         <setting name="logImpl" value="LOG4J"/>        
     </settings>
     
-    <typeAliases>
-        <typeAlias type='com.mycompany.electroeci' alias='Equipo'/>
-
-    </typeAliases>        
+  <typeAliases>
+        <typeAlias type='com.mycompany.electroeci.Equipo' alias='Equipo'/>
+        </typeAliases>   
     
     
     <environments default="development">

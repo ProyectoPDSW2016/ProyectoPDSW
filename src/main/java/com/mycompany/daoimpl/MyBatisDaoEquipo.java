@@ -21,9 +21,10 @@ import org.apache.ibatis.session.SqlSession;
  * EquipoMapper que contiene la implementacion de los metodos de persistencia.
  */
 public class MyBatisDaoEquipo implements DaoEquipo{
-
+    private SqlSession sqlss;
     private EquipoMapper equmapper = null;
     public MyBatisDaoEquipo(SqlSession session) {
+        this.sqlss = session;
         equmapper = session.getMapper(EquipoMapper.class);
     }
 
@@ -31,17 +32,21 @@ public class MyBatisDaoEquipo implements DaoEquipo{
     @Override
     public Equipo loadeqByid(int equipo_id) throws PersistenceException {
        Equipo resp = equmapper.loadeqByid(equipo_id);
+       sqlss.commit();
        return resp;
     }
 
     @Override
     public void insertEquipo(Equipo eq) throws PersistenceException {
+        
         equmapper.insertEquipo(eq, 0, 0);
+        sqlss.commit();
     }
 
     @Override
     public List<Equipo> SelectAll() throws PersistenceException {
         List<Equipo> resp = equmapper.selectAll();
+        sqlss.commit();
         return resp;
     }
     

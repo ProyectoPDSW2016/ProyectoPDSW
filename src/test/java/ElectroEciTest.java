@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -53,10 +54,14 @@ public class ElectroEciTest {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
-      Equipo eq = new Equipo(001, "Prueba1", 002, "algo.jpg", "Texas", 5, 120000, "Esta es una prueba");
+      
+      Equipo eq = new Equipo(001,  002,003, 1000,"prueba1",'A',0012);
+            Equipo eq2 = new Equipo(002,  002,003, 1000,"prueba1",'A',00332);
       spECI.insertEquipo(eq, 0, 0);
-        Equipo loadeqByid = spECI.loadeqByid(001);
-        System.out.println("Equipo cargado:" + loadeqByid.getNombre());
+      spECI.insertEquipo(eq2, 0, 0);
+        List<Equipo> selectAll = spECI.selectAll();
+        System.out.println("seee"+ selectAll.size());
+        String toString = selectAll.toString();System.out.println(""+toString);
         //Realizar la operacion de la logica y la prueba
         
 

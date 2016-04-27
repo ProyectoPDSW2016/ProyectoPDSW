@@ -10,28 +10,34 @@ package com.mycompany.electroeci;
  * @author santiago-chisco
  */
 public class Equipo {
+
+
     
     private int placa;
-    private String nombre;
-    private String imagen;
+ 
+   // private String imagen;
 
    
     private int serial;
-    private String marca;
-    private int vidaUtil;
+    private int tipo_model;
+   // private int vidaUtil;
     private int precio;
     private String observaciones;
     private char estado;
+    private int pres_sol;
 
-    public Equipo(int placa, String nombre,int serial, String imagen, String marca, int vidaUtil, int precio, String observaciones) {
+    public Equipo(int placa, int serial,  int tipomodel,  int precio, String observaciones,char estado,int pressol) {
         this.placa = placa;
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.marca = marca;
-        this.vidaUtil = vidaUtil;
+       // this.nombre = nombre;
+       // this.imagen = imagen;
+        this.tipo_model = tipomodel;
+        //this.vidaUtil = vidaUtil;
         this.precio = precio;
         this.serial = serial;
+        this.pres_sol = pressol;
         this.observaciones = observaciones;
+        this.estado = estado;
+   
     }
 
     public int getSerial() {
@@ -58,39 +64,20 @@ public class Equipo {
     public void setPlaca(int placa){
         this.placa = placa;
     }
+
+    public int getPres_sol() {
+        return pres_sol;
+    }
+
+    public void setPres_sol(int pres_sol) {
+        this.pres_sol = pres_sol;
+    }
    
     
-    public String getNombre(){
-        return nombre;
-    }
+   
+
     
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-    
-    public String getImagen(){
-        return imagen;
-    }
-    
-    public void setImagen(String imagen){
-        this.imagen = imagen;
-    }
-    
-    public String getMarca(){
-        return marca;
-    }
-    
-    public void setMarca(String marca){
-        this.marca = marca;
-    }
-    
-    public int getVidaUtil(){
-        return vidaUtil;
-    }
-    public void setVidaUtil(int vidaUtil){
-        this.vidaUtil = vidaUtil;
-    }
-    
+   
     public int getPrecio(){
         return precio;
     }
@@ -101,6 +88,13 @@ public class Equipo {
     
     public String getObservaciones(){
         return observaciones;
+    }
+        public int getTipo_model() {
+        return tipo_model;
+    }
+
+    public void setTipo_model(int tipo_model) {
+        this.tipo_model = tipo_model;
     }
     
     public void setObservaciones(String observaciones){

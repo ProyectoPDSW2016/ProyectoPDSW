@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="com.mycompany.mappers.EquipoMapper">
-     <resultMap type='Equipo' id='EquipoResult'>
-        <id property='placa' column='Placa'/>  
-             <result property='nombre' column='nombre_Equipo'/>      
-        <result property='imagen' column='imagen'/>
-        <result property='marca' column='marca'/>
-        <result property='vidaUtil' column='vida_util'/>
+     <resultMap type='com.mycompany.electroeci.Equipo' id='EquipoResult'>
+        <id property='placa' column='Placa'/>   
+        <result property='serial' column='Seria'/>
+         <result property='tipomodel' column='Tipo_Equipo_Modelo'/>
          <result property='precio' column='Precio'/>
-         <result property='observaciones' column='Observaciones'/>
-       <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
+            <result property='observaciones' column='Observaciones'/>
+               <result property='estado' column='Estado'/>
+                <result property='pres_sol' column='prestamo_solicitud_id'/>
+         <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
     </resultMap> 
-</mapper>
+
 <insert id="insertEquipo" parameterType="map">
-    INSERT INTO Equipo (Placa,Observaciones,Seria,Estado,Precio,Tipo_Equipo_Modelo,prestamo_solicitud_id) values(#{equipo.placa},#{equipo.observaciones},#{equipo.serial},#{equipo.estado},#{equipo.precio},#{fk_tipo_modelo},#{fk_pres_sctud})   
+    INSERT INTO Equipo (Placa,Seria,Tipo_Equipo_Modelo,Precio,Observaciones,Estado,prestamo_solicitud_id) values(#{equipo.placa},#{equipo.serial},#{equipo.tipo_model},#{equipo.precio},#{equipo.observaciones},#{equipo.estado},#{equipo.pres_sol})   
 </insert>
 <select id="loadeqByid" resultMap="EquipoResult">
     SELECT * FROM Equipo eq WHERE eq.Placa = #{plac}
 </select>
-    
+<select  id="selectAll" resultType="map">
+    SELECT * FROM Equipo
+</select>
+ </mapper>   
