@@ -55,8 +55,8 @@ public class ElectroEciTest {
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
       
-      Equipo eq = new Equipo(001,  002,003, 1000,"prueba1",'A',0012);
-            Equipo eq2 = new Equipo(002,  002,003, 1000,"prueba1",'A',00332);
+      Equipo eq = new Equipo(001,  002,003, 1000,"prueba1",'A');
+            Equipo eq2 = new Equipo(002,  002,003, 1000,"prueba1",'A');
       spECI.insertEquipo(eq, 0, 0);
       spECI.insertEquipo(eq2, 0, 0);
         List<Equipo> selectAll = spECI.selectAll();

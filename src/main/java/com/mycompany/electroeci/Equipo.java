@@ -26,7 +26,7 @@ public class Equipo {
     private char estado;
     private int pres_sol;
 
-    public Equipo(int placa, int serial,  int tipomodel,  int precio, String observaciones,char estado,int pressol) {
+    public Equipo(int placa, int serial,  int tipomodel,  int precio, String observaciones,char estado) {
         this.placa = placa;
        // this.nombre = nombre;
        // this.imagen = imagen;
@@ -34,7 +34,7 @@ public class Equipo {
         //this.vidaUtil = vidaUtil;
         this.precio = precio;
         this.serial = serial;
-        this.pres_sol = pressol;
+        
         this.observaciones = observaciones;
         this.estado = estado;
    

@@ -16,7 +16,7 @@
     </resultMap> 
 
 <insert id="insertEquipo" parameterType="map">
-    INSERT INTO Equipo (Placa,Seria,Tipo_Equipo_Modelo,Precio,Observaciones,Estado,prestamo_solicitud_id) values(#{equipo.placa},#{equipo.serial},#{equipo.tipo_model},#{equipo.precio},#{equipo.observaciones},#{equipo.estado},#{equipo.pres_sol})   
+    INSERT INTO Equipo (Placa,Seria,Modelo,Observaciones,Estado) values(#{equipo.placa},#{equipo.serial},#{equipo.tipo_model},#{equipo.observaciones},#{equipo.estado})   
 </insert>
 <select id="loadeqByid" resultMap="EquipoResult">
     SELECT * FROM Equipo eq WHERE eq.Placa = #{plac}
