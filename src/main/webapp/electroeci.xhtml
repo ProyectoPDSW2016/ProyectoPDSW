@@ -26,9 +26,9 @@ and open the template in the editor.
 
     </p:layoutUnit>
  
-    <p:layoutUnit position="north" size="60"  resizable="false" closable="true" collapsible="true">
+    <p:layoutUnit position="north"  size="80"  resizable="false" closable="true" collapsible="true">
        
-        <p:menubar>
+        <p:menubar style="border-color:#cc0000">
             <p:menuitem  value="Inicio" icon="ui-icon-home">
                 
             </p:menuitem>
@@ -44,13 +44,22 @@ and open the template in the editor.
         <p:growl id="messages" showDetail="true">
             <p:panel id="pnl_addequipo" header="Agregar Equipo" style="align-content: center;  align-items: center;" > 
                     <p:panelGrid columns="2" style="text-align: center; "   >
-                        <h:outputLabel id= "id_placa" for="id_placa" value= "Placa"/>
-                        <p:inputText value=""></p:inputText>
-                        <h:outputLabel id="serial" for="serial" value= "Serial"/>
-                        <p:inputText value=""></p:inputText>
-                        <h:outputLabel id="model" for="modelo" value= "Modelo"/>
-                        <p:inputText value=""></p:inputText>
+                        <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
+                        <p:inputText value="#{SystemManagedBeanEquipo.modelo}"></p:inputText>
+                        <h:outputLabel id="nombre_eq" for="nombre_eq" value= "Nombre Equipo"/>
+                        <p:inputText value="#{SystemManagedBeanEquipo.nombre_equipo}"></p:inputText>
+                        <h:outputLabel id="imagen" for="imagen" value= "Imagen"/>
+                        <p:inputText value="#{SystemManagedBeanEquipo.url_img}"></p:inputText>
+                        <h:outputLabel id="marca" for="marca" value= "Marca"/>
+                        <p:inputText value="#{SystemManagedBeanEquipo.marca}"></p:inputText>
+                        <h:outputLabel id="vida_util" for="vida_util" value= "Vida Util"/>
+                        <p:inputText value="#{SystemManagedBeanEquipo.vida_util}"></p:inputText>
+                        <h:outputLabel id="precio" for="precio" value= "Precio"/>
+                        <p:inputText value="#{SystemManagedBeanEquipo.precio}"></p:inputText>
                         
+                        
+                        
+                        <!--
                       
                            <h:outputLabel id="obsv" for="obsv" value= "Observaciones"/>
                            <p:inputTextarea value=""></p:inputTextarea>
@@ -60,8 +69,8 @@ and open the template in the editor.
                              <f:selectItem itemLabel="Inactivo" itemValue="I" />  
       
                            </p:selectOneMenu>
-                        
-                           <p:commandButton value="Agregar Equipo"  />
+                        -->
+                        <p:commandButton value="Agregar Equipo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}"/>
                          
                 </p:panelGrid>
                

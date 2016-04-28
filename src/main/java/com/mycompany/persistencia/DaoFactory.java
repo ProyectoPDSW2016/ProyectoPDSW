@@ -7,7 +7,7 @@ package com.mycompany.persistencia;
 
 import com.mycompany.daoimpl.MyBatisDaoFactory;
 import java.util.Properties;
-import javax.persistence.PersistenceException;
+
 
 /**
  *
@@ -38,14 +38,13 @@ public abstract class DaoFactory {
         }
         return inst;
    }
-   public abstract void beginSession() throws PersistenceException;
+   public abstract void beginSession()throws PersistenciaException;
 
     public abstract DaoEquipo getDaoEquipo();
 
-    public abstract void commitTransaction() throws PersistenceException;
+    public abstract void commitTransaction() throws PersistenciaException;
 
-    public abstract void rollbackTransaction() throws PersistenceException;
-
-    public abstract void endSession() throws PersistenceException;
+    public abstract void rollbackTransaction() throws PersistenciaException ;
+    public abstract void endSession()  throws PersistenciaException;
     
 }

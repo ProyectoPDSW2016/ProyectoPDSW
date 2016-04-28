@@ -6,6 +6,7 @@
 package com.mycompany.mappers;
 
 import com.mycompany.electroeci.Equipo;
+import com.mycompany.electroeci.TipoEquipo;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,4 +34,12 @@ public interface EquipoMapper {
      * @param pres_slctud
      */
    public void insertEquipo(@Param("equipo") Equipo eq,@Param("fk_tipo_modelo")int model,@Param("fk_pres_sctud")int pres_slctud);
+  
+    /** Insersion de un Tipo de Equipo a la BD
+     *
+     * @param equipo
+
+     */
+    public void insertTipo_equipo(@Param("tipo_eq") TipoEquipo equipo);
+     public List<TipoEquipo> selectAlltipoeq();
 }

@@ -14,7 +14,19 @@
                 <result property='pres_sol' column='prestamo_solicitud_id'/>
          <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
     </resultMap> 
+    
+    <resultMap type='com.mycompany.electroeci.TipoEquipo' id='TipoEQuipoResult'>
+      <id property ='modelo' column ='Modelo'/>
+      <result property='nombre_equipo' column='nombre_Equipo'/>  
+      <result property='url_imagen' column='imagen'/>  
+      <result property='marca' column='marca'/>
+      <result property='vida_util' column='vida_util'/>     
+      <result property='precio' column='precio'/>  
+    </resultMap>
 
+    <insert id="insertTipo_equipo" parameterType="map">
+       INSERT INTO Tipo_Equipo(Modelo,nombre_Equipo,imagen,marca,vida_util,precio) values (#{tipo_eq.modelo},#{tipo_eq.nombre_equipo},#{tipo_eq.url_img},#{tipo_eq.marca},#{tipo_eq.vida_util},#{tipo_eq.precio})
+    </insert>
 <insert id="insertEquipo" parameterType="map">
     INSERT INTO Equipo (Placa,Seria,Modelo,Observaciones,Estado) values(#{equipo.placa},#{equipo.serial},#{equipo.tipo_model},#{equipo.observaciones},#{equipo.estado})   
 </insert>
@@ -24,4 +36,8 @@
 <select  id="selectAll" resultType="map">
     SELECT * FROM Equipo
 </select>
+<select  id="selectAlltipoeq" resultType="map">
+    SELECT * FROM Tipo_Equipo
+</select>
+
  </mapper>   

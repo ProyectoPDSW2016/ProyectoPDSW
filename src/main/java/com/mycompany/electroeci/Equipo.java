@@ -24,14 +24,14 @@ public class Equipo {
     private int precio;
     private String observaciones;
     private char estado;
-    private int pres_sol;
+  
 
     public Equipo(int placa, int serial,  int tipomodel,  int precio, String observaciones,char estado) {
         this.placa = placa;
-       // this.nombre = nombre;
-       // this.imagen = imagen;
+     
+     
         this.tipo_model = tipomodel;
-        //this.vidaUtil = vidaUtil;
+     
         this.precio = precio;
         this.serial = serial;
         
@@ -65,15 +65,6 @@ public class Equipo {
         this.placa = placa;
     }
 
-    public int getPres_sol() {
-        return pres_sol;
-    }
-
-    public void setPres_sol(int pres_sol) {
-        this.pres_sol = pres_sol;
-    }
-   
-    
    
 
     

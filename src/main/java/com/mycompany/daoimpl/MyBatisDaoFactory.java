@@ -7,10 +7,11 @@ package com.mycompany.daoimpl;
 
 import com.mycompany.persistencia.DaoEquipo;
 import com.mycompany.persistencia.DaoFactory;
+import com.mycompany.persistencia.PersistenciaException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import javax.persistence.PersistenceException;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -67,7 +68,7 @@ public class MyBatisDaoFactory extends DaoFactory {
     }  
 
     @Override
-    public void beginSession() throws PersistenceException {
+    public void beginSession() throws PersistenciaException{
        currentsessionsql = sqlSessionFactory.openSession();
     }
 
@@ -78,17 +79,17 @@ public class MyBatisDaoFactory extends DaoFactory {
     }
 
     @Override
-    public void commitTransaction() throws PersistenceException {
+    public void commitTransaction() throws PersistenciaException{
         currentsessionsql.commit();
     }
 
     @Override
-    public void rollbackTransaction() throws PersistenceException {
+    public void rollbackTransaction() throws PersistenciaException  {
         currentsessionsql.rollback();
     }
 
     @Override
-    public void endSession() throws PersistenceException
+    public void endSession()  throws PersistenciaException
     {
        currentsessionsql.close();
     }

@@ -5,6 +5,8 @@
  */
 
 import com.mycompany.electroeci.Equipo;
+import com.mycompany.electroeci.TipoEquipo;
+import com.mycompany.persistencia.PersistenciaException;
 import com.mycompany.services.ServicioPersisElectroECI;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -50,7 +52,7 @@ public class ElectroEciTest {
     }
     
     @Test
-    public void pruebaCeroTest() throws SQLException {
+    public void pruebaCeroTest() throws SQLException, PersistenciaException {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
@@ -64,7 +66,12 @@ public class ElectroEciTest {
         String toString = selectAll.toString();System.out.println(""+toString);
         //Realizar la operacion de la logica y la prueba
         
-
+        TipoEquipo tq = new TipoEquipo("TX-1001", "Calculadora", "imagen1.html", "Casio", 4, 10000);
+        TipoEquipo tq2 = new TipoEquipo("TX-1021", "Calculadora", "imagen1.html", "Casio", 4, 10000);
+       spECI.insertTipoEquipo(tq);
+       spECI.insertTipoEquipo(tq2);
+        List<TipoEquipo> selectAlltipoeq = spECI.selectAlltipoeq();
+        String toString1 = selectAlltipoeq.toString(); System.out.println(""+ toString1);
     }  
         
     /*

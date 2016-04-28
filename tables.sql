@@ -16,7 +16,7 @@ CREATE TABLE Detalle_Prestamo (
 CREATE TABLE IF NOT EXISTS `Equipo` (
     Placa int NOT NULL,
      Seria int NOT NULL,
-    Modelo int NOT NULL,
+    Modelo varchar NOT NULL,
     Observaciones varchar(500) NOT NULL,
    
     Estado char(2) NOT NULL,
@@ -33,8 +33,8 @@ CREATE TABLE Equipo_Sencillo (
 )ENGINE = InnoDB;
 
 -- Table: Tipo_Equipo
-CREATE TABLE Tipo_Equipo (
-    Modelo int NOT NULL,
+CREATE TABLE IF NOT EXISTS `Tipo_Equipo` (
+    Modelo varchar(255) NOT NULL,
     nombre_Equipo varchar(255) NOT NULL,
     imagen varchar(255) NOT NULL,
     marca varchar(50) NOT NULL,
