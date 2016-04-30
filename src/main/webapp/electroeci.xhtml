@@ -45,7 +45,8 @@ and open the template in the editor.
             <p:panel id="pnl_addequipo" header="Agregar Equipo" style="align-content: center;  align-items: center;" > 
                     <p:panelGrid columns="2" style="text-align: center; "   >
                         <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
-                        <p:inputText value="#{SystemManagedBeanEquipo.modelo}"></p:inputText>
+                        <p:autoComplete id="tipequipo" value="#{SystemManagedBeanEquipo.tip1}" completeMethod="#{SystemManagedBeanEquipo.complete}"
+                                        var="tipoequipo" itemLabel="#{tipoequipo.modelo}" itemValue="#{tipoequipo}" converter="equipoconverter" forceSelection="true" />
                         <h:outputLabel id="nombre_eq" for="nombre_eq" value= "Nombre Equipo"/>
                         <p:inputText value="#{SystemManagedBeanEquipo.nombre_equipo}"></p:inputText>
                         <h:outputLabel id="imagen" for="imagen" value= "Imagen"/>

@@ -13,11 +13,15 @@ import com.mycompany.electroeci.Usuario;
 import com.mycompany.persistencia.PersistenciaException;
 import com.mycompany.services.ExcepcionServiciosSistema;
 import com.mycompany.services.ServicioPersisElectroECI;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Array;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -46,7 +50,20 @@ public class SystemManageBean implements Serializable{
     private String marca;
     private int precio;
     private int vida_util;
+    
+    public SystemManageBean() {
+       sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
+    }
+    private static final Logger LOG = Logger.getLogger(SystemManageBean.class.getName());
+   
+    public ServicioPersisElectroECI getSec() {
+        return sec;
+    }
 
+    public void setSec(ServicioPersisElectroECI sec) {
+        this.sec = sec;
+    }
+    
     public int getPlaca() {
         return placa;
     }
@@ -136,25 +153,44 @@ public class SystemManageBean implements Serializable{
     }
     public void insertarTipoequipo() throws PersistenciaException{
       TipoEquipo  tp = new TipoEquipo(modelo, nombre_equipo, url_img, marca, vida_util, precio);
-        sec.insertTipoEquipo(tp);
-        System.out.println("Insertado");
+      sec.insertTipoEquipo(tp);
+      System.out.println("Insertado");
     }
+    
+    private TipoEquipo tip1;
+
+    public TipoEquipo getTip1() {
+        return tip1;
+    }
+
+    public void setTip1(TipoEquipo tip1) {
+        this.tip1 = tip1;
+    }
+    
+    
+    
+    public List<TipoEquipo> complete(String query) throws PersistenciaException{
+       List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
+       List<TipoEquipo> filtradodetipo=new ArrayList<TipoEquipo>();
+       
+       
+        TipoEquipo alt=new TipoEquipo("12456", "lokos", "78945646", "lore", 3, 150000);       
+        TipoEquipo alt1=new TipoEquipo("baboso", "lokos", "78945646", "lore", 3, 150000);       
+        allsequipos.add(alt);
+        allsequipos.add(alt1);
+        
+        for (int i = 0; i < allsequipos.size(); i++) {
+            TipoEquipo eq=allsequipos.get(i);
+            if(eq.getModelo().toLowerCase().startsWith(query)){
+                filtradodetipo.add(eq);
+            }  
+        }
+       return filtradodetipo;
+    }
+    
 
 
 
     
 
-    public SystemManageBean() {
-       sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
-     
-    }
-    private static final Logger LOG = Logger.getLogger(SystemManageBean.class.getName());
-   
-    public ServicioPersisElectroECI getSec() {
-        return sec;
-    }
-
-    public void setSec(ServicioPersisElectroECI sec) {
-        this.sec = sec;
-    }
 }
