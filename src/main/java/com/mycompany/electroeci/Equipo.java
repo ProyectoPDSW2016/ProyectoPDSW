@@ -11,30 +11,18 @@ package com.mycompany.electroeci;
  */
 public class Equipo {
 
-
-    
-    private int placa;
- 
-   // private String imagen;
-
-   
+    private int placa;   
     private int serial;
-    private int tipo_model;
-   // private int vidaUtil;
-    private int precio;
+    private String tipo_model;
     private String observaciones;
     private char estado;
   
 
-    public Equipo(int placa, int serial,  int tipomodel,  int precio, String observaciones,char estado) {
-        this.placa = placa;
-     
-     
-        this.tipo_model = tipomodel;
-     
-        this.precio = precio;
-        this.serial = serial;
+    public Equipo(int placa, int serial,  String tipomodel, String observaciones,char estado) {
         
+        this.placa = placa;
+        this.tipo_model = tipomodel;
+        this.serial = serial;  
         this.observaciones = observaciones;
         this.estado = estado;
    
@@ -65,26 +53,15 @@ public class Equipo {
         this.placa = placa;
     }
 
-   
-
-    
-   
-    public int getPrecio(){
-        return precio;
-    }
-    
-    public void setPrecio(int precio){
-        this.precio = precio;
-    }
     
     public String getObservaciones(){
         return observaciones;
     }
-        public int getTipo_model() {
+        public String getTipo_model() {
         return tipo_model;
     }
 
-    public void setTipo_model(int tipo_model) {
+    public void setTipo_model(String tipo_model) {
         this.tipo_model = tipo_model;
     }
     

@@ -12,6 +12,7 @@ import com.mycompany.persistencia.DaoFactory;
 import com.mycompany.persistencia.PersistenciaException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -47,7 +48,10 @@ public class ServicioPersisElectroECI {
     public List<Prestamo> getPrestamos(){
         return prestamos;
     }
-    public void registrarPrestamo(){
+    public void registrarPrestamo(Equipo eq){
+        
+    }
+    public void registarDevolucion(Equipo eq){
         
     }
    public List<Equipo> selectAll() throws PersistenciaException{
@@ -94,6 +98,14 @@ public class ServicioPersisElectroECI {
        df2.beginSession();
         List<TipoEquipo> selectAlltipoeq = df2.getDaoEquipo().selectAlltipoeq();
         return selectAlltipoeq;
+   }
+   
+   public int tiempoDeVidaDeUnEquipo(int placa) throws PersistenciaException{
+       
+      return 0;
+   }
+   public List<Integer> tiempoDeVidaDeLosEquipo() throws PersistenciaException{
+     return null;
    }
 
 }
