@@ -17,8 +17,8 @@ and open the template in the editor.
     </h:head>
     <h:body>
 
-        <h:form id = "frm_equipo">
-        <p:layout fullPage="true">
+        <h:form id = "frm_equipo" >
+        <p:layout fullPage="true"  >
     
  
 
@@ -40,9 +40,9 @@ and open the template in the editor.
     </p:layoutUnit>
  
  
-            <p:layoutUnit position="center" style="background-color:white; align-content: center" resizable="false" >
+    <p:layoutUnit size="700" position="west" resizable="false">
         <p:growl id="messages" showDetail="true">
-            <p:panel id="pnl_addequipo" header="Agregar Equipo" style="align-content: center;  align-items: center;" > 
+            <p:panel id="pnl_addequipo" header="Agregar TipoEquipo" style="align-content: center; align-items: center;" > 
                     <p:panelGrid columns="2" style="text-align: center; "   >
                         <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
                         <p:autoComplete id="tipequipo" value="#{SystemManagedBeanEquipo.tip1}" completeMethod="#{SystemManagedBeanEquipo.complete}"
@@ -71,7 +71,7 @@ and open the template in the editor.
       
                            </p:selectOneMenu>
                         -->
-                        <p:commandButton value="Agregar Equipo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}"/>
+                        <p:commandButton value="Agregar TipoEquipo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}"/>
                          
                 </p:panelGrid>
                
@@ -80,9 +80,19 @@ and open the template in the editor.
                 
                 </p:panel>
             </p:growl>
-        
     </p:layoutUnit>
- 
+            
+    <p:layoutUnit position="center" size="0" visible="false" resizable="false" >
+    </p:layoutUnit>        
+            
+            
+            
+    <p:layoutUnit size="800" position="east" resizable="false" >
+        <p:panel id="pnl_addequipo1" header="Agregar Equipo" style="align-content: center; align-items: center;" > 
+                                   
+        </p:panel>                
+    </p:layoutUnit> 
+            
 </p:layout>  
            
         </h:form>

@@ -41,5 +41,6 @@ public interface EquipoMapper {
 
      */
     public void insertTipo_equipo(@Param("tipo_eq") TipoEquipo equipo);
-     public List<TipoEquipo> selectAlltipoeq();
+    
+    public List<TipoEquipo> selectAlltipoeq();
 }

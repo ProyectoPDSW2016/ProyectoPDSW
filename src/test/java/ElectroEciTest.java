@@ -59,24 +59,14 @@ public class ElectroEciTest {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
-      /*
-      Equipo eq = new Equipo(001,  002,003, 1000,"prueba1",'A');
-        Equipo eq2 = new Equipo(002,  002,003, 1000,"prueba1",'A');
+      
+      Equipo eq = new Equipo(001,  002,"algo5","prueba1",'A');
+      Equipo eq1 = new Equipo(002,  004,"algo","prueba1",'B');
         spECI.insertEquipo(eq, 0, 0);
-        spECI.insertEquipo(eq2, 0, 0);
+        spECI.insertEquipo(eq1, 0, 0);
         List<Equipo> selectAll = spECI.selectAll();
-        System.out.println("seee"+ selectAll.size());
-        String toString = selectAll.toString();System.out.println(""+toString);
-        //Realizar la operacion de la logica y la prueba
-        
-        TipoEquipo tq = new TipoEquipo("TX-1001", "Calculadora", "imagen1.html", "Casio", 4, 10000);
-        TipoEquipo tq2 = new TipoEquipo("TX-1021", "Calculadora", "imagen1.html", "Casio", 4, 10000);
-       spECI.insertTipoEquipo(tq);
-       spECI.insertTipoEquipo(tq2);
-        List<TipoEquipo> selectAlltipoeq = spECI.selectAlltipoeq();
-        String toString1 = selectAlltipoeq.toString(); System.out.println(""+ toString1);
-        */
-    }  
+        System.out.println("Los equipos insertados son: "+ selectAll.get(0).getTipo_model());
+    }
         
     
      @Test

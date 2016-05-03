@@ -17,7 +17,11 @@ public class Equipo {
     private String observaciones;
     private char estado;
   
+    
+    public Equipo() {
+    }
 
+    
     public Equipo(int placa, int serial,  String tipomodel, String observaciones,char estado) {
         
         this.placa = placa;
