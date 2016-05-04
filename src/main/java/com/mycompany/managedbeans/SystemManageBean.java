@@ -13,6 +13,7 @@ import com.mycompany.electroeci.Usuario;
 import com.mycompany.persistencia.PersistenciaException;
 import com.mycompany.services.ExcepcionServiciosSistema;
 import com.mycompany.services.ServicioPersisElectroECI;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -49,27 +50,9 @@ public class SystemManageBean implements Serializable{
     private String marca;
     private int precio;
     private int vida_util;
-    private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
-
-    public static List<TipoEquipo> getAllsequipos() {
-        return allsequipos;
-    }
-
-    public static void setAllsequipos(List<TipoEquipo> allsequipos) {
-        SystemManageBean.allsequipos = allsequipos;
-    }
-
-    
-    
     
     public SystemManageBean() {
        sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
-       TipoEquipo alt=new TipoEquipo("12456", "lokos", "78945646", "lore", 3, 150000);       
-        TipoEquipo alt1=new TipoEquipo("baboso", "lokos", "78945646", "lore", 3, 150000);       
-        allsequipos.add(alt);
-        allsequipos.add(alt1);
-        System.out.println("Estoy pasando por aqui en constructor de managedbean");
-       
     }
     private static final Logger LOG = Logger.getLogger(SystemManageBean.class.getName());
    
@@ -169,7 +152,7 @@ public class SystemManageBean implements Serializable{
         this.vida_util = vida_util;
     }
     public void insertarTipoequipo() throws PersistenciaException{
-      TipoEquipo  tp = new TipoEquipo(tip1.getModelo(), nombre_equipo, url_img, marca, vida_util, precio);
+      TipoEquipo  tp = new TipoEquipo(modelo, nombre_equipo, url_img, marca, vida_util, precio);
       sec.insertTipoEquipo(tp);
       System.out.println("Insertado");
     }
@@ -187,12 +170,16 @@ public class SystemManageBean implements Serializable{
     
     
     public List<TipoEquipo> complete(String query) throws PersistenciaException{
-       List<TipoEquipo> allsequipos=sec.selectAlltipoeq();
-        System.out.println("bvnhsadsad"+allsequipos.toString());
-       List<TipoEquipo> filtradodetipo=new ArrayList<TipoEquipo>();            
+       List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
+       List<TipoEquipo> filtradodetipo=new ArrayList<TipoEquipo>();
+       
+       
+        TipoEquipo alt=new TipoEquipo("12456", "lokos", "78945646", "lore", 3, 150000);       
+        TipoEquipo alt1=new TipoEquipo("baboso", "lokos", "78945646", "lore", 3, 150000);       
+        allsequipos.add(alt);
+        allsequipos.add(alt1);
         
         for (int i = 0; i < allsequipos.size(); i++) {
-            System.out.println(allsequipos.get(i)+"aquiii");
             TipoEquipo eq=allsequipos.get(i);
             if(eq.getModelo().toLowerCase().startsWith(query)){
                 filtradodetipo.add(eq);
