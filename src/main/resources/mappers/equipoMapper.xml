@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.mycompany.mappers.EquipoMapper">
-     <resultMap type='com.mycompany.electroeci.Equipo' id='EquipoResult'>
+<mapper namespace="edu.eci.pdsw.g4.persistencia.mybatis.mappers.EquipoMapper">
+     <resultMap type='edu.eci.pdsw.g4.logica.estructura.Equipo' id='EquipoResult'>
         <id property='placa' column='Placa'/>   
         <result property='serial' column='Seria'/>
          <result property='tipomodel' column='Tipo_Equipo_Modelo'/>
@@ -15,7 +15,7 @@
          <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
     </resultMap> 
     
-    <resultMap type='com.mycompany.electroeci.TipoEquipo' id='TipoEQuipoResult'>
+    <resultMap type='edu.eci.pdsw.g4.logica.estructura.TipoEquipo' id='TipoEQuipoResult'>
       <id property ='modelo' column ='Modelo'/>
       <result property='nombre_equipo' column='nombre_Equipo'/>  
       <result property='url_imagen' column='imagen'/>  

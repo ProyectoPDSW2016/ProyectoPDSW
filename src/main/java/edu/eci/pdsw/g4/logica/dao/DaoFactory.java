@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.persistencia;
+package edu.eci.pdsw.g4.logica.dao;
 
-import com.mycompany.daoimpl.MyBatisDaoFactory;
+import edu.eci.pdsw.g4.persistencia.mybatis.factory.MyBatisDaoFactory;
 import java.util.Properties;
 
 

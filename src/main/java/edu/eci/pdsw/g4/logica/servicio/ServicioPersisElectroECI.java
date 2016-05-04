@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.services;
+package edu.eci.pdsw.g4.logica.servicio;
 
-import com.mycompany.electroeci.Equipo;
-import com.mycompany.electroeci.Prestamo;
-import com.mycompany.electroeci.TipoEquipo;
-import com.mycompany.persistencia.DaoFactory;
-import com.mycompany.persistencia.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.Equipo;
+import edu.eci.pdsw.g4.logica.estructura.Prestamo;
+import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
+import edu.eci.pdsw.g4.logica.dao.DaoFactory;
+import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

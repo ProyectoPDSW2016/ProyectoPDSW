@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.daoimpl;
+package edu.eci.pdsw.g4.persistencia.mybatis.factory;
 
-import com.mycompany.electroeci.Equipo;
-import com.mycompany.electroeci.TipoEquipo;
-import com.mycompany.mappers.EquipoMapper;
-import com.mycompany.persistencia.DaoEquipo;
-import com.mycompany.persistencia.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.Equipo;
+import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
+import edu.eci.pdsw.g4.persistencia.mybatis.mappers.EquipoMapper;
+import edu.eci.pdsw.g4.logica.dao.DaoEquipo;
+import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;

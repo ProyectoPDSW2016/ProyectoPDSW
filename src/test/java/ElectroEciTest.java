@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-import com.mycompany.electroeci.Equipo;
-import com.mycompany.electroeci.TipoEquipo;
-import com.mycompany.persistencia.PersistenciaException;
-import com.mycompany.services.ServicioPersisElectroECI;
+import edu.eci.pdsw.g4.logica.estructura.Equipo;
+import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
+import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

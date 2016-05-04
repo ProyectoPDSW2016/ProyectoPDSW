@@ -8,7 +8,7 @@
     </settings>
     
   <typeAliases>
-        <typeAlias type='com.mycompany.electroeci.Equipo' alias='Equipo'/>
+        <typeAlias type='edu.eci.pdsw.g4.logica.estructura.Equipo' alias='Equipo'/>
         </typeAliases>   
     
     

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.daoimpl;
+package edu.eci.pdsw.g4.persistencia.mybatis.factory;
 
-import com.mycompany.persistencia.DaoEquipo;
-import com.mycompany.persistencia.DaoFactory;
-import com.mycompany.persistencia.PersistenciaException;
+import edu.eci.pdsw.g4.logica.dao.DaoEquipo;
+import edu.eci.pdsw.g4.logica.dao.DaoFactory;
+import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">>
+    <h:head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="laboratorio/layoutprincipal.css" type="text/css" rel="stylesheet" /> 
+    </h:head>
+    <h:body>
+
+        <h:form id = "reporte_Equipo">
+            <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.reporte}">
+                <f:facet name="header">
+                    Reporte Equipos
+                </f:facet>
+                <p:column headerText="Foto">
+                    <h:outputText value="#{tipoEquipo.url_img}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{tipoEquipo.nombre_equipo}" />
+                </p:column>
+
+                <p:column headerText="Serial">
+                    <h:outputText value="" />
+                </p:column>
+                
+                <p:column headerText="Estado ">
+                    <h:outputText value="" />
+                </p:column>
+                
+                <p:column headerText="Horas de uso ">
+                    <h:outputText value="" />
+                </p:column> 
+                <p:column headerText="Horas tiempo de vida ">
+                    <h:outputText value="#{tipoEquipo.vida_util}" />
+                </p:column> 
+
+                
+            </p:dataTable>
+
+        </h:form>
+    </h:body>
+</html>
