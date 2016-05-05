@@ -61,14 +61,6 @@ public class ElectroEciTest {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
-      
-   
-      
-        Equipo eq = new Equipo(001, 002,"hp", "ninguno", 'A');
-        Equipo eq1 = new Equipo(002, 004,"hp1", "ninguno1", 'B');
-        
-        spECI.insertEquipo(eq, 0, 0);
-        spECI.insertEquipo(eq1, 0, 0);
         
         List<TipoEquipo> selectAll = spECI.selectAll();
         assertEquals(2, selectAll.size());
@@ -89,15 +81,24 @@ public class ElectroEciTest {
     
      @Test
      public void consultarTiempoEquipoRecienRegistrado() throws PersistenciaException  {
-        
+        try{
             //clase de equivalencia equipo recien registrado sin haber sido prestado
             TipoEquipo pruebaT1 = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
             Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
             ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
             spECI.insertTipoEquipo(pruebaT1);
-            spECI.insertEquipo(pruebaEq1, 0, 0);
+
+            spECI.insertEquipo(pruebaEq1);
             assertEquals(pruebaT1.getVida_util(),17520);
        
+
+            spECI.insertEquipo(pruebaEq1);
+            assertEquals(pruebaT1.getVida_util(),spECI.tiempoDeVidaDeUnEquipo(pruebaEq1.getPlaca()) );
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(ElectroEciTest.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenciaException("HPTa", ex);
+        }
+
          
      }
      @Test
@@ -107,7 +108,7 @@ public class ElectroEciTest {
          Equipo pruebaEq2 = new Equipo(1, 1, "4102","Sin observaciones",'A');
          ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
          spECI.insertTipoEquipo(pruebaT2);
-         spECI.insertEquipo(pruebaEq2, 0, 0);
+         spECI.insertEquipo(pruebaEq2);
          spECI.registrarPrestamo(pruebaEq2);
          spECI.registarDevolucion(pruebaEq2);
          assertEquals(17519,17519);
@@ -122,7 +123,7 @@ public class ElectroEciTest {
          Equipo pruebaEq3 = new Equipo(25, 1, "100","Sin observaciones",'A');
          ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
          spECI.insertTipoEquipo(pruebaT3);
-         spECI.insertEquipo(pruebaEq3, 0, 0);
+         spECI.insertEquipo(pruebaEq3);
          spECI.registrarPrestamo(pruebaEq3);
          spECI.registarDevolucion(pruebaEq3);
          spECI.registrarPrestamo(pruebaEq3);
@@ -148,7 +149,7 @@ public class ElectroEciTest {
          Equipo pruebaEq4 = new Equipo(98, 1, "25","La vida util es muy corta",'A');
          ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
          spECI.insertTipoEquipo(pruebaT4);
-         spECI.insertEquipo(pruebaEq4, 0, 0);
+         spECI.insertEquipo(pruebaEq4);
          spECI.registrarPrestamo(pruebaEq4);
          spECI.registarDevolucion(pruebaEq4);
          spECI.registrarPrestamo(pruebaEq4);

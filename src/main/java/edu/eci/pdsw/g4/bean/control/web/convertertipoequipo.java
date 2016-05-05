@@ -32,10 +32,6 @@ public class convertertipoequipo implements Converter{
                         
                     }
                 }
-                System.out.println("Coincidio con uno de la lista"+res.toString());
-                
-                
-                
                 return res;
                 
             } catch(NumberFormatException e) {

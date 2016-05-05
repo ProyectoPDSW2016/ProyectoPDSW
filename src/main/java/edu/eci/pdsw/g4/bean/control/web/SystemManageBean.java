@@ -166,13 +166,25 @@ public class SystemManageBean implements Serializable{
     public void insertarTipoequipo() throws PersistenciaException{
       TipoEquipo  tp = new TipoEquipo(modelo, nombre_equipo, url_img, marca, vida_util, precio);
       sec.insertTipoEquipo(tp);
-      System.out.println("Insertado");
+        
+        setModelo("");
+        setNombre_equipo("");
+        setUrl_img("");
+        setMarca("");
+        setVida_util(0);
+        setPrecio(0);
+        
+        
     }
     
     public void insertarEquipo() throws PersistenciaException{
-      Equipo  tp1 = new Equipo(placa, serial, modelo, observaciones, estado);
-      sec.insertEquipo(tp1, 0, 0);
-      System.out.println("Insertado");
+      Equipo  tp1 = new Equipo(placa, serial, tip1.getModelo(), observaciones, estado);
+      sec.insertEquipo(tp1);
+      setEstado(' ');
+      setObservaciones("");
+      setPlaca(0);
+      setSerial(0);
+      setTip1(null);
     }
     
     private TipoEquipo tip1;
@@ -194,7 +206,7 @@ public class SystemManageBean implements Serializable{
         return null;
     }
     
-    
+       
     public List<TipoEquipo> complete(String query) throws PersistenciaException{
        allsequipos=sec.selectAlltipoeq();
        List<TipoEquipo> filtradodetipo=new ArrayList<TipoEquipo>();
@@ -207,6 +219,7 @@ public class SystemManageBean implements Serializable{
         }
        return filtradodetipo;
     }
+    
     
 
 

@@ -44,21 +44,15 @@ public class MyBatisDaoEquipo implements DaoEquipo{
     @Override
     public void insertEquipo(Equipo eq) throws PersistenciaException {
         
-        equmapper.insertEquipo(eq, 0, 0);
+        equmapper.insertEquipo(eq);
         sqlss.commit();
     }
 
     @Override
     public List<TipoEquipo> SelectAll() throws PersistenciaException {
-        Set<TipoEquipo> aux = equmapper.selectAll();
-        System.out.println(aux.size()+"Tamaño de esta gonorrea");
+        List<TipoEquipo> aux = equmapper.selectAlltipoeq();
         sqlss.commit();
-        List<TipoEquipo> resp = new ArrayList<>();
-        Iterator<TipoEquipo> i = aux.iterator();
-        while(i.hasNext()){
-            resp.add((TipoEquipo) i);
-        }
-        return resp;
+        return aux;
     }
 
     

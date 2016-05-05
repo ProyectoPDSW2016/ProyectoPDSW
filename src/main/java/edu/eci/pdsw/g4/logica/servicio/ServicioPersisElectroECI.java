@@ -79,7 +79,8 @@ public class ServicioPersisElectroECI {
         Logger.getLogger(ServicioPersisElectroECI.class.getName());}
       return null;
    }
-   public void insertEquipo(Equipo eq ,int fk_tipomodel,int fk_pres_sol) throws PersistenciaException{
+
+   public void insertEquipo(Equipo eq) throws PersistenciaException{
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
@@ -90,8 +91,7 @@ public class ServicioPersisElectroECI {
            
        }
        catch(PersistenciaException e){
-           throw new PersistenciaException("Error de insertar equipo");
-           
+           throw new PersistenciaException("Error de insertar equipo");           
        }
    }
    public void insertTipoEquipo(TipoEquipo tp) throws PersistenciaException{

@@ -22,66 +22,88 @@ and open the template in the editor.
     
  
 
-    <p:layoutUnit position="south" size="100" resizable="false" closable="true" collapsible="true">
+            <p:layoutUnit position="south" size="450" resizable="false" closable="true" collapsible="true">
+                  <p:growl id="Listadeequipos" showDetail="true">
+                    <p:panel id="pnl_listequipos" header="Lista de Equipos" style="align-content: center;  align-items: center">
+                        <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.reporte}">
+                            <p:column headerText="Modelo"><h:outputText value="#{tipoEquipo.modelo}" /></p:column>
+                            <p:column headerText="Nombre Equipo"><h:outputText value="#{tipoEquipo.nombre_equipo}" /></p:column>
+                            <p:column headerText="Imagen"><h:outputText value="#{tipoEquipo.url_img}" /></p:column>
+                            <p:column headerText="Marca"><h:outputText value="#{tipoEquipo.marca}" /></p:column>
+                            <p:column headerText="Vida Util"><h:outputText value="#{tipoEquipo.vida_util}" /></p:column>
+                            <p:column headerText="Precio"><h:outputText value="#{tipoEquipo.precio}" /></p:column>
+                        </p:dataTable>
+                        
+                    </p:panel> 
+                </p:growl>   
+            </p:layoutUnit>
 
-    </p:layoutUnit>
- 
-    <p:layoutUnit position="north"  size="80"  resizable="false" closable="true" collapsible="true">
-       
-        <p:menubar style="border-color:#cc0000">
-            <p:menuitem  value="Inicio" icon="ui-icon-home">
-                
-            </p:menuitem>
-            <f:facet name="options">
-            <p:inputText  placeholder="Buscar"/>
-            <p:commandButton type="button" value="Ingresar" style="font-size: 8;" icon="ui-icon-person" />
-        </f:facet>
-        </p:menubar>
-    </p:layoutUnit>
+            <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
+
+                <p:menubar style="border-color:#cc0000">
+                    <p:menuitem  value="Inicio" icon="ui-icon-home" style="height: 31px">
+
+                    </p:menuitem>
+                    <f:facet name="options">
+                    <p:inputText  placeholder="Buscar"/>
+                    <p:commandButton type="button" value="Ingresar" style="font-size: 14pt;" icon="ui-icon-person" />
+                </f:facet>
+                </p:menubar>
+            </p:layoutUnit>
  
  
-            <p:layoutUnit position="center" style="background-color:white; align-content: center" resizable="false" >
-        <p:growl id="messages" showDetail="true">
-            <p:panel id="pnl_addequipo" header="Agregar Equipo" style="align-content: center;  align-items: center;" > 
-                    <p:panelGrid columns="2" style="text-align: center; "   >
-                        <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
-                        <p:autoComplete id="tipequipo" value="#{SystemManagedBeanEquipo.tip1}" completeMethod="#{SystemManagedBeanEquipo.complete}"
-                                        var="tipoequipo" itemLabel="#{tipoequipo.modelo}" itemValue="#{tipoequipo}" converter="equipoconverter" forceSelection="true" />
-                        <h:outputLabel id="nombre_eq" for="nombre_eq" value= "Nombre Equipo"/>
-                        <p:inputText value="#{SystemManagedBeanEquipo.nombre_equipo}"></p:inputText>
-                        <h:outputLabel id="imagen" for="imagen" value= "Imagen"/>
-                        <p:inputText value="#{SystemManagedBeanEquipo.url_img}"></p:inputText>
-                        <h:outputLabel id="marca" for="marca" value= "Marca"/>
-                        <p:inputText value="#{SystemManagedBeanEquipo.marca}"></p:inputText>
-                        <h:outputLabel id="vida_util" for="vida_util" value= "Vida Util"/>
-                        <p:inputText value="#{SystemManagedBeanEquipo.vida_util}"></p:inputText>
-                        <h:outputLabel id="precio" for="precio" value= "Precio"/>
-                        <p:inputText value="#{SystemManagedBeanEquipo.precio}"></p:inputText>
+            <p:layoutUnit position="west" style="background-color:white; align-content: center" resizable="false" size="1000"  >
+                <p:growl id="messages" showDetail="true">
+                    <p:commandButton value="Detalles Equipo" oncomplete="mypanel"></p:commandButton>
+                    <p:panel id="pnl_addtipoequipo" header="Agregar TipoEquipo" style="align-content: center;  align-items: center;width: 900px" > 
+                        <p:panelGrid columns="2" style="text-align: center"   >
+                            <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.modelo}"></p:inputText>
+                            <h:outputLabel id="nombre_eq" for="nombre_eq" value= "Nombre Equipo"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.nombre_equipo}"></p:inputText>
+                            <h:outputLabel id="imagen" for="imagen" value= "Imagen"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.url_img}"></p:inputText>
+                            <h:outputLabel id="marca" for="marca" value= "Marca"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.marca}"></p:inputText>
+                            <h:outputLabel id="vida_util" for="vida_util" value= "Vida Util"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.vida_util}"></p:inputText>
+                            <h:outputLabel id="precio" for="precio" value= "Precio"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.precio}"></p:inputText>
+                            
+                            <p:commandButton value="Agregar Tipo_Equipo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}" update="pnl_listequipos,pnl_addtipoequipo"/>
+                            
+                            
+                        </p:panelGrid>
                         
                         
                         
-                        <!--
-                      
-                           <h:outputLabel id="obsv" for="obsv" value= "Observaciones"/>
-                           <p:inputTextarea value=""></p:inputTextarea>
-                           <h:outputLabel id="estado" for="estado" value= "Estado"/>
-                           <p:selectOneMenu id="estadi" value="" style="width:70px">
-                            <f:selectItem itemLabel="Activo" itemValue="A" />
-                             <f:selectItem itemLabel="Inactivo" itemValue="I" />  
-      
-                           </p:selectOneMenu>
-                        -->
-                        <p:commandButton value="Agregar Equipo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}"/>
-                         
-                </p:panelGrid>
-               
-                   
-                  
-                
-                </p:panel>
-            </p:growl>
-        
-    </p:layoutUnit>
+                    </p:panel>
+                </p:growl>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center" style="background-color:white; "  resizable="false"  maxSize="800" >
+                <p:growl id="messages1" showDetail="true">
+                    <p:panel id="pnl1_addequipo" widgetVar="mypanel"  visible="false" header="Agregar Equipo" style="align-content: center;  align-items: center;width: 700px;margin-left: 5em" >
+                        <p:panelGrid columns="2" style="text-align: center;margin-left: 5em">
+                            <h:outputLabel id= "tipmodelo" for="tipmodelo" value= "TipoModelo"/>
+                             <p:autoComplete id="tipequipo" value="#{SystemManagedBeanEquipo.tip1}" completeMethod="#{SystemManagedBeanEquipo.complete}"
+                                            var="tipoequipo" itemLabel="#{tipoequipo.modelo}" itemValue="#{tipoequipo}" converter="equipoconverter" forceSelection="true" />
+                            <h:outputLabel id="placa" for="placa" value= "Placa"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.placa}"></p:inputText>
+                            <h:outputLabel id="serial" for="serial" value= "Serial"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.serial}"></p:inputText>
+                            <h:outputLabel id="estado" for="estado" value= "Estado"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.estado}"></p:inputText>
+                            <h:outputLabel id="observaciones" for="observaciones" value= "Observaciones"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.observaciones}"></p:inputText>
+                            
+                            <p:commandButton value="Agregar Equipo" action="#{SystemManagedBeanEquipo.insertarEquipo()}" update="pnl1_addequipo"/>
+                            
+                        </p:panelGrid> 
+                    </p:panel>
+                </p:growl>   
+            </p:layoutUnit>
+            
  
 </p:layout>  
            

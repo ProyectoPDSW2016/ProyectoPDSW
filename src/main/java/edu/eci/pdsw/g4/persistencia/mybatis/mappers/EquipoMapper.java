@@ -26,7 +26,7 @@ public interface EquipoMapper {
      * Cargar todos los equipos existentes
      * @return : Lista de equipos
      */
-   public Set<TipoEquipo> selectAll();
+   public List<Equipo> selectAll();
    /**
      * Insertar un nuevo Equipo
      *
@@ -34,7 +34,7 @@ public interface EquipoMapper {
      * @param model
      * @param pres_slctud
      */
-   public void insertEquipo(@Param("equipo") Equipo eq,@Param("fk_tipo_modelo")int model,@Param("fk_pres_sctud")int pres_slctud);
+   public void insertEquipo(@Param("equipo") Equipo eq);
   
     /** Insersion de un Tipo de Equipo a la BD
      *
