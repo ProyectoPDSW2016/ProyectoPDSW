@@ -8,22 +8,21 @@
     <resultMap type='edu.eci.pdsw.g4.logica.estructura.TipoEquipo' id='TipoEQuipoResult'>
       <id property ='modelo' column ='Modelo'/>
       <result property='nombre_equipo' column='nombre_Equipo'/>  
-      <result property='url_imagen' column='imagen'/>  
-      <result property='marca' column='marca'/>
+      <result property="marca" column="marca"/>
+      <result property='url_img' column='imagen'/>  
       <result property='vida_util' column='vida_util'/>     
       <result property='precio' column='precio'/>
-      <collection property='equipos' ofType='Equipo' resultMap="EquipoResult" columnPrefix="equipo_"></collection>    
+      <!--<collection property='equipos' ofType='Equipo' resultMap="EquipoResult" columnPrefix="equipo_"></collection>    -->
       
     </resultMap>
     
      <resultMap type='edu.eci.pdsw.g4.logica.estructura.Equipo' id='EquipoResult'>
         <id property='placa' column='Placa'/>   
-        <result property='serial' column='Seria'/>
-         <result property='tipomodel' column='Tipo_Equipo_Modelo'/>
-         <result property='precio' column='Precio'/>
-            <result property='observaciones' column='Observaciones'/>
-               <result property='estado' column='Estado'/>
-                <result property='pres_sol' column='prestamo_solicitud_id'/>
+        <result property='serial' column='Serial'/>
+        <result property='tipo_model' column='Modelo'/>
+        <result property='observaciones' column='Observaciones'/>
+        <result property='estado' column='Estado'/>
+                
          <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
     </resultMap> 
     
@@ -38,10 +37,10 @@
 <select id="loadeqByid" resultMap="EquipoResult">
     SELECT * FROM Equipo eq WHERE eq.Placa = #{plac}
 </select>
-<select  id="selectAll" resultType="map">
-    SELECT * FROM Equipo, Tipo_Equipo WHERE Equipo.Modelo=Tipo_Equipo.Modelo
+<select  id="selectAll" resultMap="EquipoResult">
+    SELECT * FROM Equipo
 </select>
-<select  id="selectAlltipoeq" resultType="map">
+<select  id="selectAlltipoeq" resultMap="TipoEQuipoResult">
     SELECT * FROM Tipo_Equipo
 </select>
 

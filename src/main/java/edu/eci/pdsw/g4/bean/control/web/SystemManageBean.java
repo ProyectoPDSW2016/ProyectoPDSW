@@ -13,7 +13,6 @@ import edu.eci.pdsw.g4.logica.estructura.Usuario;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
 import edu.eci.pdsw.g4.logica.servicio.ExcepcionServiciosSistema;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -51,6 +50,18 @@ public class SystemManageBean implements Serializable{
     private String marca;
     private int precio;
     private int vida_util;
+    
+    private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
+
+    public static List<TipoEquipo> getAllsequipos() {
+        return allsequipos;
+    }
+
+    public static void setAllsequipos(List<TipoEquipo> allsequipos) {
+        SystemManageBean.allsequipos = allsequipos;
+    }
+    
+    
     
     public SystemManageBean() {
        sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
@@ -158,6 +169,12 @@ public class SystemManageBean implements Serializable{
       System.out.println("Insertado");
     }
     
+    public void insertarEquipo() throws PersistenciaException{
+      Equipo  tp1 = new Equipo(placa, serial, modelo, observaciones, estado);
+      sec.insertEquipo(tp1, 0, 0);
+      System.out.println("Insertado");
+    }
+    
     private TipoEquipo tip1;
 
     public TipoEquipo getTip1() {
@@ -179,14 +196,8 @@ public class SystemManageBean implements Serializable{
     
     
     public List<TipoEquipo> complete(String query) throws PersistenciaException{
-       List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
+       allsequipos=sec.selectAlltipoeq();
        List<TipoEquipo> filtradodetipo=new ArrayList<TipoEquipo>();
-       
-       
-        TipoEquipo alt=new TipoEquipo("12456", "lokos", "78945646", "lore", 3, 150000);       
-        TipoEquipo alt1=new TipoEquipo("baboso", "lokos", "78945646", "lore", 3, 150000);       
-        allsequipos.add(alt);
-        allsequipos.add(alt1);
         
         for (int i = 0; i < allsequipos.size(); i++) {
             TipoEquipo eq=allsequipos.get(i);

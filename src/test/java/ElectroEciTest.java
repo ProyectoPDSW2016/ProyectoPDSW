@@ -57,18 +57,23 @@ public class ElectroEciTest {
     }
     
     @Test
-    public void pruebaCeroTest() throws SQLException, PersistenciaException {
+    public void insercionEquipos() throws SQLException, PersistenciaException {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
+      
    
-      /*
-      Equipo eq = new Equipo(001,  002,003, 1000,"prueba1",'A');
-        Equipo eq2 = new Equipo(002,  002,003, 1000,"prueba1",'A');
+      
+        Equipo eq = new Equipo(001, 002,"hp", "ninguno", 'A');
+        Equipo eq1 = new Equipo(002, 004,"hp1", "ninguno1", 'B');
+        
         spECI.insertEquipo(eq, 0, 0);
-        spECI.insertEquipo(eq2, 0, 0);
-        List<Equipo> selectAll = spECI.selectAll();
-        System.out.println("seee"+ selectAll.size());
+        spECI.insertEquipo(eq1, 0, 0);
+        
+        List<TipoEquipo> selectAll = spECI.selectAll();
+        assertEquals(2, selectAll.size());
+        
+        /*
         String toString = selectAll.toString();System.out.println(""+toString);
         //Realizar la operacion de la logica y la prueba
         

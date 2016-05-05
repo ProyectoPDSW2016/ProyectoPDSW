@@ -20,6 +20,11 @@ public class TipoEquipo {
   private int precio;
   private Set<Equipo> equipos;
 
+    public TipoEquipo() {
+    }
+
+    
+  
     public TipoEquipo(String modelo, String nombre_equipo, String url_img, String marca, int vida_util, int precio) {
         this.modelo = modelo;
         this.nombre_equipo = nombre_equipo;
