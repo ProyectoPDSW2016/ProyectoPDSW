@@ -19,7 +19,7 @@ public interface DaoEquipo {
     
     public Equipo loadeqByid(int equipo_id)throws PersistenciaException;
     public void insertEquipo(Equipo eq)throws PersistenciaException;
-    public List<Equipo> SelectAll()throws PersistenciaException;
+    public List<TipoEquipo> SelectAll()throws PersistenciaException;
     public void insertTipoEquipo( TipoEquipo tp );
     public List<TipoEquipo> selectAlltipoeq();
 }

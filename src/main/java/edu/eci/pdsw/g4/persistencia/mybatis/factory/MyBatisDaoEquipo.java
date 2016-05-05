@@ -10,7 +10,10 @@ import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.persistencia.mybatis.mappers.EquipoMapper;
 import edu.eci.pdsw.g4.logica.dao.DaoEquipo;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -46,9 +49,15 @@ public class MyBatisDaoEquipo implements DaoEquipo{
     }
 
     @Override
-    public List<Equipo> SelectAll() throws PersistenciaException {
-        List<Equipo> resp = equmapper.selectAll();
+    public List<TipoEquipo> SelectAll() throws PersistenciaException {
+        Set<TipoEquipo> aux = equmapper.selectAll();
+        System.out.println(aux.size()+"Tamaño de esta gonorrea");
         sqlss.commit();
+        List<TipoEquipo> resp = new ArrayList<>();
+        Iterator<TipoEquipo> i = aux.iterator();
+        while(i.hasNext()){
+            resp.add((TipoEquipo) i);
+        }
         return resp;
     }
 

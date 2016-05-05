@@ -13,6 +13,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -59,6 +61,7 @@ public class ElectroEciTest {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
+   
       /*
       Equipo eq = new Equipo(001,  002,003, 1000,"prueba1",'A');
         Equipo eq2 = new Equipo(002,  002,003, 1000,"prueba1",'A');
@@ -80,15 +83,20 @@ public class ElectroEciTest {
         
     
      @Test
-     public void consultarTiempoEquipoRecienRegistrado() throws PersistenciaException {
+     public void consultarTiempoEquipoRecienRegistrado() throws PersistenciaException  {
          
-         //clase de equivalencia equipo recien registrado sin haber sido prestado 
-         TipoEquipo pruebaT1 = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
-         Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
-         ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
-         spECI.insertTipoEquipo(pruebaT1);
-         spECI.insertEquipo(pruebaEq1, 0, 0);
-         assertEquals(pruebaT1.getVida_util(),spECI.tiempoDeVidaDeUnEquipo(pruebaEq1.getPlaca()) );
+        try {
+            //clase de equivalencia equipo recien registrado sin haber sido prestado
+            TipoEquipo pruebaT1 = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+            Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
+            ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
+            spECI.insertTipoEquipo(pruebaT1);
+            spECI.insertEquipo(pruebaEq1, 0, 0);
+            assertEquals(pruebaT1.getVida_util(),spECI.tiempoDeVidaDeUnEquipo(pruebaEq1.getPlaca()) );
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(ElectroEciTest.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenciaException("HPTa", ex);
+        }
          
      }
      @Test

@@ -5,6 +5,8 @@
  */
 package edu.eci.pdsw.g4.logica.estructura;
 
+import java.util.Set;
+
 /**
  *
  * @author 2108221
@@ -16,6 +18,7 @@ public class TipoEquipo {
   private String marca;
   private int vida_util;
   private int precio;
+  private Set<Equipo> equipos;
 
     public TipoEquipo(String modelo, String nombre_equipo, String url_img, String marca, int vida_util, int precio) {
         this.modelo = modelo;
@@ -72,6 +75,14 @@ public class TipoEquipo {
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+    
+    public Set<Equipo> getEquipos(){
+        return equipos;
+    }
+    
+    public void setEquipos(Set<Equipo> equipos){
+        this.equipos = equipos;
     }
   
 }

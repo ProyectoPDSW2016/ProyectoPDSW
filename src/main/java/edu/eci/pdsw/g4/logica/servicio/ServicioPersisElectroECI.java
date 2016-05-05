@@ -54,11 +54,13 @@ public class ServicioPersisElectroECI {
     public void registarDevolucion(Equipo eq){
         
     }
-   public List<Equipo> selectAll() throws PersistenciaException{
+   public List<TipoEquipo> selectAll() throws PersistenciaException{
         try {
             DaoFactory df2 = DaoFactory.getInstance(prop);
             df2.beginSession();
-            return df2.getDaoEquipo().SelectAll();
+            List<TipoEquipo> equipos = df2.getDaoEquipo().SelectAll();
+            df2.endSession();
+            return equipos;
         } catch (PersistenciaException ex) {
             Logger.getLogger(ServicioPersisElectroECI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,35 +70,47 @@ public class ServicioPersisElectroECI {
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
-           return df2.getDaoEquipo().loadeqByid(placa);
+           Equipo equipo = df2.getDaoEquipo().loadeqByid(placa);
+           df2.endSession();
+           return equipo;
            
        }
        catch(PersistenciaException pe){
         Logger.getLogger(ServicioPersisElectroECI.class.getName());}
       return null;
    }
-   public void insertEquipo(Equipo eq ,int fk_tipomodel,int fk_pres_sol) throws PersistenciaException{
+   public void insertEquipo(Equipo eq ,int fk_tipomodel,int fk_pres_sol){
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
            df2.getDaoEquipo().insertEquipo(eq);
+           df2.commitTransaction();
+           df2.endSession();
            
            
        }
        catch(PersistenciaException e){
+           throw new PersistenceException("Ex", e);
            
        }
    }
    public void insertTipoEquipo(TipoEquipo tp) throws PersistenciaException{
-    DaoFactory df2 = DaoFactory.getInstance(prop);
-    df2.beginSession();
-    df2.getDaoEquipo().insertTipoEquipo(tp);
+        try {
+            DaoFactory df2 = DaoFactory.getInstance(prop);
+            df2.beginSession();
+            df2.getDaoEquipo().insertTipoEquipo(tp);
+            df2.commitTransaction();
+            df2.endSession();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(ServicioPersisElectroECI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
    }
    public List<TipoEquipo> selectAlltipoeq() throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         List<TipoEquipo> selectAlltipoeq = df2.getDaoEquipo().selectAlltipoeq();
+        df2.endSession();
         return selectAlltipoeq;
    }
    

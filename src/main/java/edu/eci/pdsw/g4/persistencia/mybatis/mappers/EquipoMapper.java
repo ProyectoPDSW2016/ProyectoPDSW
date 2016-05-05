@@ -8,6 +8,7 @@ package edu.eci.pdsw.g4.persistencia.mybatis.mappers;
 import edu.eci.pdsw.g4.logica.estructura.Equipo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import java.util.List;
+import java.util.Set;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -25,7 +26,7 @@ public interface EquipoMapper {
      * Cargar todos los equipos existentes
      * @return : Lista de equipos
      */
-   public List<Equipo> selectAll();
+   public Set<TipoEquipo> selectAll();
    /**
      * Insertar un nuevo Equipo
      *
