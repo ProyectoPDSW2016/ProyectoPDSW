@@ -12,7 +12,7 @@
       <result property='url_img' column='imagen'/>  
       <result property='vida_util' column='vida_util'/>     
       <result property='precio' column='precio'/>
-      <!--<collection property='equipos' ofType='Equipo' resultMap="EquipoResult" columnPrefix="equipo_"></collection>    -->
+      <collection property='equipos' ofType='Equipo' resultMap="EquipoResult" columnPrefix="equipo_"></collection>
       
     </resultMap>
     
@@ -22,6 +22,7 @@
         <result property='tipo_model' column='Modelo'/>
         <result property='observaciones' column='Observaciones'/>
         <result property='estado' column='Estado'/>
+        
                 
          <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
     </resultMap> 
@@ -42,6 +43,15 @@
 </select>
 <select  id="selectAlltipoeq" resultMap="TipoEQuipoResult">
     SELECT * FROM Tipo_Equipo
+</select>
+<select id="tiempoDeVidaDeUnEquipo" resultType="float">
+    SELECT  HOUR(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))+(MINUTE(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))/60) Horas_Uso
+FROM prestamo_solicitud,Detalle_Prestamo,Equipo,Tipo_Equipo WHERE  prestamo_solicitud.prestamo_Id = Detalle_Prestamo.id AND Detalle_Prestamo.Equipo_Placa = Equipo.Placa AND Tipo_Equipo.Modelo = Equipo.Modelo AND Equipo.Placa=#{plac}
+</select>
+<select  id="reporte" resultMap="TipoEQuipoResult">
+    SELECT Tipo_Equipo.imagen, Tipo_Equipo.nombre_Equipo, Equipo.Serial as equipo_Serial, Equipo.Estado as equipo_Estado, Tipo_Equipo.vida_util,HOUR(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))+(MINUTE(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))/60) Horas_Uso
+FROM prestamo_solicitud,Detalle_Prestamo,Equipo,Tipo_Equipo WHERE  prestamo_solicitud.prestamo_Id = Detalle_Prestamo.id AND Detalle_Prestamo.Equipo_Placa = Equipo.Placa AND Tipo_Equipo.Modelo = Equipo.Modelo GROUP BY Equipo.Placa
+ORDER By Horas_Uso
 </select>
 
  </mapper>   

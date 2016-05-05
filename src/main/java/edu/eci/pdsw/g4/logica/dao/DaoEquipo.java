@@ -22,4 +22,6 @@ public interface DaoEquipo {
     public List<TipoEquipo> SelectAll()throws PersistenciaException;
     public void insertTipoEquipo( TipoEquipo tp );
     public List<TipoEquipo> selectAlltipoeq();
+    public int tiempoDeVidaDeUnEquipo(int placa);
+    public List<TipoEquipo> reporte();
 }

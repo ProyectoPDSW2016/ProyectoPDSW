@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.PersistenceException;
+
 
 /**
  *
@@ -79,7 +79,7 @@ public class ServicioPersisElectroECI {
         Logger.getLogger(ServicioPersisElectroECI.class.getName());}
       return null;
    }
-   public void insertEquipo(Equipo eq ,int fk_tipomodel,int fk_pres_sol){
+   public void insertEquipo(Equipo eq ,int fk_tipomodel,int fk_pres_sol) throws PersistenciaException{
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
@@ -90,7 +90,7 @@ public class ServicioPersisElectroECI {
            
        }
        catch(PersistenciaException e){
-           throw new PersistenceException("Ex", e);
+           throw new PersistenciaException("Error de insertar equipo");
            
        }
    }
@@ -115,11 +115,24 @@ public class ServicioPersisElectroECI {
    }
    
    public int tiempoDeVidaDeUnEquipo(int placa) throws PersistenciaException{
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+        int tiempo = df2.getDaoEquipo().tiempoDeVidaDeUnEquipo(placa);
+        df2.endSession();
        
-      return 0;
+      return tiempo;
    }
    public List<Integer> tiempoDeVidaDeLosEquipo() throws PersistenciaException{
      return null;
+   }
+   public List<TipoEquipo> reporte() throws PersistenciaException{
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+        List<TipoEquipo> reporte = df2.getDaoEquipo().reporte();
+        df2.endSession();
+       
+      return reporte;
+       
    }
 
 }

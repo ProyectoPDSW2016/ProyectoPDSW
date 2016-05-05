@@ -73,4 +73,5 @@ public class Equipo {
     public void setObservaciones(String observaciones){
         this.observaciones = observaciones;
     }
+    
 }

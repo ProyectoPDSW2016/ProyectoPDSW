@@ -187,7 +187,7 @@ public class SystemManageBean implements Serializable{
     public List<TipoEquipo> getReporte(){
         try {
             
-            return sec.selectAlltipoeq();
+            return sec.reporte();
         } catch (PersistenciaException ex) {
             Logger.getLogger(SystemManageBean.class.getName()).log(Level.SEVERE, null, ex);
         }

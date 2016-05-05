@@ -41,6 +41,8 @@ public abstract class DaoFactory {
    public abstract void beginSession()throws PersistenciaException;
 
     public abstract DaoEquipo getDaoEquipo();
+    
+    public abstract DaoEstadisticaEquipo getDaoEstadisticaEquipo();
 
     public abstract void commitTransaction() throws PersistenciaException;
 

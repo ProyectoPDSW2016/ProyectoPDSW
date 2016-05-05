@@ -43,4 +43,8 @@ public interface EquipoMapper {
      */
     public void insertTipo_equipo(@Param("tipo_eq") TipoEquipo equipo);
      public List<TipoEquipo> selectAlltipoeq();
+    
+     public int tiempoDeVidaDeUnEquipo(@Param("plac")int placa);
+     
+     public List<TipoEquipo> reporte();
 }

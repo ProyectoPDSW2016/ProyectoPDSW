@@ -6,6 +6,7 @@
 package edu.eci.pdsw.g4.persistencia.mybatis.factory;
 
 import edu.eci.pdsw.g4.logica.dao.DaoEquipo;
+import edu.eci.pdsw.g4.logica.dao.DaoEstadisticaEquipo;
 import edu.eci.pdsw.g4.logica.dao.DaoFactory;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
 import java.io.IOException;
@@ -92,6 +93,11 @@ public class MyBatisDaoFactory extends DaoFactory {
     public void endSession()  throws PersistenciaException
     {
        currentsessionsql.close();
+    }
+
+    @Override
+    public DaoEstadisticaEquipo getDaoEstadisticaEquipo() {
+        return new MyBatisDaoEstadisticasEquipo(currentsessionsql);
     }
     
 }

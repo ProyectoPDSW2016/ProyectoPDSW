@@ -77,6 +77,20 @@ public class MyBatisDaoEquipo implements DaoEquipo{
         System.out.println("----------------------------------->Tipo Equipo cargado ok");
      return selectAlltipoeq;
     }
+
+    @Override
+    public int tiempoDeVidaDeUnEquipo(int placa) {
+       int tiempo = equmapper.tiempoDeVidaDeUnEquipo(placa);
+       sqlss.commit();
+       return tiempo;
+    }
+
+    @Override
+    public List<TipoEquipo> reporte() {
+        List<TipoEquipo> reporte = equmapper.reporte();
+        sqlss.commit();
+        return reporte;
+    }
     
     
 }
