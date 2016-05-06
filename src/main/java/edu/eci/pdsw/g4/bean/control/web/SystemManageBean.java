@@ -6,6 +6,7 @@
 package edu.eci.pdsw.g4.bean.control.web;
 
 
+import edu.eci.pdsw.g4.bean.control.seguridad.ShiroLoginBean;
 import edu.eci.pdsw.g4.logica.estructura.Equipo;
 import edu.eci.pdsw.g4.logica.estructura.Estudiante;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
@@ -24,10 +25,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import org.slf4j.LoggerFactory;
 /**
  *
  * @author 2093130
@@ -52,7 +54,7 @@ public class SystemManageBean implements Serializable{
     private int vida_util;
     
     private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
-
+private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManageBean.class);
     public static List<TipoEquipo> getAllsequipos() {
         return allsequipos;
     }
@@ -66,7 +68,7 @@ public class SystemManageBean implements Serializable{
     public SystemManageBean() {
        sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
     }
-    private static final Logger LOG = Logger.getLogger(SystemManageBean.class.getName());
+  
    
     public ServicioPersisElectroECI getSec() {
         return sec;
@@ -201,7 +203,7 @@ public class SystemManageBean implements Serializable{
             
             return sec.reporte();
         } catch (PersistenciaException ex) {
-            Logger.getLogger(SystemManageBean.class.getName()).log(Level.SEVERE, null, ex);
+            LoggerFactory.getLogger(SystemManageBean.class);
         }
         return null;
     }

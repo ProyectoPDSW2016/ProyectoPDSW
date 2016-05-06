@@ -1,25 +1,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 </h:head>
 <h:body>
-    <h:form prependId="false">
-        <h:panelGrid columns="2">
-            <h:outputText value="Login:"/>
-            <p:inputText id="username" required="true" value="#{loginBean.username}"/>
-
-            <h:outputText value="Password:"/>
-            <p:password id="password" required="true" value="#{loginBean.password}"/>
-
-            <h:outputText value="Remember me:"/>
-            <p:selectBooleanCheckbox id="rememberMe" value="#{loginBean.rememberMe}"/>
-
-            <h:outputText/>
-            <p:commandButton value="Login" action="#{loginBean.doLogin}" />
+    <h:form>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="east" size="25%" resizable="false" closable="true" collapsible="true">
+                
+            </p:layoutUnit>   
+                        
+            <p:layoutUnit position="west" size="25%" resizable="false" closable="true" collapsible="true">
+                
+            </p:layoutUnit>   
+            <p:layoutUnit position="center"  size="35%" resizable="false" closable="true" style="align-content: center; text-align: center; border-color:  #cc0000;" collapsible="true">
+                <p:panelGrid columns="1"   style="margin-left: 40%; margin-top: 30%; margin-bottom: 30%; margin-right: 40%; border-color: #cc0000;">
+                    <p:row>
+                    <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+                    <p:graphicImage value="resource/user.png" style="margin: auto; margin-left: 20%"  />
+                </h:outputLink>
+                        </p:row> 
+                    <p:row>
+                        <h:outputLabel value="Login Usuario"></h:outputLabel>
+                    </p:row> 
+                    
+                </p:panelGrid>
+                
+   
+    <p:growl id="growl" sticky="false" showDetail="false" life="3000" />
+ 
+    <p:dialog header="Login" widgetVar="dlg" resizable="false" >
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="username" value="Username:" />
+            <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" />
+ 
+            <h:outputLabel for="password" value="Password:" />
+            <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
+ 
+            <f:facet name="footer">
+                <p:commandButton value="Login" update="growl" actionListener="#{loginBean.doLogin()}"
+                                 oncomplete="handleLoginRequest(xhr, status, args)" />
+            </f:facet>  
         </h:panelGrid>
-
-        <p:messages id="messages" autoUpdate="true" closable="true" />
-    </h:form>
+    </p:dialog>      
+            </p:layoutUnit> 
+   
+    
+            </p:layout>
+           
+</h:form>
+ 
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+</script>
 </h:body>
 </html>

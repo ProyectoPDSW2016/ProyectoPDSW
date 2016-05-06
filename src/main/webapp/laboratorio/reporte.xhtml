@@ -5,10 +5,14 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+<ui:composition template="/laboratorio/laboratorio.xhtml"
+                
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"    
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="reporEqui">
     <h:head>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -49,4 +53,5 @@ and open the template in the editor.
 
         </h:form>
     </h:body>
-</html>
+        </ui:define>
+</ui:composition>

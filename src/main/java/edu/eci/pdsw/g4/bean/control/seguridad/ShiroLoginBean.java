@@ -21,12 +21,13 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "loginBean")
 @ViewScoped
+
 public class ShiroLoginBean implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(ShiroLoginBean.class);
 
     private String username;
     private String password;
-    private Boolean rememberMe;
+   
 
     public ShiroLoginBean() {
         
@@ -41,8 +42,8 @@ public class ShiroLoginBean implements Serializable {
      */
     public void doLogin() {
         Subject subject = SecurityUtils.getSubject();
-
-        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword(), getRememberMe());
+        System.out.println("Usuario:"+ username + "Pass" + password);
+        UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword());
 
         try {
             subject.login(token);
@@ -101,11 +102,5 @@ public class ShiroLoginBean implements Serializable {
         this.password = senha;
     }
 
-    public Boolean getRememberMe() {
-        return rememberMe;
-    }
-
-    public void setRememberMe(Boolean lembrar) {
-        this.rememberMe = lembrar;
-    }
+   
 }

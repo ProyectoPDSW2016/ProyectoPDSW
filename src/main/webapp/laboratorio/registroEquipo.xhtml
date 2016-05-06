@@ -5,14 +5,18 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
+<ui:composition template="/laboratorio/laboratorio.xhtml"
+                
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"    
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:define name="regEquipo">
     <h:head>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="laboratorio/layoutprincipal.css" type="text/css" rel="stylesheet" /> 
+    
+    
+      
     </h:head>
     <h:body>
 
@@ -40,10 +44,13 @@ and open the template in the editor.
             <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
 
                 <p:menubar style="border-color:#cc0000">
-                    <p:menuitem  value="Regresar" action="laboratorio/laboratorio?faces-redirect=true" icon="ui-icon-home" style="height: 31px">
+                    <p:menuitem  value="Inicio" icon="ui-icon-home" style="height: 31px">
 
                     </p:menuitem>
-                    
+                    <f:facet name="options">
+                    <p:inputText  placeholder="Buscar"/>
+                    <p:commandButton type="button" value="Ingresar" style="font-size: 14pt;" icon="ui-icon-person" />
+                </f:facet>
                 </p:menubar>
             </p:layoutUnit>
  
@@ -105,4 +112,5 @@ and open the template in the editor.
            
         </h:form>
     </h:body>
-     </html>
+        </ui:define>
+</ui:composition>
