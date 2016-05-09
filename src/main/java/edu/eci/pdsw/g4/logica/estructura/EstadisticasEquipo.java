@@ -25,6 +25,9 @@ public class EstadisticasEquipo {
         this.vidaUtil = vidaUtil;
         this.horasUso = horasUso;
     }
+
+    public EstadisticasEquipo() {
+    }
     
     
     public int getSerial() {

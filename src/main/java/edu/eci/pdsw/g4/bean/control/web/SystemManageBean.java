@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -205,6 +206,14 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
             return sec.reporte();
         } catch (PersistenciaException ex) {
             LoggerFactory.getLogger(SystemManageBean.class);
+        }
+        return null;
+    }
+    public List<TipoEquipo> getTipoEquipo(){
+        try {
+            return sec.selectAll();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(SystemManageBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

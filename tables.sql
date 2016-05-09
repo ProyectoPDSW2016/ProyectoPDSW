@@ -15,7 +15,7 @@ CREATE TABLE Detalle_Prestamo (
 -- Table: Equipo
 CREATE TABLE IF NOT EXISTS `Equipo` (
     Placa int NOT NULL,
-     Seria int NOT NULL,
+     Serial int NOT NULL,
     Modelo varchar NOT NULL,
     Observaciones varchar(500) NOT NULL,
    

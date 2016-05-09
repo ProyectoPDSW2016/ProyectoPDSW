@@ -61,9 +61,12 @@ public class ElectroEciTest {
         //Insertar datos en la base de datos de pruebas, de acuerdo con la clase
         //de equivalencia correspondiente
       ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
-        
+        TipoEquipo pruebaT1 = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+        Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
+        spECI.insertTipoEquipo(pruebaT1);
+        spECI.insertEquipo(pruebaEq1);;
         List<TipoEquipo> selectAll = spECI.selectAll();
-        assertEquals(2, selectAll.size());
+        assertEquals(1, selectAll.size());
         
         /*
         String toString = selectAll.toString();System.out.println(""+toString);
@@ -76,7 +79,18 @@ public class ElectroEciTest {
         List<TipoEquipo> selectAlltipoeq = spECI.selectAlltipoeq();
         String toString1 = selectAlltipoeq.toString(); System.out.println(""+ toString1);
         */
-    }  
+    }
+    @Test
+     public void insertarUnEquipo() throws PersistenciaException  {
+            //clase de equivalencia equipo recien registrado sin haber sido prestado
+            TipoEquipo pruebaT1 = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+            Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
+            ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
+            spECI.insertTipoEquipo(pruebaT1);
+            spECI.insertEquipo(pruebaEq1);
+            assertEquals(pruebaEq1.getSerial(),spECI.loadeqByid(1).getSerial());
+         
+     }
         
     
      @Test
@@ -86,7 +100,6 @@ public class ElectroEciTest {
             Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
             ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
             spECI.insertTipoEquipo(pruebaT1);
-
             spECI.insertEquipo(pruebaEq1);
             assertEquals(pruebaT1.getVida_util(),17520);
          

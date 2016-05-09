@@ -24,7 +24,7 @@ and open the template in the editor.
             <p:layoutUnit position="south" size="450" resizable="false" closable="true" collapsible="true">
                   <p:growl id="Listadeequipos" showDetail="true">
                     <p:panel id="pnl_listequipos" header="Lista de Equipos" style="align-content: center;  align-items: center">
-                        <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.reporte}">
+                        <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.tipoEquipo}">
                             <p:column headerText="Modelo"><h:outputText value="#{tipoEquipo.modelo}" /></p:column>
                             <p:column headerText="Nombre Equipo"><h:outputText value="#{tipoEquipo.nombre_equipo}" /></p:column>
                             <p:column headerText="Imagen"><h:outputText value="#{tipoEquipo.url_img}" /></p:column>
