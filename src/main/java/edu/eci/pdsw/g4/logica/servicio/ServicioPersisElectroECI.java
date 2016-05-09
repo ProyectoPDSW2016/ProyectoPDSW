@@ -10,6 +10,7 @@ import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.logica.dao.DaoFactory;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -125,10 +126,10 @@ public class ServicioPersisElectroECI {
    public List<Integer> tiempoDeVidaDeLosEquipo() throws PersistenciaException{
      return null;
    }
-   public List<TipoEquipo> reporte() throws PersistenciaException{
+   public List<EstadisticasEquipo> reporte() throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
-        List<TipoEquipo> reporte = df2.getDaoEquipo().reporte();
+        List<EstadisticasEquipo> reporte = df2.getDaoEstadisticaEquipo().reporte();
         df2.endSession();
        
       return reporte;

@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.g4.logica.dao;
 
+import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import java.util.List;
 
@@ -13,6 +14,6 @@ import java.util.List;
  * @author 2100609
  */
 public interface DaoEstadisticaEquipo {
-    public List<TipoEquipo> reporte();
+    public List<EstadisticasEquipo> reporte();
     
 }

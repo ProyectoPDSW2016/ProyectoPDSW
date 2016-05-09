@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.g4.persistencia.mybatis.mappers.EstadisticasEquipoMapper">
+    
+    <resultMap type='edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo' id='EstadisticasResult'>
+      <result property ='imagen' column ='imagen'/>
+      <result property='nombreEquipo' column='nombre_Equipo'/>  
+      <result property="serial" column="Serial"/>
+      <result property='estado' column='Estado'/>  
+      <result property='vidaUtil' column='vida_util'/>     
+      <result property='horasUso' column='Horas_Uso'/>
+    </resultMap>
+   
+<select  id="reporte" resultMap="EstadisticasResult">
+    SELECT Tipo_Equipo.imagen, Tipo_Equipo.nombre_Equipo, Equipo.Serial, Equipo.Estado, Tipo_Equipo.vida_util,HOUR(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))+(MINUTE(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))/60) Horas_Uso
+FROM prestamo_solicitud,Detalle_Prestamo,Equipo,Tipo_Equipo WHERE  prestamo_solicitud.prestamo_Id = Detalle_Prestamo.id AND Detalle_Prestamo.Equipo_Placa = Equipo.Placa AND Tipo_Equipo.Modelo = Equipo.Modelo GROUP BY Equipo.Placa
+ORDER By Horas_Uso
+</select>
+
+ </mapper>   

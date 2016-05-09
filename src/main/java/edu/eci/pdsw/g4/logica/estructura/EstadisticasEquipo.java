@@ -52,7 +52,7 @@ public class EstadisticasEquipo {
         return nombreEquipo;
     }
 
-    public void setNombre_equipo(String nombreEquipo) {
+    public void setNombreEquipo(String nombreEquipo) {
         this.nombreEquipo = nombreEquipo;
     }
     public int getVidaUtil() {

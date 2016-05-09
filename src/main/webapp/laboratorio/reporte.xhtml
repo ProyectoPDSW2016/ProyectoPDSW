@@ -21,31 +21,31 @@ and open the template in the editor.
     <h:body>
 
         <h:form id = "reporte_Equipo">
-            <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.reporte}">
+            <p:dataTable  var="estadisticasEquipo" value="#{SystemManagedBeanEquipo.reporte}">
                 <f:facet name="header">
                     Reporte Equipos
                 </f:facet>
                 <p:column headerText="Foto">
-                    <h:outputText value="#{tipoEquipo.url_img}" />
+                    <h:outputText value="#{estadisticasEquipo.imagen}" />
                 </p:column>
 
                 <p:column headerText="Nombre">
-                    <h:outputText value="#{tipoEquipo.nombre_equipo}" />
+                    <h:outputText value="#{estadisticasEquipo.nombreEquipo}" />
                 </p:column>
 
                 <p:column headerText="Serial">
-                    <h:outputText value="" />
+                    <h:outputText value="#{estadisticasEquipo.serial}" />
                 </p:column>
                 
                 <p:column headerText="Estado ">
-                    <h:outputText value="" />
+                    <h:outputText value="#{estadisticasEquipo.estado}" />
                 </p:column>
                 
                 <p:column headerText="Horas de uso ">
-                    <h:outputText value="#{tipoEquipo.vida_util}" />
+                    <h:outputText value="#{estadisticasEquipo.horasUso}" />
                 </p:column> 
                 <p:column headerText="Horas tiempo de vida ">
-                    <h:outputText value="" />
+                    <h:outputText value="#{estadisticasEquipo.vidaUtil}" />
                 </p:column> 
 
                 

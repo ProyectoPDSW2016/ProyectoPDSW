@@ -81,7 +81,6 @@ public class ElectroEciTest {
     
      @Test
      public void consultarTiempoEquipoRecienRegistrado() throws PersistenciaException  {
-        try{
             //clase de equivalencia equipo recien registrado sin haber sido prestado
             TipoEquipo pruebaT1 = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
             Equipo pruebaEq1 = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
@@ -90,15 +89,6 @@ public class ElectroEciTest {
 
             spECI.insertEquipo(pruebaEq1);
             assertEquals(pruebaT1.getVida_util(),17520);
-       
-
-            spECI.insertEquipo(pruebaEq1);
-            assertEquals(pruebaT1.getVida_util(),spECI.tiempoDeVidaDeUnEquipo(pruebaEq1.getPlaca()) );
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(ElectroEciTest.class.getName()).log(Level.SEVERE, null, ex);
-            throw new PersistenciaException("HPTa", ex);
-        }
-
          
      }
      @Test

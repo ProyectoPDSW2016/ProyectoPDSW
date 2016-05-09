@@ -6,7 +6,9 @@
 package edu.eci.pdsw.g4.persistencia.mybatis.factory;
 
 import edu.eci.pdsw.g4.logica.dao.DaoEstadisticaEquipo;
+import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
+import edu.eci.pdsw.g4.persistencia.mybatis.mappers.EstadisticasEquipoMapper;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
@@ -16,14 +18,18 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class MyBatisDaoEstadisticasEquipo implements DaoEstadisticaEquipo {
     private SqlSession sqlss;
+    private EstadisticasEquipoMapper estadisticas = null;
 
     public MyBatisDaoEstadisticasEquipo(SqlSession sqlss) {
         this.sqlss = sqlss;
+        estadisticas = sqlss.getMapper(EstadisticasEquipoMapper.class);
     }
 
     @Override
-    public List<TipoEquipo> reporte() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<EstadisticasEquipo> reporte() {
+        List<EstadisticasEquipo> reporte = estadisticas.reporte();
+        sqlss.commit();
+        return reporte;
     }
     
     

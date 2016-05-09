@@ -12,6 +12,7 @@ import edu.eci.pdsw.g4.logica.estructura.Estudiante;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.logica.estructura.Usuario;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import edu.eci.pdsw.g4.logica.servicio.ExcepcionServiciosSistema;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
 
@@ -198,7 +199,7 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
     public void setTip1(TipoEquipo tip1) {
         this.tip1 = tip1;
     }
-    public List<TipoEquipo> getReporte(){
+    public List<EstadisticasEquipo> getReporte(){
         try {
             
             return sec.reporte();
