@@ -58,7 +58,11 @@ public class ServicioPersisElectroECI {
     public void registarDevolucion(Equipo eq){
         
     }
-   public List<TipoEquipo> selectAll() throws PersistenciaException{
+    /*Consulta todos los equipos registrados en la base de datos
+     *@return todos los equipos registrados en la base de datos
+    
+    */
+    public List<TipoEquipo> selectAll() throws PersistenciaException{
         try {
             DaoFactory df2 = DaoFactory.getInstance(prop);
             df2.beginSession();
@@ -69,8 +73,13 @@ public class ServicioPersisElectroECI {
             Logger.getLogger(ServicioPersisElectroECI.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    } 
-   public Equipo loadeqByid(int placa) throws PersistenciaException{
+    }
+    /*Consulta un equipo en especifico
+    *@param numero de placa del equipo
+    *@return el equipo solicitidado
+    
+    */
+    public Equipo loadeqByid(int placa) throws PersistenciaException{
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
@@ -83,8 +92,11 @@ public class ServicioPersisElectroECI {
         Logger.getLogger(ServicioPersisElectroECI.class.getName());}
       return null;
    }
-
-   public void insertEquipo(Equipo eq) throws PersistenciaException{
+    /* Inserta un equipo en la base de datos
+    *@param el equipo a registrar
+    
+    */
+    public void insertEquipo(Equipo eq) throws PersistenciaException{
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
@@ -98,7 +110,12 @@ public class ServicioPersisElectroECI {
            throw new PersistenciaException("Error de insertar equipo");           
        }
    }
-   public void insertTipoEquipo(TipoEquipo tp) throws PersistenciaException{
+    
+    /* Inserta un tipo de equipo en la base de datos
+    *@param el tipo de equipo a registrar
+    
+    */
+    public void insertTipoEquipo(TipoEquipo tp) throws PersistenciaException{
         try {
             DaoFactory df2 = DaoFactory.getInstance(prop);
             df2.beginSession();
@@ -110,14 +127,23 @@ public class ServicioPersisElectroECI {
         }
     
    }
-   public List<TipoEquipo> selectAlltipoeq() throws PersistenciaException{
+    
+    /*Consulta todos los tipos de los equipos registrados en la base de datos
+     *@return todos los tipos de los equipos registrados en la base de datos
+    
+    */
+    public List<TipoEquipo> selectAlltipoeq() throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         List<TipoEquipo> selectAlltipoeq = df2.getDaoEquipo().selectAlltipoeq();
         df2.endSession();
         return selectAlltipoeq;
    }
-   
+   /* Consulta el tiempo (horas) que ha sido usado un equipo
+    *@param el numero de placa del equipo
+    *@retorn el tiempo de uso de un equipo
+    
+    */
    public int tiempoDeVidaDeUnEquipo(int placa) throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
@@ -126,10 +152,12 @@ public class ServicioPersisElectroECI {
        
       return tiempo;
    }
-   public List<Integer> tiempoDeVidaDeLosEquipo() throws PersistenciaException{
-     return null;
-   }
-   public List<EstadisticasEquipo> reporte() throws PersistenciaException{
+   
+    /* Consulta las estadisticas de un equipo para poder generar un reporte
+   *@retorn una lista con las estadisticas de todos los equipos 
+   
+   */
+    public List<EstadisticasEquipo> reporte() throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         List<EstadisticasEquipo> reporte = df2.getDaoEstadisticaEquipo().reporte();
@@ -138,12 +166,20 @@ public class ServicioPersisElectroECI {
       return reporte;
        
    }
+    /*Inserta un prestamo en la base de datos
+    *@param el prestamo  a registrar
+    
+    */
    public void insertPrestamo(Prestamo p) throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
        df2.getDaoPrestamo().insertPrestamo(p);
        df2.endSession();
    }
+   /*Consulta todos prestamos realizados y existentes en la base de datos
+   @Retorn una lista con todos los prestamos existentes
+   
+   */
    public List<Prestamo> selectPrestamos() throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();

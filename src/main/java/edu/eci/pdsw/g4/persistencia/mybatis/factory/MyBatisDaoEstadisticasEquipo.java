@@ -15,6 +15,10 @@ import org.apache.ibatis.session.SqlSession;
 /**
  *
  * @author 2100609
+ * La clase MyBatisDaoEstadisticasEquipo contiene la implementacion
+ * de los metodos pertinentes a la interfaz DaoEstadisticasEquipo, 
+ * el constructor recibe una session para poder asignarla al
+ * EstadisticasEquipoMapper que contiene la implementacion de los metodos de persistencia.
  */
 public class MyBatisDaoEstadisticasEquipo implements DaoEstadisticaEquipo {
     private SqlSession sqlss;

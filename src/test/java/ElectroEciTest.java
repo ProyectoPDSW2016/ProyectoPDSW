@@ -95,7 +95,6 @@ public class ElectroEciTest {
         speci.insertPrestamo(pr);
         speci.insertPrestamo(pr2);
         
-        val = true;
         List<Prestamo> selectPrestamos = speci.selectPrestamos();
         System.out.println("------------Prestamos----------------");
         int count =0;
@@ -104,6 +103,7 @@ public class ElectroEciTest {
             System.out.println("Prestamo " + count+ " concebido al usuario:" + selectPrestamo.getId() + "Hora de Entrega:" +selectPrestamo.getHoraEntrega());
             
         }
+        if(count==2) val=true;
         System.out.println("------------------->Ya inserte el registro :)");
         assertTrue("Acabamos esta prueba ",val);
     }

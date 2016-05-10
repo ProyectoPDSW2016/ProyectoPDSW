@@ -15,6 +15,10 @@ import java.util.List;
 /**
  *
  * @author Felipe
+ *  * La clase MyBatisDaoPrestamo contiene la implementacion
+ * de los metodos pertinentes a la interfaz DaoPrestamo, 
+ * el constructor recibe una session para poder asignarla al
+ * RegPresMapper que contiene la implementacion de los metodos de persistencia.
  */
 public class MyBatisDaoPrestamo  implements DaoPrestamo{
   private SqlSession session ;
