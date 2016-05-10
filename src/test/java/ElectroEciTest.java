@@ -7,11 +7,14 @@
 import edu.eci.pdsw.g4.logica.estructura.Equipo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,6 +82,30 @@ public class ElectroEciTest {
         List<TipoEquipo> selectAlltipoeq = spECI.selectAlltipoeq();
         String toString1 = selectAlltipoeq.toString(); System.out.println(""+ toString1);
         */
+    }
+    /*
+    Insersion de prestamo sencillo , No Parametro Hora se obtiene de sql
+    */
+    @Test 
+    public void insertprestamo() throws PersistenciaException{
+        boolean val = false;
+        Prestamo pr = new Prestamo(001,2108221);
+        Prestamo pr2 = new Prestamo(002,2108222);
+        ServicioPersisElectroECI speci = ServicioPersisElectroECI.getInstance("appConfig.properties");
+        speci.insertPrestamo(pr);
+        speci.insertPrestamo(pr2);
+        
+        val = true;
+        List<Prestamo> selectPrestamos = speci.selectPrestamos();
+        System.out.println("------------Prestamos----------------");
+        int count =0;
+        for (Prestamo selectPrestamo : selectPrestamos) {
+            count++;
+            System.out.println("Prestamo " + count+ " concebido al usuario:" + selectPrestamo.getId() + "Hora de Entrega:" +selectPrestamo.getHoraEntrega());
+            
+        }
+        System.out.println("------------------->Ya inserte el registro :)");
+        assertTrue("Acabamos esta prueba ",val);
     }
     @Test
      public void insertarUnEquipo() throws PersistenciaException  {

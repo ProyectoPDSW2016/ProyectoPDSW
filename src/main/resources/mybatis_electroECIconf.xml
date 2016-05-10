@@ -27,7 +27,8 @@
         
     <mappers>
         <mapper resource="mappers/equipoMapper.xml"></mapper>
-        <mapper resource="mappers/estadisticasEquipoMapper.xml"></mapper>              
+        <mapper resource="mappers/estadisticasEquipoMapper.xml"></mapper>  
+        <mapper resource="mappers/RegistroPresMapper.xml"></mapper>            
     </mappers> 
         
 </configuration>

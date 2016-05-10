@@ -12,7 +12,9 @@ import edu.eci.pdsw.g4.logica.estructura.Estudiante;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.logica.estructura.Usuario;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.DetallePrestamo;
 import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
+import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.logica.servicio.ExcepcionServiciosSistema;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
 
@@ -25,6 +27,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,16 +57,13 @@ public class SystemManageBean implements Serializable{
     private String marca;
     private int precio;
     private int vida_util;
-    
-    private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
-private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManageBean.class);
-    public static List<TipoEquipo> getAllsequipos() {
-        return allsequipos;
-    }
+     
+      private int id_usuario;
+      private int id_prestamo;
+      private  Set<DetallePrestamo> dtll_prestamo;
 
-    public static void setAllsequipos(List<TipoEquipo> allsequipos) {
-        SystemManageBean.allsequipos = allsequipos;
-    }
+
+  
     
     
     
@@ -78,6 +78,41 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
 
     public void setSec(ServicioPersisElectroECI sec) {
         this.sec = sec;
+    }
+
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public int getId_prestamo() {
+        return id_prestamo;
+    }
+
+    public void setId_prestamo(int id_prestamo) {
+        this.id_prestamo = id_prestamo;
+    }
+
+    public Set<DetallePrestamo> getDtll_prestamo() {
+        return dtll_prestamo;
+    }
+
+    public void setDtll_prestamo(Set<DetallePrestamo> dtll_prestamo) {
+        this.dtll_prestamo = dtll_prestamo;
+    }
+    
+    private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
+private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManageBean.class);
+    public static List<TipoEquipo> getAllsequipos() {
+        return allsequipos;
+    }
+
+    public static void setAllsequipos(List<TipoEquipo> allsequipos) {
+        SystemManageBean.allsequipos = allsequipos;
     }
     
     public int getPlaca() {
@@ -189,6 +224,13 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
       setPlaca(0);
       setSerial(0);
       setTip1(null);
+    }
+    public void insertarPrestamo() throws PersistenciaException{
+            //El constructor de la clase prestamo esta invertido con respecto a la bd
+        
+        Prestamo p1 = new Prestamo(id_prestamo, id_usuario);
+        sec.insertPrestamo(p1);
+        System.out.println("------------------------>Prestamo agregado correctamente");
     }
     
     private TipoEquipo tip1;

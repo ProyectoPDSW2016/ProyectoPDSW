@@ -8,6 +8,7 @@ package edu.eci.pdsw.g4.persistencia.mybatis.factory;
 import edu.eci.pdsw.g4.logica.dao.DaoEquipo;
 import edu.eci.pdsw.g4.logica.dao.DaoEstadisticaEquipo;
 import edu.eci.pdsw.g4.logica.dao.DaoFactory;
+import edu.eci.pdsw.g4.logica.dao.DaoPrestamo;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -98,6 +99,11 @@ public class MyBatisDaoFactory extends DaoFactory {
     @Override
     public DaoEstadisticaEquipo getDaoEstadisticaEquipo() {
         return new MyBatisDaoEstadisticasEquipo(currentsessionsql);
+    }
+
+    @Override
+    public DaoPrestamo getDaoPrestamo() {
+       return new MyBatisDaoPrestamo(currentsessionsql);
     }
     
 }

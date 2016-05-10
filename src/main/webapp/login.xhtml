@@ -4,33 +4,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 </h:head>
-<h:body>
+    <h:body style="background-image: url(resource/laescuela.jpg)!important">
     <h:form>
         <p:layout fullPage="true">
-            <p:layoutUnit position="east" size="25%" resizable="false" closable="true" collapsible="true">
-                
+            <p:layoutUnit position="east" size="25%" resizable="false" closable="true" collapsible="true" style="">
+                 <p:graphicImage value="resource/laescuela.jpg" style="margin: auto; size: auto; "  />
             </p:layoutUnit>   
                         
-            <p:layoutUnit position="west" size="25%" resizable="false" closable="true" collapsible="true">
-                
+            <p:layoutUnit position="west" size="25%" resizable="false" closable="true" collapsible="true" >
+                <p:graphicImage value="resource/laescuela.jpg" style="margin: auto; size: auto ;"  />
             </p:layoutUnit>   
-            <p:layoutUnit position="center"  size="35%" resizable="false" closable="true" style="align-content: center; text-align: center; border-color:  #cc0000;" collapsible="true">
-                <p:panelGrid columns="1"   style="margin-left: 40%; margin-top: 30%; margin-bottom: 30%; margin-right: 40%; border-color: #cc0000;">
+            <p:layoutUnit position="center"   size="35%" resizable="false" closable="true"   style=" background-image: url(resource/laescuela.jpg);   align-content: center; text-align: center; border-color:  #cc0000;" collapsible="true">
+                   
+                <p:panelGrid columns="1"    style="  margin-left: 40%; margin-top: 30%; margin-bottom: 30%; margin-right: 40%;  height:25%; width: 25% ;text-align: center">
                     <p:row>
                     <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-                    <p:graphicImage value="resource/user.png" style="margin: auto; margin-left: 20%"  />
+                    <p:graphicImage value="resource/user.png" style="margin: auto; "  />
                 </h:outputLink>
                         </p:row> 
                     <p:row>
-                        <h:outputLabel value="Login Usuario"></h:outputLabel>
+                        <h:outputLabel value="Login Usuario" style=""></h:outputLabel>
                     </p:row> 
                     
                 </p:panelGrid>
                 
    
-    <p:growl id="growl" sticky="false" showDetail="false" life="3000" />
+ 
  
     <p:dialog header="Login" widgetVar="dlg" resizable="false" >
+            <p:growl id="growl" showDetail="true" sticky="true" /> 
         <h:panelGrid columns="2" cellpadding="5">
             <h:outputLabel for="username" value="Username:" />
             <p:inputText id="username" value="#{loginBean.username}" required="true" label="username" />
@@ -39,7 +41,7 @@
             <p:password id="password" value="#{loginBean.password}" required="true" label="password" />
  
             <f:facet name="footer">
-                <p:commandButton value="Login" update="growl" actionListener="#{loginBean.doLogin()}"
+                <p:commandButton value="Login"  actionListener="#{loginBean.saveMessage()}" action="#{loginBean.doLogin()}" update="growl"
                                  oncomplete="handleLoginRequest(xhr, status, args)" />
             </f:facet>  
         </h:panelGrid>

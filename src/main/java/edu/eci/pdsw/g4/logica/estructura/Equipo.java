@@ -7,7 +7,7 @@ package edu.eci.pdsw.g4.logica.estructura;
 
 /**
  *
- * @author santiago-chisco
+ * @authors Santiago Chisco-Manuel Felipe Sanchez R.
  */
 public class Equipo {
 

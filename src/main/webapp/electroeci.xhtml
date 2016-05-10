@@ -21,7 +21,7 @@ and open the template in the editor.
     
  
 
-            <p:layoutUnit position="south" size="450" resizable="false" closable="true" collapsible="true">
+            <p:layoutUnit position="south" size="40%" resizable="false" closable="true" style="border-color:#cc0000; border-width: thick" collapsible="true">
                   <p:growl id="Listadeequipos" showDetail="true">
                     <p:panel id="pnl_listequipos" header="Lista de Equipos" style="align-content: center;  align-items: center">
                         <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.tipoEquipo}">
@@ -39,7 +39,7 @@ and open the template in the editor.
 
             <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
 
-                <p:menubar style="border-color:#cc0000">
+                <p:menubar style="border-color:#cc0000; border-width: thick">
                     <p:menuitem  value="Regresar" action="laboratorio/laboratorio?faces-redirect=true" icon="ui-icon-home" style="height: 31px">
 
                     </p:menuitem>
@@ -48,10 +48,10 @@ and open the template in the editor.
             </p:layoutUnit>
  
  
-            <p:layoutUnit position="west" style="background-color:white; align-content: center" resizable="false" size="1000"  >
+            <p:layoutUnit position="west" style="background-color:white; align-content: center;border-color:#cc0000; border-width: thick" resizable="false" size="50%"  >
                 <p:growl id="messages" showDetail="true">
-                    <p:commandButton value="Detalles Equipo" oncomplete="mypanel"></p:commandButton>
-                    <p:panel id="pnl_addtipoequipo" header="Agregar TipoEquipo" style="align-content: center;  align-items: center;width: 900px" > 
+                 
+                    <p:panel id="pnl_addtipoequipo" header="Agregar Tipo Equipo" style="align-content: center;  align-items: center;" > 
                         <p:panelGrid columns="2" style="text-align: center"   >
                             <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
                             <p:inputText value="#{SystemManagedBeanEquipo.modelo}"></p:inputText>
@@ -65,9 +65,9 @@ and open the template in the editor.
                             <p:inputText value="#{SystemManagedBeanEquipo.vida_util}"></p:inputText>
                             <h:outputLabel id="precio" for="precio" value= "Precio"/>
                             <p:inputText value="#{SystemManagedBeanEquipo.precio}"></p:inputText>
-                            
-                            <p:commandButton value="Agregar Tipo_Equipo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}" update="pnl_listequipos,pnl_addtipoequipo"/>
-                            
+                                 
+                            <p:commandButton value="Agregar Modelo" action="#{SystemManagedBeanEquipo.insertarTipoequipo()}" update="pnl_listequipos,pnl_addtipoequipo"/>
+                               <p:commandButton value="Detalles Equipo" oncomplete="mypanel"></p:commandButton>
                             
                         </p:panelGrid>
                         
@@ -77,9 +77,9 @@ and open the template in the editor.
                 </p:growl>
             </p:layoutUnit>
             
-            <p:layoutUnit position="center" style="background-color:white; "  resizable="false"  maxSize="800" >
+            <p:layoutUnit position="center" style="border-color:#cc0000; border-width: thick "  resizable="false"  size="50%" >
                 <p:growl id="messages1" showDetail="true">
-                    <p:panel id="pnl1_addequipo" widgetVar="mypanel"  visible="false" header="Agregar Equipo" style="align-content: center;  align-items: center;width: 700px;margin-left: 5em" >
+                    <p:panel id="pnl1_addequipo" widgetVar="mypanel"  visible="true" header="Agregar Equipo" style="align-content: center;  align-items: center;" >
                         <p:panelGrid columns="2" style="text-align: center;margin-left: 5em">
                             <h:outputLabel id= "tipmodelo" for="tipmodelo" value= "TipoModelo"/>
                              <p:autoComplete id="tipequipo" value="#{SystemManagedBeanEquipo.tip1}" completeMethod="#{SystemManagedBeanEquipo.complete}"

@@ -43,7 +43,7 @@ public abstract class DaoFactory {
     public abstract DaoEquipo getDaoEquipo();
     
     public abstract DaoEstadisticaEquipo getDaoEstadisticaEquipo();
-
+   public abstract  DaoPrestamo getDaoPrestamo();
     public abstract void commitTransaction() throws PersistenciaException;
 
     public abstract void rollbackTransaction() throws PersistenciaException ;

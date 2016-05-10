@@ -22,7 +22,7 @@ import org.apache.ibatis.session.SqlSession;
  * @author Manuel Felipe Sanchez R.
  * La clase MyBatisDaoEquipo contiene la implementacion
  * de los metodos pertinentes a la interfaz DaoEquipo, 
- * el contructor recibe una session para poder asignarla al
+ * el constructor recibe una session para poder asignarla al
  * EquipoMapper que contiene la implementacion de los metodos de persistencia.
  */
 public class MyBatisDaoEquipo implements DaoEquipo{

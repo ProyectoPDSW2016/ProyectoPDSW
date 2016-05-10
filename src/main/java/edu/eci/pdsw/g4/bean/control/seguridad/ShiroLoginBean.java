@@ -20,6 +20,7 @@ import javax.faces.bean.ManagedBean;
 
 
 @ManagedBean(name = "loginBean")
+
 @ViewScoped
 
 public class ShiroLoginBean implements Serializable {
@@ -27,8 +28,11 @@ public class ShiroLoginBean implements Serializable {
 
     private String username;
     private String password;
-   
-
+   //private String message;
+ 
+    
+     
+    
     public ShiroLoginBean() {
         
     }
@@ -36,20 +40,25 @@ public class ShiroLoginBean implements Serializable {
     public Subject getSubject() {
         return SecurityUtils.getSubject();
     }
+
+  
+    
     
     /**
      * Try and authenticate the user
      */
     public void doLogin() {
         Subject subject = SecurityUtils.getSubject();
-        System.out.println("Usuario:"+ username + "Pass" + password);
+     
         UsernamePasswordToken token = new UsernamePasswordToken(getUsername(), getPassword());
 
         try {
             subject.login(token);
 
             if (subject.hasRole("laboratorista")) {
+            
             FacesContext.getCurrentInstance().getExternalContext().redirect("laboratorio/laboratorio.xhtml");
+         
             }  
         }
         catch (UnknownAccountException ex) {
@@ -74,6 +83,7 @@ public class ShiroLoginBean implements Serializable {
             
         }
         finally {
+          
             token.clear();
         }
     }
@@ -87,6 +97,7 @@ public class ShiroLoginBean implements Serializable {
     }
 
     public String getUsername() {
+       
         return username;
     }
 
@@ -101,6 +112,21 @@ public class ShiroLoginBean implements Serializable {
     public void setPassword(String senha) {
         this.password = senha;
     }
+   /* public String getMessage() {
+        return message;
+    }
+ 
+    public void setMessage() {
+        
+    }*/
+    public void saveMessage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+         
+        context.addMessage(null, new FacesMessage("Successful",  "Bienvenido Usuario: " + username) );
+       // context.addMessage(null, new FacesMessage("Second Message", "Additional Message Detail"));
+    }
+  
 
+   
    
 }

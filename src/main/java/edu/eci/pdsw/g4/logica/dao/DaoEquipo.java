@@ -13,7 +13,7 @@ import java.util.List;
 /**
  *
  * @author Manuel Felipe Sanchez R
- *
+ *   
  */
 public interface DaoEquipo {
     

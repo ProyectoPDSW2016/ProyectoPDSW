@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="laboratorio/layoutprincipal.css" type="text/css" rel="stylesheet" /> 
+  
+    </h:head>
+    <h:body>
+                <script  type = "text/javascript" src = "jquery-1.12.3.min" > </script>
+        <script  type = "text/javascript" src = "js_enterlector.js" >  </script>
+        <h:form id = "frm_regPres">
+            <p:layout fullPage="true">
+                 <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
+
+                <p:menubar style="border-color:#cc0000; border-width: thick">
+                    <p:menuitem  value="Regresar" action="laboratorio?faces-redirect=true"  icon="ui-icon-home" style="height: 31px">
+
+                    </p:menuitem>
+                  
+                </p:menubar>
+            </p:layoutUnit>
+                  <p:layoutUnit position="center" style="border-color:#cc0000; border-width: thick; text-align: center"  resizable="false"  size="50%" >
+                   <p:panel id="pnl_addPrestamo"  visible="true" header="Registro Prestamo" style="text-align: center;" >
+                        <p:panelGrid columns="2" style="text-align: center;">
+                           <h:outputLabel id="id_usuario" for="id_usuario" value= "Usuario No."/>
+                           <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}"  onkeypress="return teclas(event);" ></p:inputText>
+                           <h:outputLabel id="id_pres" for="id_pres" value= "Prestamo No."/>
+                           <p:inputText value="#{SystemManagedBeanEquipo.id_usuario}"></p:inputText>
+          
+                       
+                        </p:panelGrid>
+                   </p:panel>
+                      <p:panel id="pnl_additems" header="Materiales "  >
+                         <h:outputLabel id="id_serial" for="id_usuario" value= "Codigo No."/> 
+                           <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}" onkeypress="return teclas(event);"></p:inputText>
+                     
+                      </p:panel>
+                      <p:commandButton value="Agregar al prestamo"  action="#{SystemManagedBeanEquipo.insertarPrestamo()}" icon="ui-icon-check"></p:commandButton>
+                      <p:dataTable  var="RegistroItems" value="#{SystemManagedBeanEquipo.reporte}">
+                          <p:column headerText="Serial"></p:column>
+                          <p:column headerText="Hora Entrega"></p:column>
+                          <p:column headerText="Usuario"></p:column>
+                          <p:column headerText="Historico"><p:button value="Ver historico del Equipo"></p:button></p:column>
+                      </p:dataTable>
+                  </p:layoutUnit>
+                
+            
+          
+               
+            </p:layout>
+        </h:form>
+            
+        </h:body>
+</html>
+

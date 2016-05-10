@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author 2108221
+ * @author Manuel Felipe Sanchez R.
  */
 public class TipoEquipo {
   private String modelo;

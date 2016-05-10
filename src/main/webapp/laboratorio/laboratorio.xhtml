@@ -15,29 +15,37 @@ and open the template in the editor.
     <h:body>
         
         <h:form id="reporte_Equipos">
-            <p:layout fullPage="true">
-                <p:layoutUnit position="west" size="20%" resizable="false" closable="true" collapsible="true" >
-                    <p:menu style="margin: auto; margin-left: 20%">
+            <p:layout fullPage="true" style="background-color: #CC0033 !important;">
+                <p:layoutUnit position="west" size="20%" resizable="false" closable="true" collapsible="true" style="border-color: #CC0033; border-width: thick; text-align: center" >
+                    <p:outputLabel value="Panel de Opciones " style="font-size: larger"></p:outputLabel> 
+                    <p:menu style=" margin: auto; margin-top:10%;  border-color:#cc0000; border-width: thick ; font-size: large">
+                   
                        <p:submenu label="Control Equipos">
+                              <p:menuitem value="Registrar Prestamo"  action="regPrestamo?faces-redirect=true" icon="ui-icon-circle-plus" />
                            <p:menuitem value="Registro de Equipo"  action="/electroeci?faces-redirect=true"  icon="ui-icon-clipboard" />
                            <p:menuitem value="Generar Reporte"  url="/laboratorio/reporte.xhtml" icon="ui-icon-clipboard" />
+                         
                             
                             
                       
                        
                         </p:submenu>
                        
-                        <p:menuitem value="Regresar" action="/login?faces-redirect=true" icon="ui-icon-home" />
+                        <p:menuitem value="Terminar Sesion" action="/login?faces-redirect=true" icon="ui-icon-home" />
                     </p:menu>
                         
                         
                
                    
                  </p:layoutUnit>
-                <p:layoutUnit id="layout_center" position="center" resizable="false" closable="true" collapsible="true">
-                   
+               
+                <p:layoutUnit id="layout_center1" position="center"  visible="true" resizable="false" closable="true" style="border-color: #CC0033; border-width: thick" collapsible="true" >
+                         
                         <ui:insert name="reporEqui"></ui:insert>
-                        <ui:insert name="regEquipo"></ui:insert>
+                  
+                        
+                     
+                        
             </p:layoutUnit>    
                 
             </p:layout>        

@@ -14,16 +14,38 @@ import java.util.Set;
  * @author santiago-chisco
  */
 public class Prestamo {
+    private int id_usuario;
     private int id;
+   
     private Timestamp horaEntrega;
     private Timestamp horaDevolucion;
+    
     private Set<DetallePrestamo> detallesPrestamos;
+
+    public Prestamo() {
+    }
 
     public Prestamo(int id, Timestamp horaEntrega) {
         this.id = id;
         this.horaEntrega = horaEntrega;
-        detallesPrestamos = new LinkedHashSet<>();
+        detallesPrestamos = new LinkedHashSet();
     }
+   //El constructor de la clase prestamo esta invertido con respecto a la bd
+    
+    public Prestamo(int id_usuario, int id) {
+        this.id_usuario = id_usuario;
+        this.id = id;
+        this.horaEntrega = horaEntrega;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+    
     
     public int getId(){
         return id;

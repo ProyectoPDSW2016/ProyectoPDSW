@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="edu.eci.pdsw.g4.persistencia.mybatis.mappers.RegPresMapper">
+    <resultMap type='edu.eci.pdsw.g4.logica.estructura.Prestamo' id='RegPresResult'>
+        <id property ='id' column='prestamo_Id'/>
+        <result property='id_usuario' column='Usuario'/>
+        <result property='horaEntrega' column='hora_entrega'/>        
+    </resultMap>
+    <insert id="insertPrestamo" parameterType="map">
+        INSERT INTO prestamo_solicitud(prestamo_id,hora_entrega,hora_devolucion,Equipo_Sencillo_id,Usuario)values(#{prestamo.id},CURRENT_TIMESTAMP,#{prestamo.horaDevolucion},0,#{prestamo.id_usuario})
+    </insert>
+    <select id="Selectprestamo" resultMap="RegPresResult">
+        SELECT * FROM prestamo_solicitud
+    </select>
+</mapper>

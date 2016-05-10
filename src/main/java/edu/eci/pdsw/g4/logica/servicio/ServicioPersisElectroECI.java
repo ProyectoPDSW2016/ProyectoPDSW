@@ -23,11 +23,14 @@ import java.util.logging.Logger;
 /**
  *
  * @author Manuel Felipe Sanchez R.
+ * Esta clase  usa un archivo de configuracion .properties para 
+ * establecer el DAO que se usara , en este caso Mybatis
+ * ademas de establecer el archivo de los parametros de la misma.
  */
 public class ServicioPersisElectroECI {
     private static ServicioPersisElectroECI inst = null;
     private final Properties prop = new Properties();
-    private final DaoFactory df = null;
+
 
     private List<Prestamo> prestamos;
     private ServicioPersisElectroECI(String properties) throws IOException{
@@ -134,6 +137,19 @@ public class ServicioPersisElectroECI {
        
       return reporte;
        
+   }
+   public void insertPrestamo(Prestamo p) throws PersistenciaException{
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+       df2.getDaoPrestamo().insertPrestamo(p);
+       df2.endSession();
+   }
+   public List<Prestamo> selectPrestamos() throws PersistenciaException{
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+        List<Prestamo> selectPrestamos = df2.getDaoPrestamo().selectPrestamos();
+        df2.endSession();
+        return selectPrestamos;
    }
 
 }
