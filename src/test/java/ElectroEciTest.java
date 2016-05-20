@@ -7,7 +7,10 @@
 import edu.eci.pdsw.g4.logica.estructura.Equipo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.DetallePrestamo;
+import edu.eci.pdsw.g4.logica.estructura.Estudiante;
 import edu.eci.pdsw.g4.logica.estructura.Prestamo;
+import edu.eci.pdsw.g4.logica.estructura.Usuario;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +18,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -106,6 +113,81 @@ public class ElectroEciTest {
         if(count==2) val=true;
         System.out.println("------------------->Ya inserte el registro :)");
         assertTrue("Acabamos esta prueba ",val);
+    }
+    /*
+    Clase de equivalencia para registrar un prestamo a una persona especifica
+    */
+    @Test 
+    public void prestamoEquipoAUnaPersona() throws PersistenciaException{
+
+        Usuario persona = new Estudiante(2100609, "Santiago", "Chisco", "david.chisco@mail.escuelaing.edu.co", "Ingenieria de sistemas", 7);
+        TipoEquipo tipoEquipo = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+        Equipo equipo = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
+        
+        Prestamo prestamo = new Prestamo(persona.getCarnet(),1);
+        Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
+        DetallePrestamo dp = new DetallePrestamo(1, equipo);
+        detallesPrestamos.add(dp);
+        prestamo.setDetallesPrestamo(detallesPrestamos);
+        ServicioPersisElectroECI spECI = ServicioPersisElectroECI.getInstance("appConfig.properties");
+        spECI.insertPrestamo(prestamo);
+        assertEquals(persona.getCarnet(),spECI.consultarPrestamo(1).getId_usuario());
+        
+    }
+    /*
+    Clase de equivalencia para registrar un prestamo con un equipo especifico
+    */
+    @Test 
+    public void prestamoEquipoEspecifico() throws PersistenciaException{
+
+        Usuario persona = new Estudiante(2100609, "Santiago", "Chisco", "david.chisco@mail.escuelaing.edu.co", "Ingenieria de sistemas", 7);
+        TipoEquipo tipoEquipo = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+        Equipo equipo = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
+        
+        Prestamo prestamo = new Prestamo(persona.getCarnet(),1);
+        Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
+        DetallePrestamo dp = new DetallePrestamo(1, equipo);
+        detallesPrestamos.add(dp);
+        prestamo.setDetallesPrestamo(detallesPrestamos);
+        ServicioPersisElectroECI spECI = ServicioPersisElectroECI.getInstance("appConfig.properties");
+        spECI.insertPrestamo(prestamo);
+        Set<DetallePrestamo> detallesConsulta = spECI.consultarPrestamo(1).getDetallesPrestamo();
+        Iterator<DetallePrestamo> i =detallesConsulta.iterator();
+        DetallePrestamo detalle=null;
+        while(i.hasNext()){
+             detalle = i.next();
+        }
+        assertEquals(equipo.getPlaca(),detalle.getEquipo().getPlaca());
+        
+    }
+     /*
+    Clase de equivalencia para registrar un prestamo con mas de un equipo
+    */
+    @Test 
+    public void prestamoMasDeUnEquipo() throws PersistenciaException{
+
+        Usuario persona = new Estudiante(2100609, "Santiago", "Chisco", "david.chisco@mail.escuelaing.edu.co", "Ingenieria de sistemas", 7);
+        TipoEquipo tipoEquipo = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+        Equipo equipo = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
+        TipoEquipo pruebaT2 = new TipoEquipo("4102", "Generador de ondas", "ondas.jpg", "Fluke", 17520, 4227731);
+        Equipo pruebaEq2 = new Equipo(2, 1, "4102","Sin observaciones",'A');
+        Equipo pruebaEq3 = new Equipo(3, 15, "4102","Sin observaciones",'A');
+        
+        Prestamo prestamo = new Prestamo(persona.getCarnet(),1);
+        Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
+        DetallePrestamo dp = new DetallePrestamo(1, equipo);
+        DetallePrestamo dp1 = new DetallePrestamo(1, pruebaEq2);
+        DetallePrestamo dp2 = new DetallePrestamo(1, pruebaEq3);
+        detallesPrestamos.add(dp);
+        detallesPrestamos.add(dp1);
+        detallesPrestamos.add(dp2);
+        prestamo.setDetallesPrestamo(detallesPrestamos);
+        ServicioPersisElectroECI spECI = ServicioPersisElectroECI.getInstance("appConfig.properties");
+        spECI.insertPrestamo(prestamo);
+        Set<DetallePrestamo> detallesConsulta = spECI.consultarPrestamo(1).getDetallesPrestamo();
+       
+        assertEquals(detallesPrestamos.size(),detallesConsulta.size());
+        
     }
     @Test
      public void insertarUnEquipo() throws PersistenciaException  {

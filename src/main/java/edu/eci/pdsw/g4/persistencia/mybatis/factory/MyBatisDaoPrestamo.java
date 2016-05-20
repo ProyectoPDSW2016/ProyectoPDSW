@@ -41,5 +41,9 @@ public class MyBatisDaoPrestamo  implements DaoPrestamo{
        return Selectprestamo;
     }
 
+    public Prestamo consultarPrestamo(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 
 }

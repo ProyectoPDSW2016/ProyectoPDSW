@@ -22,4 +22,5 @@ public interface RegPresMapper {
      */
     public void insertPrestamo(@Param("prestamo")Prestamo pres);
     public List<Prestamo> Selectprestamo();
+    public Prestamo consultarPrestamo(@Param("prestamo")int id);
 }

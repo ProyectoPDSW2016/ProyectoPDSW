@@ -23,8 +23,16 @@ and open the template in the editor.
         <h:body>
             <h:form>
                 <p:growl id="msgs" showDetail="true" />
-
+                 
                 <p:panel id="basic" header="Labotario Electronica" style="margin-bottom:20px">
+                    <p:panel id="consultar" header="Consultar Equipo" style="align-content: center;  align-items: center;width: 900px" > 
+                        <p:panelGrid columns="2" style="text-align: center"   >
+                            <h:outputLabel id= "placa" for="modelo" value= "Ingrese el numero de la  placa"/>
+                            <p:inputText value=""></p:inputText>                            
+                            <p:commandButton value="Consultar"/>
+                        </p:panelGrid>                             
+                    </p:panel>
+                    <p:panel id="datos" header="Datos Del Equipo" style="align-content: center;  align-items: center;width: 900px" > 
                     <h:panelGrid columns="2" cellpadding="10">
                         <h:outputText value="Nombre Del Equipo      " />
                         <h:outputText
@@ -85,6 +93,7 @@ and open the template in the editor.
                         </p:column>
                         
                     </p:dataTable>
+                </p:panel>
                 </p:panel>
             </h:form>
         </h:body>

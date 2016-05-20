@@ -30,6 +30,7 @@ public class Prestamo {
         this.horaEntrega = horaEntrega;
         detallesPrestamos = new LinkedHashSet();
     }
+  
    //El constructor de la clase prestamo esta invertido con respecto a la bd
     
     public Prestamo(int id_usuario, int id) {

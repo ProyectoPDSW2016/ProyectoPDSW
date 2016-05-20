@@ -15,4 +15,5 @@ import java.util.List;
 public interface  DaoPrestamo {
     public void insertPrestamo(Prestamo p);
     public List<Prestamo> selectPrestamos();
+    public Prestamo consultarPrestamo(int id);
 }

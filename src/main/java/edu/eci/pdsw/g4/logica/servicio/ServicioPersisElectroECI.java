@@ -187,5 +187,8 @@ public class ServicioPersisElectroECI {
         df2.endSession();
         return selectPrestamos;
    }
+   public Prestamo consultarPrestamo(int id) throws PersistenciaException{
+       return null;
+   }
 
 }
