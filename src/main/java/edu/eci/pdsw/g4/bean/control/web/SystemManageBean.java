@@ -17,6 +17,7 @@ import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.logica.servicio.ExcepcionServiciosSistema;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
+import java.io.ByteArrayInputStream;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -34,6 +35,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.slf4j.LoggerFactory;
 /**
  *
@@ -57,15 +61,26 @@ public class SystemManageBean implements Serializable{
     private String marca;
     private int precio;
     private int vida_util;
-     
+    
       private int id_usuario;
       private int id_prestamo;
       private  Set<DetallePrestamo> dtll_prestamo;
 
+    private String routeequip="http://jhelectronics.co/images/com_hikashop/upload/cable_punta_caiman.jpg";
 
-  
-    
-    
+    public String getRouteequip() {
+        return routeequip;
+    }
+
+    public void setRouteequip(String routeequip) {
+        this.routeequip = routeequip;
+    }
+      
+    public void getImageIcon() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        String customID = context.getExternalContext().getRequestParameterMap().get(routeequip);
+        System.out.println("image_id: " + customID);
+}
     
     public SystemManageBean() {
        sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
