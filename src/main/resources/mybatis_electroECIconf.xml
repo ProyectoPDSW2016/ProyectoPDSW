@@ -10,6 +10,7 @@
   <typeAliases>
         <typeAlias type='edu.eci.pdsw.g4.logica.estructura.Equipo' alias='Equipo'/>
         <typeAlias type='edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo' alias='EstadisticasEquipo'/>
+        <typeAlias type='edu.eci.pdsw.g4.logica.estructura.DetallePrestamo' alias='DetallePrestamo'/>
         </typeAliases>   
     
     

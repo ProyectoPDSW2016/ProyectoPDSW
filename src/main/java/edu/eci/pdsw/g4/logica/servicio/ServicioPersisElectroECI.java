@@ -188,7 +188,11 @@ public class ServicioPersisElectroECI {
         return selectPrestamos;
    }
    public Prestamo consultarPrestamo(int id) throws PersistenciaException{
-       return null;
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+       Prestamo p = df2.getDaoPrestamo().consultarPrestamo(id);
+        df2.endSession();
+        return p;
    }
 
 }
