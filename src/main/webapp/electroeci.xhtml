@@ -27,7 +27,7 @@ and open the template in the editor.
                         <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.tipoEquipo}">
                             <p:column headerText="Modelo"><h:outputText value="#{tipoEquipo.modelo}" /></p:column>
                             <p:column headerText="Nombre Equipo"><h:outputText value="#{tipoEquipo.nombre_equipo}" /></p:column>
-                            <p:column headerText="Imagen"><img src="#{tipoEquipo.url_img}" width="100" height="100"/><h:outputText /></p:column>
+                            <p:column headerText="Imagen" style=""><img src="#{tipoEquipo.url_img}" width="100" height="100"/><h:outputText /></p:column>
                             <p:column headerText="Marca"><h:outputText value="#{tipoEquipo.marca}" /></p:column>
                             <p:column headerText="Vida Util"><h:outputText value="#{tipoEquipo.vida_util}" /></p:column>
                             <p:column headerText="Precio"><h:outputText value="#{tipoEquipo.precio}" /></p:column>
@@ -52,7 +52,7 @@ and open the template in the editor.
             <p:layoutUnit position="west" style="background-color:white; align-content: center;border-color:#cc0000; border-width: thick" resizable="false" size="50%"  >
                 <p:growl id="messages" showDetail="true">
                  
-                    <p:panel id="pnl_addtipoequipo" header="Agregar Tipo Equipo" style="align-content: center;  align-items: center;" > 
+                    <p:panel id="pnl_addtipoequipo" header="Detalles del modelo" style="align-content: center;  align-items: center;" > 
                         <p:panelGrid columns="2" style="text-align: center"   >
                             <h:outputLabel id= "modelo" for="modelo" value= "Modelo"/>
                             <p:inputText value="#{SystemManagedBeanEquipo.modelo}"></p:inputText>
@@ -80,7 +80,7 @@ and open the template in the editor.
             
             <p:layoutUnit position="center" style="border-color:#cc0000; border-width: thick "  resizable="false"  size="50%" >
                 <p:growl id="messages1" showDetail="true">
-                    <p:panel id="pnl1_addequipo" widgetVar="mypanel"  visible="true" header="Agregar Equipo" style="align-content: center;  align-items: center;" >
+                    <p:panel id="pnl1_addequipo" widgetVar="mypanel"  visible="true" header="Registro del Equipo" style="align-content: center;  align-items: center;" >
                         <p:panelGrid columns="2" style="text-align: center;margin-left: 5em">
                             <h:outputLabel id= "tipmodelo" for="tipmodelo" value= "TipoModelo"/>
                              <p:autoComplete id="tipequipo" value="#{SystemManagedBeanEquipo.tip1}" completeMethod="#{SystemManagedBeanEquipo.complete}"
