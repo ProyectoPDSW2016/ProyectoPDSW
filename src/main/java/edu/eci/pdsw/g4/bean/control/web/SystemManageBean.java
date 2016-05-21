@@ -17,6 +17,8 @@ import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.logica.servicio.ExcepcionServiciosSistema;
 import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ import java.sql.Array;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.swing.KeyStroke;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.slf4j.LoggerFactory;
@@ -83,6 +87,7 @@ public class SystemManageBean implements Serializable{
 }
     
     public SystemManageBean() {
+   
        sec = ServicioPersisElectroECI.getInstance("appConfreal.properties");
     }
   

@@ -20,6 +20,7 @@ and open the template in the editor.
     <h:body>
                 <script  type = "text/javascript" src = "jquery-1.12.3.min" > </script>
         <script  type = "text/javascript" src = "js_enterlector.js" >  </script>
+        
         <h:form id = "frm_regPres">
             <p:layout fullPage="true">
                  <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
@@ -37,14 +38,14 @@ and open the template in the editor.
                            <h:outputLabel id="id_usuario" for="id_usuario" value= "Usuario No."/>
                            <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}"  onkeypress="return teclas(event);" ></p:inputText>
                            <h:outputLabel id="id_pres" for="id_pres" value= "Prestamo No."/>
-                           <p:inputText value="#{SystemManagedBeanEquipo.id_usuario}"></p:inputText>
+                           <p:inputText id = "txt_usu" value="#{SystemManagedBeanEquipo.id_usuario}"></p:inputText>
           
                        
                         </p:panelGrid>
                    </p:panel>
                       <p:panel id="pnl_additems" header="Materiales "  >
                          <h:outputLabel id="id_serial" for="id_usuario" value= "Codigo No."/> 
-                           <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}" onkeypress="return teclas(event);"></p:inputText>
+                           <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}" ></p:inputText>
                      
                       </p:panel>
                       <p:commandButton value="Agregar al prestamo"  action="#{SystemManagedBeanEquipo.insertarPrestamo()}" icon="ui-icon-check"></p:commandButton>
@@ -52,7 +53,7 @@ and open the template in the editor.
                           <p:column headerText="Serial"></p:column>
                           <p:column headerText="Hora Entrega"></p:column>
                           <p:column headerText="Usuario"></p:column>
-                          <p:column headerText="Historico"><p:button value="Ver historico del Equipo"></p:button></p:column>
+                         
                       </p:dataTable>
                   </p:layoutUnit>
                 

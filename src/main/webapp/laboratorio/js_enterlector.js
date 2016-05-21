@@ -6,9 +6,10 @@
 function teclas(event) {
     tecla=(document) ? event.keyCode : event.which;
     if (tecla===13) {
-        alert('Presiono Enter');
         
-    }
+       
+         document.getElementById("frm_regPres:txt_usu").focus();
+ }
     else {return event;}
  
     return false;
