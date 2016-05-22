@@ -5,96 +5,111 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<ui:composition template="/laboratorio/laboratorio.xhtml"
-
-                xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"    
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <ui:define name="reporEqui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
         <h:head>
             <title>
         Ficha Del Equipo
             </title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link href="laboratorio/layoutprincipal.css" type="text/css" rel="stylesheet" /> 
+                    <script  type = "text/javascript" src = "js_enterlector.js" >  </script>
         </h:head>
         <h:body>
-            <h:form>
+            <h:form id="frm_ficha">
+                    <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
+
+                <p:menubar style="border-color:#cc0000; border-width: thick">
+                    <p:menuitem  value="Regresar" action="laboratorio/laboratorio?faces-redirect=true" icon="ui-icon-home" style="height: 31px">
+
+                    </p:menuitem>
+                    
+                </p:menubar>
+            </p:layoutUnit>
+ 
                 <p:growl id="msgs" showDetail="true" />
                  
-                <p:panel id="basic" header="Labotario Electronica" style="margin-bottom:20px">
-                    <p:panel id="consultar" header="Consultar Equipo" style="align-content: center;  align-items: center;width: 900px" > 
+                <p:panel id="basic" header="Labotario Electronica" >
+                    <p:panel id="consultar" header="Consultar Equipo" style="align-content: center;  align-items: center;" > 
                         <p:panelGrid columns="2" style="text-align: center"   >
                             <h:outputLabel id= "placa" for="modelo" value= "Ingrese el numero de la  placa"/>
-                            <p:inputText value=""></p:inputText>                            
-                            <p:commandButton value="Consultar"/>
+                            <p:inputText value="#{SystemManagedBeanEquipo.placaficha}" onkeypress="return entertoclick(event);"></p:inputText>                            
+                            <p:commandButton id="btn_consulta" value="Consultar" action="#{SystemManagedBeanEquipo.loadequipoByplaca()}" update="pnl_datos"/>
                         </p:panelGrid>                             
                     </p:panel>
-                    <p:panel id="datos" header="Datos Del Equipo" style="align-content: center;  align-items: center;width: 900px" > 
+                    <p:panel id="pnl_datos"   header="Datos Del Equipo " style="align-content: center;  align-items: center;" > 
                     <h:panelGrid columns="2" cellpadding="10">
-                        <h:outputText value="Nombre Del Equipo      " />
-                        <h:outputText value="" />
+                        <h:outputText value="Nombre Del Equipo :"/>
+                        <h:outputText value="#{SystemManagedBeanEquipo.loadTipoEquipo.nombre_equipo}"  style="color: #cc0000; font-weight: bold;"/>
                     </h:panelGrid>
                     <h:panelGrid columns="4" cellpadding="10">
-                        <h:outputText value="Marca: " />
-                        <h:outputText value="                       " />
-                        <h:outputText value="Referencia o Serial: " />
-                        <h:outputText value="" />
+                        <h:outputText value="Marca : " />
+                        <h:outputText value="#{SystemManagedBeanEquipo.loadTipoEquipo.marca}" style="color: #cc0000; font-weight: bold;" />
+                        <h:outputText value="Referencia o Serial : " />
+                        <h:outputText value="#{SystemManagedBeanEquipo.loadbyplaca.tipo_model}" style="color: #cc0000; font-weight: bold;" />
                     </h:panelGrid>
                     <h:panelGrid columns="4" cellpadding="10">
-                        <h:outputText value="Referencia interna lab: " />
-                        <h:outputText value="                       " />
+                        <h:outputText value="Referencia interna lab : " />
+                        <h:outputText value="#{SystemManagedBeanEquipo.referenciainterna}" style="color: #cc0000; font-weight: bold;" />
                         <h:outputText value="Estado: " />
-                        <h:outputText value="" />
+                        <h:outputText value="#{SystemManagedBeanEquipo.loadbyplaca.estado}" style="color: #cc0000;font-weight: bold;" />
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="10">
-                        <h:outputText value="Accesorios: " />
+                        <h:outputText value="Accesorios : " />
                         <h:outputText value="                       " />
                     </h:panelGrid>
                     <h:panelGrid columns="2" cellpadding="10">
-                        <h:outputText value="Descripcion del equipo: " />
-                        <h:outputText value="                       " />
+                        <h:outputText value="Descripcion del equipo : " />
+                        <h:outputText value="#{SystemManagedBeanEquipo.loadbyplaca.observaciones}" style="color: #cc0000;font-weight: bold;"/>
                     </h:panelGrid>
-                    <p:dataTable  var="ficha" value="">
-                        <p:column headerText="Fecha de adquisición">
-                            <h:outputText value="" />
+                    <p:dataTable  var="ficha" value="" id="id_ficha">
+                       
+                        <p:column headerText="Fecha de adquisición :">
+                            <h:outputText value ="#{SystemManagedBeanEquipo.loadbyplaca.fecha_ingreso.toString()}"  style="color: #cc0000;font-weight: bold;"/>
                         </p:column>
 
-                        <p:column headerText="Fecha limite de garantia">
-                            <h:outputText value="" />
+                        <p:column headerText="Fecha limite de garantia :">
+                            <h:outputText value="No esta definido" style="color: #cc0000;font-weight: bold;" />
                         </p:column>
 
-                        <p:column headerText="Proveedor">
-                            <h:outputText value="" />
+                        <p:column headerText="Proveedor :">
+                            <h:outputText   />
                         </p:column>
                         
-                        <p:column headerText="Orden de compra">
-                            <h:outputText value="" />
+                        <p:column headerText="Orden de compra :">
+                            <h:outputText  />
                         </p:column>
-                        <p:column headerText="Valor">
-                            <h:outputText value="" />
+                        <p:column headerText="Valor :">
+                            <h:outputText value="#{SystemManagedBeanEquipo.loadTipoEquipo.precio}"  style="color: #cc0000;font-weight: bold;" />
                         </p:column>
-
+                  
                     </p:dataTable>
-                     <p:dataTable  var="ficha" value="">
+                        <p:dataTable  var="ficha"  id="fichaequipo">
                         <p:column headerText="Codigo de activo">
-                            <h:outputText value="" />
+                            <h:outputText  />
                         </p:column>
 
                         <p:column headerText="Asegurado">
-                            <h:outputText value="" />
+                            <h:outputText />
                         </p:column>
 
                         <p:column headerText="Categoria">
-                            <h:outputText value="" />
+                            <h:outputText  />
                         </p:column>
-                        
+                            
                     </p:dataTable>
+                         <h:commandLink>
+                                 <p:graphicImage value="../resource/PDF-Export.png" width="40"/>
+                         Descargar Reporte
+                          <p:dataExporter type="pdf" target="id_ficha" fileName="Historico" />
+                      
+                     </h:commandLink> 
                 </p:panel>
+                   
                 </p:panel>
+                        
             </h:form>
         </h:body>
-    </ui:define>
-</ui:composition>
+</html>

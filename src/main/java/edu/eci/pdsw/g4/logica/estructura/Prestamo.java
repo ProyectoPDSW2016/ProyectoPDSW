@@ -33,7 +33,7 @@ public class Prestamo {
   
    //El constructor de la clase prestamo esta invertido con respecto a la bd
     
-    public Prestamo(int id_usuario, int id) {
+    public Prestamo(int id_usuario) {
         this.id_usuario = id_usuario;
         this.id = id;
         this.horaEntrega = horaEntrega;

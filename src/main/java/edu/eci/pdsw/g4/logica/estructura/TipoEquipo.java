@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.g4.logica.estructura;
 
+import java.sql.Timestamp;
 import java.util.Set;
 
 /**
@@ -18,10 +19,15 @@ public class TipoEquipo {
   private String marca;
   private int vida_util;
   private int precio;
+  
   private Set<Equipo> equipos;
 
     public TipoEquipo() {
     }
+
+ 
+
+ 
 
     
   

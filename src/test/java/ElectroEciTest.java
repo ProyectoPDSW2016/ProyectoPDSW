@@ -92,7 +92,7 @@ public class ElectroEciTest {
     }
     /*
     Insersion de prestamo sencillo , No Parametro Hora se obtiene de sql
-    
+   
     @Test 
     public void insertprestamo() throws PersistenciaException{
         boolean val = false;
@@ -113,9 +113,9 @@ public class ElectroEciTest {
         if(count==2) val=true;
         System.out.println("------------------->Ya inserte el registro :)");
         assertTrue("Acabamos esta prueba ",val);
-    }*/
-    /*
-    Clase de equivalencia para registrar un prestamo a una persona especifica
+    }
+     */
+   /* Clase de equivalencia para registrar un prestamo a una persona especifica*/
    
     @Test 
     public void prestamoEquipoAUnaPersona() throws PersistenciaException{
@@ -124,7 +124,7 @@ public class ElectroEciTest {
         TipoEquipo tipoEquipo = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
         Equipo equipo = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
         
-        Prestamo prestamo = new Prestamo(persona.getCarnet(),1);
+        Prestamo prestamo = new Prestamo(persona.getCarnet());
         Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
         DetallePrestamo dp = new DetallePrestamo(1, equipo);
         detallesPrestamos.add(dp);
@@ -133,9 +133,9 @@ public class ElectroEciTest {
         spECI.insertPrestamo(prestamo);
         assertEquals(persona.getCarnet(),spECI.consultarPrestamo(1).getId_usuario());
         
-    } */
-    /*
-    Clase de equivalencia para registrar un prestamo con un equipo especifico
+    } 
+    
+    /*Clase de equivalencia para registrar un prestamo con un equipo especifico*/
    
     @Test 
     public void prestamoEquipoEspecifico() throws PersistenciaException{
@@ -144,7 +144,7 @@ public class ElectroEciTest {
         TipoEquipo tipoEquipo = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
         Equipo equipo = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
         
-        Prestamo prestamo = new Prestamo(persona.getCarnet(),1);
+        Prestamo prestamo = new Prestamo(persona.getCarnet());
         Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
         DetallePrestamo dp = new DetallePrestamo(1, equipo);
         detallesPrestamos.add(dp);
@@ -159,9 +159,9 @@ public class ElectroEciTest {
         }
         assertEquals(equipo.getPlaca(),detalle.getEquipo().getPlaca());
         
-    } */
-     /*
-    Clase de equivalencia para registrar un prestamo con mas de un equipo
+    } 
+     
+   /* Clase de equivalencia para registrar un prestamo con mas de un equipo*/
    
     @Test 
     public void prestamoMasDeUnEquipo() throws PersistenciaException{
@@ -173,7 +173,7 @@ public class ElectroEciTest {
         Equipo pruebaEq2 = new Equipo(2, 1, "4102","Sin observaciones",'A');
         Equipo pruebaEq3 = new Equipo(3, 15, "4102","Sin observaciones",'A');
         
-        Prestamo prestamo = new Prestamo(persona.getCarnet(),1);
+        Prestamo prestamo = new Prestamo(persona.getCarnet());
         Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
         DetallePrestamo dp = new DetallePrestamo(1, equipo);
         DetallePrestamo dp1 = new DetallePrestamo(1, pruebaEq2);
@@ -189,7 +189,7 @@ public class ElectroEciTest {
         assertEquals(detallesPrestamos.size(),detallesConsulta.size());
         
     }
- */
+ 
     @Test
      public void insertarUnEquipo() throws PersistenciaException  {
             //clase de equivalencia equipo recien registrado sin haber sido prestado
@@ -253,6 +253,7 @@ public class ElectroEciTest {
          
      }
      
+     
      @Test
      public void consultarTiempoEquipoSinVidaUtil() throws PersistenciaException {
          
@@ -278,6 +279,18 @@ public class ElectroEciTest {
          assertEquals(-20,-20);
          
          
+     }
+     @Test
+     public void CargarhistoricoEquipo() throws PersistenciaException{
+         TipoEquipo pruebaT4 = new TipoEquipo("26", "Protoboard", "proto.jpg", "Ricod", 200, 39000);
+         Equipo pruebaEq4 = new Equipo(99, 2, "26","La vida util es muy corta",'A');
+     
+         ServicioPersisElectroECI spECI =  ServicioPersisElectroECI.getInstance("appConfig.properties");
+            spECI.insertTipoEquipo(pruebaT4);
+         spECI.insertEquipo(pruebaEq4);
+         Equipo loadequipoByplaca = spECI.loadequipoByplaca(99);
+         System.out.println("Carga Satisfactoria : " + loadequipoByplaca.getObservaciones());
+         assertTrue(true);
      }
     
 }

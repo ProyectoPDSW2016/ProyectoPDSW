@@ -22,6 +22,7 @@
         <result property='tipo_model' column='Modelo'/>
         <result property='observaciones' column='Observaciones'/>
         <result property='estado' column='Estado'/>
+         <result property='fecha_ingreso' column='Fecha_registro'/>
         
                 
          <!-- <association property='suscriptor' resultMap='SuscriptorResult' columnPrefix='sus_'></association>-->
@@ -52,6 +53,12 @@ FROM prestamo_solicitud,Detalle_Prestamo,Equipo,Tipo_Equipo WHERE  prestamo_soli
     SELECT Tipo_Equipo.imagen, Tipo_Equipo.nombre_Equipo, Equipo.Serial as equipo_Serial, Equipo.Estado as equipo_Estado, Tipo_Equipo.vida_util,HOUR(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))+(MINUTE(SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND,hora_entrega,hora_devolucion))))/60) Horas_Uso
 FROM prestamo_solicitud,Detalle_Prestamo,Equipo,Tipo_Equipo WHERE  prestamo_solicitud.prestamo_Id = Detalle_Prestamo.id AND Detalle_Prestamo.Equipo_Placa = Equipo.Placa AND Tipo_Equipo.Modelo = Equipo.Modelo GROUP BY Equipo.Placa
 ORDER By Horas_Uso
+</select>
+<select id="loadequipoByplaca" resultMap="EquipoResult">
+   SELECT  tep.nombre_Equipo , tep.marca, eq.modelo , eq.observaciones, eq.estado, eq.Fecha_registro FROM Tipo_Equipo tep INNER JOIN Equipo eq on tep.modelo = eq.modelo where eq.placa = #{placa}
+</select>
+<select id="loadTipoEquipo" resultMap="TipoEQuipoResult">
+   SELECT  tep.nombre_Equipo , tep.precio, tep.marca FROM Tipo_Equipo tep INNER JOIN Equipo eq on tep.modelo = eq.modelo where eq.placa = #{placa}
 </select>
 
  </mapper>   

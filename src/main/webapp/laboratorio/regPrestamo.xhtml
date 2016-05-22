@@ -37,15 +37,14 @@ and open the template in the editor.
                         <p:panelGrid columns="2" style="text-align: center;">
                            <h:outputLabel id="id_usuario" for="id_usuario" value= "Usuario No."/>
                            <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}"  onkeypress="return teclas(event);" ></p:inputText>
-                           <h:outputLabel id="id_pres" for="id_pres" value= "Prestamo No."/>
-                           <p:inputText id = "txt_usu" value="#{SystemManagedBeanEquipo.id_usuario}"></p:inputText>
+                         
           
                        
                         </p:panelGrid>
                    </p:panel>
                       <p:panel id="pnl_additems" header="Materiales "  >
                          <h:outputLabel id="id_serial" for="id_usuario" value= "Codigo No."/> 
-                           <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}" ></p:inputText>
+                         <p:inputText  id = "txt_usu" value="#{SystemManagedBeanEquipo.placa}" ></p:inputText>
                      
                       </p:panel>
                       <p:commandButton value="Agregar al prestamo"  action="#{SystemManagedBeanEquipo.insertarPrestamo()}" icon="ui-icon-check"></p:commandButton>

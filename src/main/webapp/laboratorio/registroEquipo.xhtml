@@ -29,16 +29,20 @@ and open the template in the editor.
 
             <p:layoutUnit position="south" size="450" resizable="false" closable="true" collapsible="true">
                   <p:growl id="Listadeequipos" showDetail="true">
+                      
                     <p:panel id="pnl_listequipos" header="Lista de Equipos" style="align-content: center;  align-items: center">
-                        <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.reporte}">
+                          
+                        <p:dataTable  id="dt_eqipo" var="tipoEquipo" value="#{SystemManagedBeanEquipo.reporte}">
+                            
                             <p:column headerText="Modelo"><h:outputText value="#{tipoEquipo.modelo}" /></p:column>
                             <p:column headerText="Nombre Equipo"><h:outputText value="#{tipoEquipo.nombre_equipo}" /></p:column>
                             <p:column headerText="Imagen"><h:outputText value="#{tipoEquipo.url_img}" /></p:column>
                             <p:column headerText="Marca"><h:outputText value="#{tipoEquipo.marca}" /></p:column>
                             <p:column headerText="Vida Util"><h:outputText value="#{tipoEquipo.vida_util}" /></p:column>
                             <p:column headerText="Precio"><h:outputText value="#{tipoEquipo.precio}" /></p:column>
+                       
                         </p:dataTable>
-                        
+                     
                     </p:panel> 
                 </p:growl>   
             </p:layoutUnit>
@@ -47,12 +51,13 @@ and open the template in the editor.
 
                 <p:menubar style="border-color:#cc0000">
                     <p:menuitem  value="Inicio" icon="ui-icon-home" style="height: 31px">
-
+                     
                     </p:menuitem>
                     <f:facet name="options">
                     <p:inputText  placeholder="Buscar"/>
                     <p:commandButton type="button" value="Ingresar" style="font-size: 14pt;" icon="ui-icon-person" />
                 </f:facet>
+                    
                 </p:menubar>
             </p:layoutUnit>
  
@@ -103,13 +108,16 @@ and open the template in the editor.
                             <p:inputText value="#{SystemManagedBeanEquipo.observaciones}"></p:inputText>
                             
                             <p:commandButton value="Agregar Equipo" action="#{SystemManagedBeanEquipo.insertarEquipo()}" update="pnl1_addequipo"/>
-                            
-                        </p:panelGrid> 
+                             
+                        </p:panelGrid>
+                         
                     </p:panel>
+                 
                 </p:growl>   
             </p:layoutUnit>
             
- 
+            
+     
 </p:layout>  
            
         </h:form>

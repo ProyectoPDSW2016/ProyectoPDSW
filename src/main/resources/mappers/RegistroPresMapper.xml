@@ -23,7 +23,7 @@
         
     </resultMap>
     <insert id="insertPrestamo" parameterType="map">
-        INSERT INTO prestamo_solicitud(prestamo_id,hora_entrega,hora_devolucion,Equipo_Sencillo_id,Usuario)values(#{prestamo.id},CURRENT_TIMESTAMP,#{prestamo.horaDevolucion},0,#{prestamo.id_usuario})
+        INSERT INTO prestamo_solicitud(hora_entrega,hora_devolucion,Equipo_Sencillo_id,Usuario)values(CURRENT_TIMESTAMP,#{prestamo.horaDevolucion},0,#{prestamo.id_usuario})
     </insert>
     <select id="Selectprestamo" resultMap="RegPresResult">
         SELECT * FROM prestamo_solicitud

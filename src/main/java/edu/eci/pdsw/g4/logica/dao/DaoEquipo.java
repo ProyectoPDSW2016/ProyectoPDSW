@@ -24,4 +24,6 @@ public interface DaoEquipo {
     public List<TipoEquipo> selectAlltipoeq();
     public int tiempoDeVidaDeUnEquipo(int placa);
     public List<TipoEquipo> reporte();
+     public Equipo loadequipoByplaca(int placa);
+     public TipoEquipo loadTipoEquipo(int placa);
 }

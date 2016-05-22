@@ -5,6 +5,8 @@
  */
 package edu.eci.pdsw.g4.logica.estructura;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @authors Santiago Chisco-Manuel Felipe Sanchez R.
@@ -16,8 +18,16 @@ public class Equipo {
     private String tipo_model;
     private String observaciones;
     private char estado;
-
+    private Timestamp fecha_ingreso;
     public Equipo() {
+    }
+
+    public Timestamp getFecha_ingreso() {
+        return fecha_ingreso;
+    }
+
+    public void setFecha_ingreso(Timestamp fecha_ingreso) {
+        this.fecha_ingreso = fecha_ingreso;
     }
   
 

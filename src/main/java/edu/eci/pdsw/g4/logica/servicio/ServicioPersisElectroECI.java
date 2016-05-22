@@ -152,6 +152,12 @@ public class ServicioPersisElectroECI {
        
       return tiempo;
    }
+   public Equipo loadequipoByplaca(int placa) throws PersistenciaException{
+        DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+        Equipo loadequipoByplaca = df2.getDaoEquipo().loadequipoByplaca(placa);
+        return loadequipoByplaca;
+   }
    
     /* Consulta las estadisticas de un equipo para poder generar un reporte
    *@retorn una lista con las estadisticas de todos los equipos 
@@ -193,6 +199,12 @@ public class ServicioPersisElectroECI {
        Prestamo p = df2.getDaoPrestamo().consultarPrestamo(id);
         df2.endSession();
         return p;
+   }
+   public TipoEquipo loadTipoEquipo(int placa) throws PersistenciaException{
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+        TipoEquipo loadTipoEquipo = df2.getDaoEquipo().loadTipoEquipo(placa);
+       return loadTipoEquipo;
    }
 
 }

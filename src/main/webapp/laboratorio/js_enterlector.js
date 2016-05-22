@@ -10,8 +10,18 @@ function teclas(event) {
        
          document.getElementById("frm_regPres:txt_usu").focus();
  }
+
     else {return event;}
  
     return false;
+}
+
+function entertoclick(event){
+    tecla = (document) ? event.keyCode : event.which;
+    if(tecla ===13){
+       
+        document.getElementById("frm_ficha:btn_consulta").click();
+        
+    }
 }
 

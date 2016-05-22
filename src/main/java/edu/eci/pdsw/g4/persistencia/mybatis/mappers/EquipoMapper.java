@@ -47,4 +47,6 @@ public interface EquipoMapper {
      public int tiempoDeVidaDeUnEquipo(@Param("plac")int placa);
      
      public List<TipoEquipo> reporte();
+     public Equipo loadequipoByplaca(@Param("placa") int placa);
+     public TipoEquipo loadTipoEquipo(@Param("placa") int placa);
 }

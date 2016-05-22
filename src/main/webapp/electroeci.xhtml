@@ -24,7 +24,7 @@ and open the template in the editor.
             <p:layoutUnit position="south" size="40%" resizable="false" closable="true" style="border-color:#cc0000; border-width: thick" collapsible="true">
                   <p:growl id="Listadeequipos" showDetail="true">
                     <p:panel id="pnl_listequipos" header="Lista de Equipos" style="align-content: center;  align-items: center">
-                        <p:dataTable  var="tipoEquipo" value="#{SystemManagedBeanEquipo.tipoEquipo}">
+                        <p:dataTable  id="dt_equipo" var="tipoEquipo" value="#{SystemManagedBeanEquipo.tipoEquipo}">
                             <p:column headerText="Modelo"><h:outputText value="#{tipoEquipo.modelo}" /></p:column>
                             <p:column headerText="Nombre Equipo"><h:outputText value="#{tipoEquipo.nombre_equipo}" /></p:column>
                             <p:column headerText="Imagen" style=""><img src="#{tipoEquipo.url_img}" width="100" height="100"/><h:outputText /></p:column>
@@ -32,7 +32,12 @@ and open the template in the editor.
                             <p:column headerText="Vida Util"><h:outputText value="#{tipoEquipo.vida_util}" /></p:column>
                             <p:column headerText="Precio"><h:outputText value="#{tipoEquipo.precio}" /></p:column>
                         </p:dataTable>
-                        
+                          <h:commandLink>
+                                 <p:graphicImage value="../resource/PDF-Export.png" width="24"/>
+                          
+                          <p:dataExporter type="pdf" target="dt_equipo" fileName="Historico" />
+                      
+                     </h:commandLink>      
                     </p:panel> 
                 </p:growl>
                   

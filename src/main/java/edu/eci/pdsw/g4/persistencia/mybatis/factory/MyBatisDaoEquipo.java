@@ -85,6 +85,15 @@ public class MyBatisDaoEquipo implements DaoEquipo{
         sqlss.commit();
         return reporte;
     }
+
+    public Equipo loadequipoByplaca(int placa) {
+        Equipo loadequipoByplaca = equmapper.loadequipoByplaca(placa);
+        return loadequipoByplaca;
+    }
+    public TipoEquipo loadTipoEquipo (int placa){
+        TipoEquipo teq = equmapper.loadTipoEquipo(placa);
+        return teq;
+    }
     
     
 }

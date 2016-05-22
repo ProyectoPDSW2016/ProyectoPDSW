@@ -69,6 +69,50 @@ public class SystemManageBean implements Serializable{
     private int precio;
     private int vida_util;
     private Date date2;
+    private int placaficha;
+    Equipo loadbyplaca;
+      TipoEquipo loadTipoEquipo;
+        private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
+private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManageBean.class);
+          
+      private int id_usuario;
+      private int id_prestamo;
+      private  Set<DetallePrestamo> dtll_prestamo;
+      
+      String referenciainterna; 
+
+    public String getReferenciainterna() {
+        return referenciainterna;
+    }
+
+    public void setReferenciainterna(String referenciainterna) {
+        this.referenciainterna = referenciainterna;
+    }
+
+    public TipoEquipo getLoadTipoEquipo() {
+        return loadTipoEquipo;
+    }
+
+    public void setLoadTipoEquipo(TipoEquipo loadTipoEquipo) {
+        this.loadTipoEquipo = loadTipoEquipo;
+    }
+
+    public Equipo getLoadbyplaca() {
+        return loadbyplaca;
+    }
+
+    public void setLoadbyplaca(Equipo loadbyplaca) {
+        this.loadbyplaca = loadbyplaca;
+    }
+    
+
+    public int getPlacaficha() {
+        return placaficha;
+    }
+
+    public void setPlacaficha(int placaficha) {
+        this.placaficha = placaficha;
+    }
 
     public Date getDate2() {
         return date2;
@@ -90,10 +134,7 @@ public class SystemManageBean implements Serializable{
         requestContext.update("form:display");
         requestContext.execute("PF('dlg').show()");
     }
-    
-      private int id_usuario;
-      private int id_prestamo;
-      private  Set<DetallePrestamo> dtll_prestamo;
+
 
     private String routeequip="http://jhelectronics.co/images/com_hikashop/upload/cable_punta_caiman.jpg";
 
@@ -150,8 +191,7 @@ public class SystemManageBean implements Serializable{
         this.dtll_prestamo = dtll_prestamo;
     }
     
-    private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
-private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManageBean.class);
+  
     public static List<TipoEquipo> getAllsequipos() {
         return allsequipos;
     }
@@ -273,9 +313,9 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
     public void insertarPrestamo() throws PersistenciaException{
             //El constructor de la clase prestamo esta invertido con respecto a la bd
         
-        Prestamo p1 = new Prestamo(id_prestamo, id_usuario);
+        Prestamo p1 = new Prestamo(id_prestamo);
         sec.insertPrestamo(p1);
-        System.out.println("------------------------>Prestamo agregado correctamente");
+       // System.out.println("------------------------>Prestamo agregado correctamente");
     }
     
     private TipoEquipo tip1;
@@ -318,7 +358,25 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
         }
        return filtradodetipo;
     }
+     public TipoEquipo loadTipoequipo(int placa) throws PersistenciaException{
+        TipoEquipo loadTeq = sec.loadTipoEquipo(placa);
+         return loadTeq;
+    }
     
+    public Equipo loadequipoByplaca() throws PersistenciaException{
+        
+        loadbyplaca = sec.loadequipoByplaca(getPlacaficha());
+         loadTipoEquipo = loadTipoequipo(getPlacaficha());
+         System.out.println("Equipo cargado : " + loadTipoEquipo.getNombre_equipo());
+         referenciainterna= AsignRefInterna( loadbyplaca.getTipo_model(),loadTipoEquipo.getNombre_equipo());
+         System.out.println("referencia: " + referenciainterna);
+        return loadbyplaca;
+    }
+   public String AsignRefInterna(String param1 , String param2){
+       String resp = param1 +"-"+ param2;
+       return resp;
+   }
+   
     
 
 
