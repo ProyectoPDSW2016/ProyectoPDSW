@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.g4.persistencia.mybatis.mappers;
 
+import edu.eci.pdsw.g4.logica.estructura.DetallePrestamo;
 import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import java.sql.Timestamp;
 import java.util.List;
@@ -23,4 +24,5 @@ public interface RegPresMapper {
     public void insertPrestamo(@Param("prestamo")Prestamo pres);
     public List<Prestamo> Selectprestamo();
     public Prestamo consultarPrestamo(@Param("prestamo")int id);
+    public void insertarDetalle(@Param("prestamo")int id,@Param("equipo")int placa,@Param("detalle") DetallePrestamo d);
 }

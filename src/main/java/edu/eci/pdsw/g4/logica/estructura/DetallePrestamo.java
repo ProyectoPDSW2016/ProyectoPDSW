@@ -10,12 +10,20 @@ package edu.eci.pdsw.g4.logica.estructura;
  * @author santiago-chisco
  */
 public class DetallePrestamo {
+    private int id;
     private int cantidad;
     private Equipo equipo;
 
     public DetallePrestamo(int cantidad, Equipo equipo) {
         this.cantidad = cantidad;
         this.equipo = equipo;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public int getCantidad() {

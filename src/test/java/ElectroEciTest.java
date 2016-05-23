@@ -123,15 +123,15 @@ public class ElectroEciTest {
         Usuario persona = new Estudiante(2100609, "Santiago", "Chisco", "david.chisco@mail.escuelaing.edu.co", "Ingenieria de sistemas", 7);
         TipoEquipo tipoEquipo = new TipoEquipo("DG4102", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
         Equipo equipo = new Equipo(1, 1, "DG4102","Sin observaciones",'A');
-        
-        Prestamo prestamo = new Prestamo(persona.getCarnet());
+ 
+        Prestamo prestamo = new Prestamo(persona.getCarnet(), 1);
         Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
         DetallePrestamo dp = new DetallePrestamo(1, equipo);
         detallesPrestamos.add(dp);
         prestamo.setDetallesPrestamo(detallesPrestamos);
         ServicioPersisElectroECI spECI = ServicioPersisElectroECI.getInstance("appConfig.properties");
         spECI.insertPrestamo(prestamo);
-        assertEquals(persona.getCarnet(),spECI.consultarPrestamo(1).getId_usuario());
+        assertEquals(persona.getCarnet(),spECI.consultarPrestamo(0).getId_usuario());
         
     } 
     
@@ -184,12 +184,12 @@ public class ElectroEciTest {
         prestamo.setDetallesPrestamo(detallesPrestamos);
         ServicioPersisElectroECI spECI = ServicioPersisElectroECI.getInstance("appConfig.properties");
         spECI.insertPrestamo(prestamo);
-        Set<DetallePrestamo> detallesConsulta = spECI.consultarPrestamo(1).getDetallesPrestamo();
+        Set<DetallePrestamo> detallesConsulta = spECI.consultarPrestamo(0).getDetallesPrestamo();
        
         assertEquals(detallesPrestamos.size(),detallesConsulta.size());
         
     }
- 
+    
     @Test
      public void insertarUnEquipo() throws PersistenciaException  {
             //clase de equivalencia equipo recien registrado sin haber sido prestado

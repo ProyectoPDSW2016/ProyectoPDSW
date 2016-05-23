@@ -6,11 +6,14 @@
 package edu.eci.pdsw.g4.persistencia.mybatis.factory;
 
 import edu.eci.pdsw.g4.logica.dao.DaoPrestamo;
+import edu.eci.pdsw.g4.logica.estructura.DetallePrestamo;
 import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.persistencia.mybatis.mappers.EquipoMapper;
 import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.g4.persistencia.mybatis.mappers.RegPresMapper;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -32,17 +35,23 @@ public class MyBatisDaoPrestamo  implements DaoPrestamo{
     public void insertPrestamo(Prestamo p) {
          //
         regPres.insertPrestamo(p);
-        session.commit();
+        
     }
+
 
     public List<Prestamo> selectPrestamos() {
       List<Prestamo> Selectprestamo = regPres.Selectprestamo();
-       session.commit();
+    
        return Selectprestamo;
     }
 
     public Prestamo consultarPrestamo(int id) {
         return regPres.consultarPrestamo(id);
+    }
+
+    public void insertarDetalle(int prestamo_Id, int placa, DetallePrestamo dp) {
+        regPres.insertarDetalle(placa, placa, dp);
+       
     }
     
 

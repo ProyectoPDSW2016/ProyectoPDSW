@@ -10,12 +10,15 @@ import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import edu.eci.pdsw.g4.logica.estructura.TipoEquipo;
 import edu.eci.pdsw.g4.logica.dao.DaoFactory;
 import edu.eci.pdsw.g4.logica.dao.PersistenciaException;
+import edu.eci.pdsw.g4.logica.estructura.DetallePrestamo;
 import edu.eci.pdsw.g4.logica.estructura.EstadisticasEquipo;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -67,6 +70,7 @@ public class ServicioPersisElectroECI {
             DaoFactory df2 = DaoFactory.getInstance(prop);
             df2.beginSession();
             List<TipoEquipo> equipos = df2.getDaoEquipo().SelectAll();
+            df2.commitTransaction();
             df2.endSession();
             return equipos;
         } catch (PersistenciaException ex) {
@@ -84,6 +88,7 @@ public class ServicioPersisElectroECI {
            DaoFactory df2 = DaoFactory.getInstance(prop);
            df2.beginSession();
            Equipo equipo = df2.getDaoEquipo().loadeqByid(placa);
+           df2.commitTransaction();
            df2.endSession();
            return equipo;
            
@@ -136,6 +141,7 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         List<TipoEquipo> selectAlltipoeq = df2.getDaoEquipo().selectAlltipoeq();
+        df2.commitTransaction();
         df2.endSession();
         return selectAlltipoeq;
    }
@@ -148,6 +154,7 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         int tiempo = df2.getDaoEquipo().tiempoDeVidaDeUnEquipo(placa);
+        df2.commitTransaction();
         df2.endSession();
        
       return tiempo;
@@ -156,6 +163,8 @@ public class ServicioPersisElectroECI {
         DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         Equipo loadequipoByplaca = df2.getDaoEquipo().loadequipoByplaca(placa);
+        df2.commitTransaction();
+        df2.endSession();
         return loadequipoByplaca;
    }
    
@@ -167,6 +176,7 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         List<EstadisticasEquipo> reporte = df2.getDaoEstadisticaEquipo().reporte();
+        df2.commitTransaction();
         df2.endSession();
        
       return reporte;
@@ -180,7 +190,22 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
        df2.getDaoPrestamo().insertPrestamo(p);
+       df2.commitTransaction();
        df2.endSession();
+       System.out.println("Prestamo id : "+p.getPrestamo_Id());
+       insertarDetalle(p);
+   }
+   public void insertarDetalle(Prestamo p) throws PersistenciaException{
+       DaoFactory df2 = DaoFactory.getInstance(prop);
+       df2.beginSession();
+       Set<DetallePrestamo> detalles = p.getDetallesPrestamo();
+         Iterator<DetallePrestamo> i =detalles.iterator();
+        while(i.hasNext()){
+            DetallePrestamo dp = i.next();
+            df2.getDaoPrestamo().insertarDetalle(p.getPrestamo_Id(),dp.getEquipo().getPlaca(), dp);
+        }
+        df2.commitTransaction();
+        df2.endSession();
    }
    /*Consulta todos prestamos realizados y existentes en la base de datos
    @Retorn una lista con todos los prestamos existentes
@@ -190,13 +215,16 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         List<Prestamo> selectPrestamos = df2.getDaoPrestamo().selectPrestamos();
+        df2.commitTransaction();
         df2.endSession();
         return selectPrestamos;
    }
    public Prestamo consultarPrestamo(int id) throws PersistenciaException{
+       System.out.println("Entro a consultar el prestamo");
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
        Prestamo p = df2.getDaoPrestamo().consultarPrestamo(id);
+       df2.commitTransaction();
         df2.endSession();
         return p;
    }
@@ -204,6 +232,8 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
         TipoEquipo loadTipoEquipo = df2.getDaoEquipo().loadTipoEquipo(placa);
+        df2.commitTransaction();
+        df2.endSession();
        return loadTipoEquipo;
    }
 

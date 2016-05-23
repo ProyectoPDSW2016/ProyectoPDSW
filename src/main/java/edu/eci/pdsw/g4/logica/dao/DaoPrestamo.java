@@ -5,6 +5,7 @@
  */
 package edu.eci.pdsw.g4.logica.dao;
 
+import edu.eci.pdsw.g4.logica.estructura.DetallePrestamo;
 import edu.eci.pdsw.g4.logica.estructura.Prestamo;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  */
 public interface  DaoPrestamo {
     public void insertPrestamo(Prestamo p);
+    public void insertarDetalle(int prestamo_Id, int placa, DetallePrestamo dp);
     public List<Prestamo> selectPrestamos();
     public Prestamo consultarPrestamo(int id);
 }

@@ -30,6 +30,11 @@ public class Prestamo {
         this.horaEntrega = horaEntrega;
         detallesPrestamos = new LinkedHashSet();
     }
+
+    public Prestamo(int id_usuario, int id) {
+        this.id_usuario = id_usuario;
+        this.id = id;
+    }
   
    //El constructor de la clase prestamo esta invertido con respecto a la bd
     
@@ -48,11 +53,11 @@ public class Prestamo {
     }
     
     
-    public int getId(){
+    public int getPrestamo_Id(){
         return id;
     }
     
-    public void setId(int id){
+    public void setPrestamo_Id(int id){
         this.id = id;
     }
     

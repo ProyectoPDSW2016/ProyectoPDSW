@@ -5,7 +5,7 @@
   
 <mapper namespace="edu.eci.pdsw.g4.persistencia.mybatis.mappers.RegPresMapper">
     <resultMap type='edu.eci.pdsw.g4.logica.estructura.Prestamo' id='RegPresResult'>
-        <id property ='id' column='prestamo_Id'/>
+        <id property ='prestamo_Id' column='prestamo_Id'/>
         <result property='id_usuario' column='Usuario'/>
         <result property='horaEntrega' column='hora_entrega'/>
         <result property='horaDevolucion' column='hora_devolucion'/>     
@@ -15,24 +15,26 @@
         <association property='equipo' javaType='Equipo' resultMap="EquipoResult" columnPrefix="equipo_"></association> 
     </resultMap>
     <resultMap type='edu.eci.pdsw.g4.logica.estructura.Equipo' id='EquipoResult'>     
-        <id property='placa' column='Placa'/>   
-        <result property='serial' column='Serial'/>
-        <result property='tipo_model' column='Modelo'/>
-        <result property='observaciones' column='Observaciones'/>
-        <result property='estado' column='Estado'/>
+        <id property='placa' column='equipo_Placa'/>   
+        <result property='serial' column='equipo_Serial'/>
+        <result property='tipo_model' column='equipo_Modelo'/>
+        <result property='observaciones' column='equipo_Observaciones'/>
+        <result property='estado' column='equipo_Estado'/>
         
     </resultMap>
-    <insert id="insertPrestamo" parameterType="map">
-        INSERT INTO prestamo_solicitud(hora_entrega,hora_devolucion,Equipo_Sencillo_id,Usuario)values(CURRENT_TIMESTAMP,#{prestamo.horaDevolucion},0,#{prestamo.id_usuario})
+    <insert id="insertPrestamo" useGeneratedKeys="true" keyProperty="prestamo.prestamo_Id">
+        INSERT INTO prestamo_solicitud(hora_entrega,Usuario)values(CURRENT_TIMESTAMP,#{prestamo.id_usuario})
+    </insert>
+    <insert id="insertarDetalle" useGeneratedKeys="true" keyProperty="detalle.id">
+        INSERT INTO Detalle_Prestamo(prestamo_Id,Equipo_Placa) values(#{prestamo},#{equipo})
     </insert>
     <select id="Selectprestamo" resultMap="RegPresResult">
         SELECT * FROM prestamo_solicitud
     </select>
     
-    <select id="consultarPrestamo" resultMap="RegPresResult">
-        SELECT prestamo_solicitud.prestamo_Id, prestamo_solicitud.hora_entrega, prestamo_solicitud.hora_devolucion, prestamo_solicitud.Usuario, Equipo.Placa as equipo_Placa, Equipo.Observaciones as equipo_Observaciones, Equipo.Serial as equipo_Serial, Equipo.Estado as equipo_Estado,  Equipo.Modelo as equipo_Modelo  FROM prestamo_solicitud,Detalle_Prestamo,Equipo WHERE 
+    <select id="consultarPrestamo" parameterType="int" resultMap="RegPresResult">
+          SELECT prestamo_solicitud.prestamo_Id, prestamo_solicitud.hora_entrega, prestamo_solicitud.hora_devolucion, prestamo_solicitud.Usuario, Equipo.Placa as equipo_Placa, Equipo.Observaciones as equipo_Observaciones, Equipo.Serial as equipo_Serial, Equipo.Estado as equipo_Estado,  Equipo.Modelo as equipo_Modelo  FROM prestamo_solicitud,Detalle_Prestamo,Equipo WHERE 
         prestamo_solicitud.prestamo_Id = Detalle_Prestamo.id AND Detalle_Prestamo.Equipo_Placa = Equipo.Placa AND prestamo_solicitud.prestamo_Id =#{prestamo}
-
     </select>
     
 </mapper>

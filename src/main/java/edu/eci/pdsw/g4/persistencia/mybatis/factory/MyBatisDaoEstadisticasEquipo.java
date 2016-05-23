@@ -32,7 +32,7 @@ public class MyBatisDaoEstadisticasEquipo implements DaoEstadisticaEquipo {
     @Override
     public List<EstadisticasEquipo> reporte() {
         List<EstadisticasEquipo> reporte = estadisticas.reporte();
-        sqlss.commit();
+        
         return reporte;
     }
     
