@@ -36,24 +36,35 @@ and open the template in the editor.
                    <p:panel id="pnl_addPrestamo"  visible="true" header="Registro Prestamo" style="text-align: center;" >
                         <p:panelGrid columns="2" style="text-align: center;">
                            <h:outputLabel id="id_usuario" for="id_usuario" value= "Usuario No."/>
-                           <p:inputText value="#{SystemManagedBeanEquipo.id_prestamo}"  onkeypress="return teclas(event);" ></p:inputText>
+                           <p:inputText value="#{SystemManagedBeanEquipo.id_usuario}"  onkeypress="return teclas(event);" ></p:inputText>
                          
           
                        
                         </p:panelGrid>
+                   
                    </p:panel>
-                      <p:panel id="pnl_additems" header="Materiales "  >
-                         <h:outputLabel id="id_serial" for="id_usuario" value= "Codigo No."/> 
-                         <p:inputText  id = "txt_usu" value="#{SystemManagedBeanEquipo.placa}" ></p:inputText>
-                     
-                      </p:panel>
-                      <p:commandButton value="Agregar al prestamo"  action="#{SystemManagedBeanEquipo.insertarPrestamo()}" icon="ui-icon-check"></p:commandButton>
-                      <p:dataTable  var="RegistroItems" value="#{SystemManagedBeanEquipo.reporte}">
-                          <p:column headerText="Serial"></p:column>
-                          <p:column headerText="Hora Entrega"></p:column>
-                          <p:column headerText="Usuario"></p:column>
-                         
-                      </p:dataTable>
+                      <h:form id="pre_Prestamo">
+                          <p:panel id="pnl_additems" header="Materiales "  >
+                              <h:outputLabel id="id_serial" for="id_usuario" value= "Codigo No."/> 
+                              <p:inputText  id = "txt_usu" value="#{SystemManagedBeanEquipo.placa}" ></p:inputText>
+
+                          </p:panel>
+                          <p:commandButton value="Agregar al prestamo" update="tabla" action="#{SystemManagedBeanEquipo.insertarAlPrestamo()}" icon="ui-icon-check"></p:commandButton>
+                          <p:commandButton value="Registrar el  prestamo" action="#{SystemManagedBeanEquipo.insertarPrestamo()}" icon="ui-icon-check"></p:commandButton>
+
+                          <p:dataTable id="tabla" var="RegistroItems" value="#{SystemManagedBeanEquipo.prePrestamo}">
+                              <p:column headerText="Placa">
+                                  <h:outputLabel value="#{RegistroItems.placa}"></h:outputLabel>
+                              </p:column>
+                              <p:column headerText="Serial">
+                                  <h:outputLabel value="#{RegistroItems.serial}"></h:outputLabel>
+                              </p:column>
+                              <p:column headerText="Usuario">
+                                  <h:outputLabel value="#{SystemManagedBeanEquipo.id_usuario}"></h:outputLabel>
+                              </p:column>
+
+                          </p:dataTable>
+                      </h:form>
                   </p:layoutUnit>
                 
             

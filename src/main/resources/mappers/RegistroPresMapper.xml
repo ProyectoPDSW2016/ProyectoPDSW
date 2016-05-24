@@ -11,7 +11,8 @@
         <result property='horaDevolucion' column='hora_devolucion'/>     
         <association property='detalle' javaType='DetallePrestamo' resultMap="DetalleResult" columnPrefix="detalle_"></association> 
     </resultMap>
-    <resultMap type='edu.eci.pdsw.g4.logica.estructura.DetallePrestamo' id='DetalleResult'>     
+    <resultMap type='edu.eci.pdsw.g4.logica.estructura.DetallePrestamo' id='DetalleResult'>  
+        <id property='id' column='id'/>   
         <association property='equipo' javaType='Equipo' resultMap="EquipoResult" columnPrefix="equipo_"></association> 
     </resultMap>
     <resultMap type='edu.eci.pdsw.g4.logica.estructura.Equipo' id='EquipoResult'>     
@@ -25,9 +26,12 @@
     <insert id="insertPrestamo" useGeneratedKeys="true" keyProperty="prestamo.prestamo_Id">
         INSERT INTO prestamo_solicitud(hora_entrega,Usuario)values(CURRENT_TIMESTAMP,#{prestamo.id_usuario})
     </insert>
-    <insert id="insertarDetalle" useGeneratedKeys="true" keyProperty="detalle.id">
+    <insert id="insertarDetalle" useGeneratedKeys="true" keyProperty="detalle.id" >
         INSERT INTO Detalle_Prestamo(prestamo_Id,Equipo_Placa) values(#{prestamo},#{equipo})
     </insert>
+    <select id="cantidad" resultType="int">
+        SELECT count(*) FROM prestamo_solicitud
+    </select>
     <select id="Selectprestamo" resultMap="RegPresResult">
         SELECT * FROM prestamo_solicitud
     </select>

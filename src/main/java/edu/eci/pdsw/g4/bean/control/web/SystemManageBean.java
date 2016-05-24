@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -79,6 +80,8 @@ public class SystemManageBean implements Serializable{
     private int vida_util;
     private Date date2;
     private int placaficha = 0;
+    private static List<Equipo> prePrestamos = new ArrayList<Equipo>();
+    private static Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
     Equipo loadbyplaca;
       TipoEquipo loadTipoEquipo;
         private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
@@ -320,11 +323,39 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
       setTip1(null);
     }
     public void insertarPrestamo() throws PersistenciaException{
+        Prestamo prestamo = new Prestamo(id_usuario);
+        prestamo.setDetallesPrestamo(detallesPrestamos);
+        sec.insertPrestamo(prestamo);
+        sec.insertarDetalle(prestamo);
+    }
+    public void insertarAlPrestamo() throws PersistenciaException{
+        //Prestamo prestamo = new Prestamo(id_usuario);
+        Equipo equipo = sec.loadeqByid(placa);
+        DetallePrestamo dp = new DetallePrestamo(1, equipo);
+        detallesPrestamos.add(dp);
+        prePrestamos.add(equipo);
+        System.out.println("CArgo el Equipo");
             //El constructor de la clase prestamo esta invertido con respecto a la bd
-        
-        Prestamo p1 = new Prestamo(id_prestamo);
-        sec.insertPrestamo(p1);
-       // System.out.println("------------------------>Prestamo agregado correctamente");
+            /*
+        Usuario persona = new Estudiante(2100609, "Santiago", "Chisco", "david.chisco@mail.escuelaing.edu.co", "Ingenieria de sistemas", 7);
+        TipoEquipo tipoEquipo = new TipoEquipo("100", "Generador de Funciones", "imagen2.jpg", "RIGOL", 17520, 3127731);
+        Equipo equipo = new Equipo(12, 1, "100","Sin observaciones",'A');
+ 
+        Prestamo prestamo = new Prestamo(persona.getCarnet());
+        Set<DetallePrestamo> detallesPrestamos = new LinkedHashSet();
+        DetallePrestamo dp = new DetallePrestamo(1, equipo);
+        detallesPrestamos.add(dp);
+        prestamo.setDetallesPrestamo(detallesPrestamos);
+        sec.insertPrestamo(prestamo);
+        sec.insertarDetalle(prestamo);
+        //Prestamo p1 = new Prestamo(id_prestamo);
+        //sec.insertPrestamo(p1);
+        System.out.println("------------------------>Prestamo agregado correctamente");
+        */
+    }
+    
+    public List<Equipo> getPrePrestamo(){
+        return prePrestamos;
     }
     
     private TipoEquipo tip1;

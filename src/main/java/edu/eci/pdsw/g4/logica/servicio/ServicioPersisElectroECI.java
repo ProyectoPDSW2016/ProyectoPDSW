@@ -42,6 +42,8 @@ public class ServicioPersisElectroECI {
         prop.load(input);
     }
     public static ServicioPersisElectroECI getInstance(String propfile){
+        
+        
          if (inst==null){
             try {
                 inst=new ServicioPersisElectroECI(propfile);
@@ -83,6 +85,7 @@ public class ServicioPersisElectroECI {
     *@return el equipo solicitidado
     
     */
+
     public Equipo loadeqByid(int placa) throws PersistenciaException{
        try{
            DaoFactory df2 = DaoFactory.getInstance(prop);
@@ -193,16 +196,19 @@ public class ServicioPersisElectroECI {
        df2.commitTransaction();
        df2.endSession();
        System.out.println("Prestamo id : "+p.getPrestamo_Id());
-       insertarDetalle(p);
+       //insertarDetalle(p);
    }
    public void insertarDetalle(Prestamo p) throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
+       int cantidad = df2.getDaoPrestamo().cantidadPrestamo();
+       System.out.println("Cantidad : "+cantidad);
        Set<DetallePrestamo> detalles = p.getDetallesPrestamo();
          Iterator<DetallePrestamo> i =detalles.iterator();
         while(i.hasNext()){
             DetallePrestamo dp = i.next();
-            df2.getDaoPrestamo().insertarDetalle(p.getPrestamo_Id(),dp.getEquipo().getPlaca(), dp);
+            df2.getDaoPrestamo().insertarDetalle(cantidad,dp.getEquipo().getPlaca(), dp);
+            System.out.println("Registrando detalle  y su cantidad es : "+cantidad);
         }
         df2.commitTransaction();
         df2.endSession();

@@ -18,6 +18,13 @@ public class DetallePrestamo {
         this.cantidad = cantidad;
         this.equipo = equipo;
     }
+
+    public DetallePrestamo(int id, int cantidad, Equipo equipo) {
+        this.id = id;
+        this.cantidad = cantidad;
+        this.equipo = equipo;
+    }
+    
     public int getId() {
         return id;
     }

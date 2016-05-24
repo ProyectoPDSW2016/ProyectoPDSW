@@ -22,6 +22,7 @@ public interface RegPresMapper {
      * @param pres : Objeto para la insercion en la tabla prestamo_solicitud.
      */
     public void insertPrestamo(@Param("prestamo")Prestamo pres);
+    public int cantidad();
     public List<Prestamo> Selectprestamo();
     public Prestamo consultarPrestamo(@Param("prestamo")int id);
     public void insertarDetalle(@Param("prestamo")int id,@Param("equipo")int placa,@Param("detalle") DetallePrestamo d);

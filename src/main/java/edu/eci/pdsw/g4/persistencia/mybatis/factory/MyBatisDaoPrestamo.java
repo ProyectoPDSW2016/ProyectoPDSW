@@ -53,6 +53,10 @@ public class MyBatisDaoPrestamo  implements DaoPrestamo{
         regPres.insertarDetalle(placa, placa, dp);
        
     }
+
+    public int cantidadPrestamo() {
+        return regPres.cantidad();
+    }
     
 
 }

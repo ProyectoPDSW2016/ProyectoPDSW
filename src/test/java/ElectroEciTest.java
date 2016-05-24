@@ -131,7 +131,7 @@ public class ElectroEciTest {
         prestamo.setDetallesPrestamo(detallesPrestamos);
         ServicioPersisElectroECI spECI = ServicioPersisElectroECI.getInstance("appConfig.properties");
         spECI.insertPrestamo(prestamo);
-        assertEquals(persona.getCarnet(),spECI.consultarPrestamo(0).getId_usuario());
+        assertEquals(persona.getCarnet(),spECI.consultarPrestamo(1).getId_usuario());
         
     } 
     
