@@ -22,7 +22,7 @@ and open the template in the editor.
                     <p:layoutUnit position="north"  size="90"  resizable="false" closable="true" collapsible="true">
 
                 <p:menubar style="border-color:#cc0000; border-width: thick">
-                    <p:menuitem  value="Regresar" action="laboratorio/laboratorio?faces-redirect=true" icon="ui-icon-home" style="height: 31px">
+                    <p:menuitem  value="Regresar" action="laboratorio?faces-redirect=true" icon="ui-icon-home" style="height: 31px">
 
                     </p:menuitem>
                     
@@ -36,7 +36,7 @@ and open the template in the editor.
                         <p:panelGrid columns="2" style="text-align: center"   >
                             <h:outputLabel id= "placa" for="modelo" value= "Ingrese el numero de la  placa"/>
                             <p:inputText value="#{SystemManagedBeanEquipo.placaficha}" onkeypress="return entertoclick(event);"></p:inputText>                            
-                            <p:commandButton id="btn_consulta" value="Consultar" action="#{SystemManagedBeanEquipo.loadequipoByplaca()}" update="pnl_datos"/>
+                            <p:commandButton id="btn_consulta" value="Consultar"  update="pnl_datos"/>
                         </p:panelGrid>                             
                     </p:panel>
                     <p:panel id="pnl_datos"   header="Datos Del Equipo " style="align-content: center;  align-items: center;" > 
@@ -60,14 +60,13 @@ and open the template in the editor.
                         <h:outputText value="Accesorios : " />
                         <h:outputText value="                       " />
                     </h:panelGrid>
-                    <h:panelGrid columns="2" cellpadding="10">
-                        <h:outputText value="Descripcion del equipo : " />
-                        <h:outputText value="#{SystemManagedBeanEquipo.loadbyplaca.observaciones}" style="color: #cc0000;font-weight: bold;"/>
-                    </h:panelGrid>
-                    <p:dataTable  var="ficha" value="" id="id_ficha">
-                       
-                        <p:column headerText="Fecha de adquisición :">
-                            <h:outputText value ="#{SystemManagedBeanEquipo.loadbyplaca.fecha_ingreso.toString()}"  style="color: #cc0000;font-weight: bold;"/>
+                  
+                    <p:dataTable  var="equipo" value="#{SystemManagedBeanEquipo.loadequipoByplaca()}" id="id_ficha">
+                        <p:column headerText="Descripcion del equipo :">
+                     <h:outputText value="#{equipo.observaciones}" style="color: #cc0000;font-weight: bold;"/>
+                        </p:column>
+                        <p:column headerText="Fecha de adquisicion :">
+                            <h:outputText value ="#{equipo.fecha_ingreso}"  style="color: #cc0000;font-weight: bold;"/>
                         </p:column>
 
                         <p:column headerText="Fecha limite de garantia :">
@@ -75,7 +74,7 @@ and open the template in the editor.
                         </p:column>
 
                         <p:column headerText="Proveedor :">
-                            <h:outputText   />
+                            <h:outputText value="#{SystemManagedBeanEquipo.loadTipoEquipo.marca}" style="color: #cc0000;font-weight: bold;"  />
                         </p:column>
                         
                         <p:column headerText="Orden de compra :">
@@ -88,7 +87,7 @@ and open the template in the editor.
                     </p:dataTable>
                         <p:dataTable  var="ficha"  id="fichaequipo">
                         <p:column headerText="Codigo de activo">
-                            <h:outputText  />
+                            <h:outputText value ="0000000" />
                         </p:column>
 
                         <p:column headerText="Asegurado">
@@ -96,14 +95,14 @@ and open the template in the editor.
                         </p:column>
 
                         <p:column headerText="Categoria">
-                            <h:outputText  />
+                            <h:outputText value =" Equipo en Almacen" />
                         </p:column>
                             
                     </p:dataTable>
                          <h:commandLink>
                                  <p:graphicImage value="../resource/PDF-Export.png" width="40"/>
                          Descargar Reporte
-                          <p:dataExporter type="pdf" target="id_ficha" fileName="Historico" />
+                         <p:dataExporter type="pdf" target="id_ficha" fileName="Historico" preProcessor="#{SystemManagedBeanEquipo.preProcessPDF}" />
                       
                      </h:commandLink> 
                 </p:panel>

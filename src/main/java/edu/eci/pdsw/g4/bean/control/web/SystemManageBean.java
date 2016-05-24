@@ -6,6 +6,13 @@
 package edu.eci.pdsw.g4.bean.control.web;
 
 
+import com.lowagie.text.BadElementException;
+import com.lowagie.text.Chunk;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
+import com.lowagie.text.Image;
+import com.lowagie.text.PageSize;
 import edu.eci.pdsw.g4.bean.control.seguridad.ShiroLoginBean;
 import edu.eci.pdsw.g4.logica.estructura.Equipo;
 import edu.eci.pdsw.g4.logica.estructura.Estudiante;
@@ -20,6 +27,7 @@ import edu.eci.pdsw.g4.logica.servicio.ServicioPersisElectroECI;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -39,6 +47,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.swing.KeyStroke;
 import org.primefaces.context.RequestContext;
@@ -69,7 +78,7 @@ public class SystemManageBean implements Serializable{
     private int precio;
     private int vida_util;
     private Date date2;
-    private int placaficha;
+    private int placaficha = 0;
     Equipo loadbyplaca;
       TipoEquipo loadTipoEquipo;
         private static List<TipoEquipo> allsequipos=new ArrayList<TipoEquipo>();
@@ -364,19 +373,39 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
     }
     
     public Equipo loadequipoByplaca() throws PersistenciaException{
-        
+        if(getPlacaficha() == 0){
+            System.out.println("Imposible Cargar registro");
+           return null; 
+        }
+        else{
         loadbyplaca = sec.loadequipoByplaca(getPlacaficha());
          loadTipoEquipo = loadTipoequipo(getPlacaficha());
-         System.out.println("Equipo cargado : " + loadTipoEquipo.getNombre_equipo());
+         
          referenciainterna= AsignRefInterna( loadbyplaca.getTipo_model(),loadTipoEquipo.getNombre_equipo());
-         System.out.println("referencia: " + referenciainterna);
+        
         return loadbyplaca;
+        }
     }
    public String AsignRefInterna(String param1 , String param2){
        String resp = param1 +"-"+ param2;
        return resp;
    }
    
+   public void preProcessPDF(Object document) throws IOException, BadElementException, DocumentException {
+        Document pdf = (Document) document;
+        pdf.open();
+        pdf.setPageSize(PageSize.A4);
+       
+        pdf.addTitle("Ficha del Equipo : "+loadTipoEquipo.getNombre_equipo());
+        
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        String logo = externalContext.getRealPath("") +File.separator + "resource" + File.separator + "ecijulio.png";
+       
+        pdf.add(Image.getInstance(logo));
+         pdf.bottom(30); 
+        
+         pdf.add(new Chunk("Datos del Equipo : " + loadTipoEquipo.getNombre_equipo() +" con Placa No : " + getPlacaficha()));
+    }
     
 
 
