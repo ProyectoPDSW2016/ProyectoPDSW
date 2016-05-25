@@ -289,7 +289,7 @@ public class ElectroEciTest {
             spECI.insertTipoEquipo(pruebaT4);
          spECI.insertEquipo(pruebaEq4);
          Equipo loadequipoByplaca = spECI.loadequipoByplaca(99);
-         System.out.println("Carga Satisfactoria : " + loadequipoByplaca.getObservaciones());
+        
          assertTrue(true);
      }
     

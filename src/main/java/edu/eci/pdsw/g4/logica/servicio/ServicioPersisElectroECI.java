@@ -195,21 +195,20 @@ public class ServicioPersisElectroECI {
        df2.getDaoPrestamo().insertPrestamo(p);
        df2.commitTransaction();
        df2.endSession();
-       System.out.println("Prestamo id : "+p.getPrestamo_Id());
+      
        //insertarDetalle(p);
    }
    public void insertarDetalle(Prestamo p) throws PersistenciaException{
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
        int cantidad = df2.getDaoPrestamo().cantidadPrestamo();
-       System.out.println("Prestamo id comprobacion : "+p.getPrestamo_Id());
-       System.out.println("Cantidad : "+cantidad);
+       
        Set<DetallePrestamo> detalles = p.getDetallesPrestamo();
          Iterator<DetallePrestamo> i =detalles.iterator();
         while(i.hasNext()){
             DetallePrestamo dp = i.next();
             df2.getDaoPrestamo().insertarDetalle(p.getPrestamo_Id(),dp.getEquipo().getPlaca(), dp);
-            System.out.println("Registrando detalle  y su cantidad es : "+cantidad);
+           
         }
         df2.commitTransaction();
         df2.endSession();
@@ -227,7 +226,7 @@ public class ServicioPersisElectroECI {
         return selectPrestamos;
    }
    public Prestamo consultarPrestamo(int id) throws PersistenciaException{
-       System.out.println("Entro a consultar el prestamo");
+       
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
        Prestamo p = df2.getDaoPrestamo().consultarPrestamo(id);

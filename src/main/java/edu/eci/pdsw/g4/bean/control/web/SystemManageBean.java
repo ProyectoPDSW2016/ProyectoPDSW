@@ -334,7 +334,7 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
         DetallePrestamo dp = new DetallePrestamo(1, equipo);
         detallesPrestamos.add(dp);
         prePrestamos.add(equipo);
-        System.out.println("CArgo el Equipo");
+ 
             //El constructor de la clase prestamo esta invertido con respecto a la bd
             /*
         Usuario persona = new Estudiante(2100609, "Santiago", "Chisco", "david.chisco@mail.escuelaing.edu.co", "Ingenieria de sistemas", 7);
@@ -405,7 +405,7 @@ private static final org.slf4j.Logger log = LoggerFactory.getLogger(SystemManage
     
     public Equipo loadequipoByplaca() throws PersistenciaException{
         if(getPlacaficha() == 0){
-            System.out.println("Imposible Cargar registro");
+            
            return null; 
         }
         else{
