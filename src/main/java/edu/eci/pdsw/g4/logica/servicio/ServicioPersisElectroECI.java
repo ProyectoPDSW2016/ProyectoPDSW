@@ -202,12 +202,13 @@ public class ServicioPersisElectroECI {
        DaoFactory df2 = DaoFactory.getInstance(prop);
        df2.beginSession();
        int cantidad = df2.getDaoPrestamo().cantidadPrestamo();
+       System.out.println("Prestamo id comprobacion : "+p.getPrestamo_Id());
        System.out.println("Cantidad : "+cantidad);
        Set<DetallePrestamo> detalles = p.getDetallesPrestamo();
          Iterator<DetallePrestamo> i =detalles.iterator();
         while(i.hasNext()){
             DetallePrestamo dp = i.next();
-            df2.getDaoPrestamo().insertarDetalle(cantidad,dp.getEquipo().getPlaca(), dp);
+            df2.getDaoPrestamo().insertarDetalle(p.getPrestamo_Id(),dp.getEquipo().getPlaca(), dp);
             System.out.println("Registrando detalle  y su cantidad es : "+cantidad);
         }
         df2.commitTransaction();

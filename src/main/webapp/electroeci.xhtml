@@ -32,12 +32,7 @@ and open the template in the editor.
                             <p:column headerText="Vida Util"><h:outputText value="#{tipoEquipo.vida_util}" /></p:column>
                             <p:column headerText="Precio"><h:outputText value="#{tipoEquipo.precio}" /></p:column>
                         </p:dataTable>
-                          <h:commandLink>
-                                 <p:graphicImage value="../resource/PDF-Export.png" width="24"/>
-                          
-                          <p:dataExporter type="pdf" target="dt_equipo" fileName="Historico" />
-                      
-                     </h:commandLink>      
+                            
                     </p:panel> 
                 </p:growl>
                   
